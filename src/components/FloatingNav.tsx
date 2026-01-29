@@ -33,7 +33,7 @@ export function FloatingNav({ locale = 'en' }: { locale?: string }) {
   // Navigation items
   const navItems: NavItem[] = [
     { label: t('home'), href: `/${locale}`, icon: '🏠' },
-    { label: t('games'), href: `/${locale}/games`, icon: '🎮' },
+    { label: t('games'), href: '#', icon: '🎮' },
     { label: t('codes'), href: '#', icon: '🎁' },
     { label: t('guides'), href: '#', icon: '📖' },
     { label: t('settings'), href: '#', icon: '⚙️' },

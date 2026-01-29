@@ -15,7 +15,7 @@ export async function Footer({ locale = 'en' }: FooterProps) {
 
   const navLinks = [
     { label: t('home'), href: `/${locale}` },
-    { label: t('games'), href: `/${locale}/games` },
+    { label: t('games'), href: '#' },
     { label: t('codes'), href: '#' },
     { label: t('guides'), href: '#' },
   ];
