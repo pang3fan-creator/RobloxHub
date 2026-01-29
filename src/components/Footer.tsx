@@ -16,8 +16,8 @@ export async function Footer({ locale = 'en' }: FooterProps) {
   const navLinks = [
     { label: t('home'), href: `/${locale}` },
     { label: t('games'), href: `/${locale}/games` },
-    { label: t('codes'), href: '#', disabled: true },
-    { label: t('guides'), href: '#', disabled: true },
+    { label: t('codes'), href: '#' },
+    { label: t('guides'), href: '#' },
   ];
 
   const currentYear = new Date().getFullYear();
