@@ -1,4 +1,33 @@
-import { GameMetadata } from './games';
+import { locales, defaultLocale, type Locale } from './i18n';
+
+export const SITE_URL = 'https://www.bloxguides.com';
+
+/**
+ * Generate canonical URL and hreflang alternates for SEO
+ */
+export function generateAlternates(path: string = '') {
+  const normalizedPath = path.startsWith('/') ? path : path ? `/${path}` : '';
+
+  const languages: Record<string, string> = {};
+
+  for (const locale of locales) {
+    languages[locale] = `${SITE_URL}/${locale}${normalizedPath}`;
+  }
+
+  languages['x-default'] = `${SITE_URL}/${defaultLocale}${normalizedPath}`;
+
+  return {
+    languages,
+  };
+}
+
+/**
+ * Generate canonical URL for current page
+ */
+export function generateCanonical(locale: Locale, path: string = '') {
+  const normalizedPath = path.startsWith('/') ? path : path ? `/${path}` : '';
+  return `${SITE_URL}/${locale}${normalizedPath}`;
+}
 
 export interface JsonLdProps {
   type: 'WebSite' | 'ItemList' | 'HowTo';
@@ -19,12 +48,12 @@ export function generateWebSiteJsonLd() {
   return generateJsonLd({
     type: 'WebSite',
     data: {
-      name: 'RobloxHub - Game Guides & Walkthroughs',
-      url: 'https://robloxhub.com',
+      name: 'BloxGuides - Roblox Game Guides & Walkthroughs',
+      url: SITE_URL,
       description: 'Your ultimate destination for Roblox game tips, codes, and strategies',
       potentialAction: {
         '@type': 'SearchAction',
-        target: 'https://robloxhub.com/search?q={search_term_string}',
+        target: `${SITE_URL}/search?q={search_term_string}`,
         'query-input': 'required name=search_term_string',
       },
     },

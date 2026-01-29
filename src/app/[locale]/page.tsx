@@ -2,11 +2,26 @@ import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 import { FloatingNav } from '@/components/FloatingNav';
 import { Footer } from '@/components/Footer';
+import { generateAlternates, generateCanonical } from '@/lib/seo';
+import { Locale } from '@/lib/i18n';
 
 interface PageProps {
   params: Promise<{
     locale: string;
   }>;
+}
+
+export async function generateMetadata({ params }: PageProps) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'home' });
+
+  return {
+    title: t('title'),
+    alternates: {
+      canonical: generateCanonical(locale as Locale),
+      ...generateAlternates(),
+    },
+  };
 }
 
 export default async function HomePage({ params }: PageProps) {

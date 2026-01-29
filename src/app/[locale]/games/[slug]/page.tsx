@@ -4,6 +4,8 @@ import { FloatingNav } from '@/components/FloatingNav';
 import { GameMDX } from '@/components/GameMDX';
 import { Footer } from '@/components/Footer';
 import { getGamePostBySlug } from '@/lib/games';
+import { generateAlternates, generateCanonical } from '@/lib/seo';
+import { Locale } from '@/lib/i18n';
 import { RiskLevel } from '@/components/QuickCard';
 const anomaliesData = [
   {
@@ -71,11 +73,15 @@ interface PageProps {
 }
 
 export async function generateMetadata({ params }: PageProps) {
-  const { locale } = await params;
+  const { locale, slug } = await params;
   const t = await getTranslations({ locale, namespace: 'game' });
 
   return {
-    title: `Scary Shawarma Kiosk - ${t('quickGuide')} | RobloxHub`,
+    title: `Scary Shawarma Kiosk - ${t('quickGuide')} | BloxGuides`,
+    alternates: {
+      canonical: generateCanonical(locale as Locale, `/games/${slug}`),
+      ...generateAlternates(`/games/${slug}`),
+    },
   };
 }
 
