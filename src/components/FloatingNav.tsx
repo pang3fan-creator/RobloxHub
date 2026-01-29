@@ -34,9 +34,9 @@ export function FloatingNav({ locale = 'en' }: { locale?: string }) {
   const navItems: NavItem[] = [
     { label: t('home'), href: `/${locale}`, icon: '🏠' },
     { label: t('games'), href: `/${locale}/games`, icon: '🎮' },
-    { label: t('codes'), href: `/${locale}/codes`, icon: '🎁' },
-    { label: t('guides'), href: `/${locale}/guides`, icon: '📖' },
-    { label: t('settings'), href: `/${locale}/settings`, icon: '⚙️' },
+    { label: t('codes'), href: '#', icon: '🎁', disabled: true },
+    { label: t('guides'), href: '#', icon: '📖', disabled: true },
+    { label: t('settings'), href: '#', icon: '⚙️', disabled: true },
   ];
 
   // Hide/show on scroll
