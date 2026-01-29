@@ -1,0 +1,62 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "games": "Juegos",
+    "codes": "Códigos",
+    "guides": "Guías",
+    "about": "Acerca de"
+  },
+  "home": {
+    "title": "Guías de Juegos de Roblox",
+    "subtitle": "Tu destino definitivo para consejos, códigos y estrategias de Roblox",
+    "hero": {
+      "featured": "Juego Destacado",
+      "trending": "Tendencias",
+      "viewGuide": "Ver Guía"
+    },
+    "categories": {
+      "anomalies": "Listas de Anomalías",
+      "codes": "Códigos de Juego",
+      "tiers": "Listas de Niveles",
+      "fixes": "Soluciones Técnicas"
+    }
+  },
+  "game": {
+    "quickGuide": "Guía Rápida",
+    "anomalies": "Anomalías",
+    "endings": "Finales",
+    "events": "Eventos",
+    "lastUpdated": "Última actualización",
+    "discovered": "Descubierto"
+  },
+  "components": {
+    "anomalySlider": {
+      "before": "Estado Normal",
+      "after": "Estado Anómalo",
+      "markAsFound": "Marcar como Descubierto",
+      "markedAsFound": "Descubierto",
+      "brightness": "Brillo",
+      "dragHint": "Arrastra para comparar"
+    },
+    "floatingNav": {
+      "menu": "Menú",
+      "home": "Inicio",
+      "games": "Juegos",
+      "codes": "Códigos",
+      "guides": "Guías",
+      "settings": "Configuración",
+      "close": "Cerrar"
+    },
+    "quickCard": {
+      "riskLevel": "Nivel de Riesgo",
+      "location": "Ubicación",
+      "trigger": "Activador",
+      "showDetails": "Ver Detalles",
+      "hideDetails": "Ocultar",
+      "lowRisk": "Bajo",
+      "mediumRisk": "Medio",
+      "highRisk": "Alto",
+      "extremeRisk": "Extremo"
+    }
+  }
+}

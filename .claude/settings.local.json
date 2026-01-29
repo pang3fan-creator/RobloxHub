@@ -1,0 +1,73 @@
+{
+  "permissions": {
+    "allow": [
+      "*",
+      "Bash(cd:*)",
+      "Bash(dir:*)",
+      "Edit",
+      "Bash(npm install)",
+      "Bash(npm test:*)",
+      "Bash(npm run test:coverage:*)",
+      "Bash(git:*)",
+      "Bash(del:*)"
+    ],
+    "deny": [],
+    "ask": [],
+    "defaultMode": "bypassPermissions"
+  },
+  "model": "opus",
+  "hooks": {
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell.exe -ExecutionPolicy Bypass -File C:\\Users\\pang1fan\\.claude\\hooks\\idle-notification.ps1"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash C:\\Users\\pang1fan\\.claude\\hooks\\stop-hook.sh"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/claudeception-activator.sh"
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell.exe -ExecutionPolicy Bypass -File C:\\Users\\pang1fan\\.claude\\hooks\\context-warning.ps1"
+          }
+        ]
+      }
+    ]
+  },
+  "enabledPlugins": {
+    "claude-mem@thedotmack": true,
+    "ralph-wiggum@claude-plugins-official": true,
+    "glm-plan-usage@zai-coding-plugins": true,
+    "glm-plan-bug@zai-coding-plugins": true,
+    "superpowers@superpowers-marketplace": true,
+    "frontend-design@claude-plugins-official": true
+  },
+  "outputStyle": "Default",
+  "language": "简体中文",
+  "autoUpdatesChannel": "latest",
+  "dangerouslySkipPermissions": true
+}

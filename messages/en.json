@@ -1,0 +1,71 @@
+{
+  "nav": {
+    "home": "Home",
+    "games": "Games",
+    "codes": "Codes",
+    "guides": "Guides",
+    "about": "About"
+  },
+  "home": {
+    "title": "Roblox Game Guides & Walkthroughs",
+    "subtitle": "Your ultimate destination for Roblox game tips, codes, and strategies",
+    "hero": {
+      "featured": "Featured Game",
+      "trending": "Trending Now",
+      "viewGuide": "View Guide"
+    },
+    "categories": {
+      "anomalies": "Anomaly Lists",
+      "codes": "Game Codes",
+      "tiers": "Tier Lists",
+      "fixes": "Technical Fixes"
+    }
+  },
+  "game": {
+    "quickGuide": "Quick Guide",
+    "anomalies": "Anomalies",
+    "endings": "Endings",
+    "events": "Events",
+    "lastUpdated": "Last updated",
+    "discovered": "Discovered"
+  },
+  "components": {
+    "anomalySlider": {
+      "before": "Normal State",
+      "after": "Anomaly State",
+      "markAsFound": "Mark as Found",
+      "markedAsFound": "Found",
+      "brightness": "Brightness",
+      "dragHint": "Drag to compare"
+    },
+    "floatingNav": {
+      "menu": "Menu",
+      "home": "Home",
+      "games": "Games",
+      "codes": "Codes",
+      "guides": "Guides",
+      "settings": "Settings",
+      "close": "Close"
+    },
+    "quickCard": {
+      "riskLevel": "Risk Level",
+      "location": "Location",
+      "trigger": "Trigger",
+      "showDetails": "Show Details",
+      "hideDetails": "Hide Details",
+      "lowRisk": "Low",
+      "mediumRisk": "Medium",
+      "highRisk": "High",
+      "extremeRisk": "Extreme"
+    },
+    "footer": {
+      "home": "Home",
+      "games": "Games",
+      "codes": "Codes",
+      "guides": "Guides",
+      "description": "Your ultimate destination for Roblox game guides, codes, and walkthroughs.",
+      "rights": "All rights reserved.",
+      "disclaimer": "RobloxHub is not affiliated with Roblox Corporation."
+    }
+  }
+}

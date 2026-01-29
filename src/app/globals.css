@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #020617; /* slate-950 */
+  --foreground: #e2e8f0; /* slate-200 */
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --background: #ffffff;
+    --foreground: #0f172a;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* 深色模式默认 */
+.dark {
+  --background: #020617;
+  --foreground: #e2e8f0;
+}
+
+/* 毛玻璃效果 */
+.glass {
+  @apply backdrop-blur-md bg-white/10 dark:bg-black/30;
+}
+
+/* 表格样式 - 为 prose 中的表格添加支持 */
+.prose table {
+  @apply w-full border-collapse my-6 !important;
+  display: table !important;
+}
+
+.prose thead {
+  @apply border-t-2 border-slate-600 bg-slate-800/50 !important;
+  display: table-header-group !important;
+}
+
+.prose tbody {
+  display: table-row-group !important;
+}
+
+.prose tr {
+  display: table-row !important;
+}
+
+.prose th {
+  @apply border-b border-slate-700 py-3 px-4 text-left font-bold text-slate-100 !important;
+  display: table-cell !important;
+}
+
+.prose td {
+  @apply border-b border-slate-800 py-3 px-4 text-slate-300 !important;
+  display: table-cell !important;
+}
+
+.prose tr:hover {
+  @apply bg-slate-800/30 !important;
+}
+
+/* 表格外层容器 - 用于响应式 */
+.prose > div:has(table) {
+  @apply overflow-x-auto -mx-4 px-4;
+}
+
+.prose > div > table {
+  @apply w-full;
+}
+
+/* 确保 Typography 不破坏表格布局 */
+.prose table {
+  table-layout: auto !important;
+}
+
+/* 移动端响应式 */
+@media (max-width: 768px) {
+  .prose > div:has(table) {
+    @apply -mx-4 px-4 overflow-x-auto;
+  }
+}

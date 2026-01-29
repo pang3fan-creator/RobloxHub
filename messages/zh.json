@@ -1,0 +1,71 @@
+{
+  "nav": {
+    "home": "首页",
+    "games": "游戏",
+    "codes": "礼包码",
+    "guides": "攻略",
+    "about": "关于"
+  },
+  "home": {
+    "title": "Roblox 游戏攻略门户",
+    "subtitle": "您的 Roblox 游戏终极攻略资源站",
+    "hero": {
+      "featured": "精选游戏",
+      "trending": "热门趋势",
+      "viewGuide": "查看攻略"
+    },
+    "categories": {
+      "anomalies": "异常清单",
+      "codes": "游戏礼包码",
+      "tiers": "等级列表",
+      "fixes": "技术修复"
+    }
+  },
+  "game": {
+    "quickGuide": "快速指南",
+    "anomalies": "异常列表",
+    "endings": "结局",
+    "events": "事件",
+    "lastUpdated": "最后更新",
+    "discovered": "已发现"
+  },
+  "components": {
+    "anomalySlider": {
+      "before": "正常状态",
+      "after": "异常状态",
+      "markAsFound": "标记为已发现",
+      "markedAsFound": "已发现",
+      "brightness": "亮度调节",
+      "dragHint": "拖拽滑块对比"
+    },
+    "floatingNav": {
+      "menu": "菜单",
+      "home": "首页",
+      "games": "游戏",
+      "codes": "礼包码",
+      "guides": "攻略",
+      "settings": "设置",
+      "close": "关闭"
+    },
+    "quickCard": {
+      "riskLevel": "风险等级",
+      "location": "位置",
+      "trigger": "触发方式",
+      "showDetails": "查看详情",
+      "hideDetails": "收起详情",
+      "lowRisk": "低",
+      "mediumRisk": "中",
+      "highRisk": "高",
+      "extremeRisk": "极高"
+    },
+    "footer": {
+      "home": "首页",
+      "games": "游戏",
+      "codes": "礼包码",
+      "guides": "攻略",
+      "description": "您的 Roblox 游戏终极攻略资源站，提供游戏攻略、礼包码和通关指南。",
+      "rights": "保留所有权利。",
+      "disclaimer": "RobloxHub 与 Roblox Corporation 无关联。"
+    }
+  }
+}
