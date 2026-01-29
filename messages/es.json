@@ -57,6 +57,15 @@
       "mediumRisk": "Medio",
       "highRisk": "Alto",
       "extremeRisk": "Extremo"
+    },
+    "footer": {
+      "home": "Inicio",
+      "games": "Juegos",
+      "codes": "Códigos",
+      "guides": "Guías",
+      "description": "Tu destino definitivo para guías, códigos y walkthroughs de juegos de Roblox.",
+      "rights": "Todos los derechos reservados.",
+      "disclaimer": "RobloxHub no está afiliado con Roblox Corporation."
     }
   }
 }

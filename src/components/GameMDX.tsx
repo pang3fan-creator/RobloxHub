@@ -46,26 +46,26 @@ const components = {
   tr: TR,
   th: TH,
   td: TD,
-  h1: ({ children }: { children: React.ReactNode }) => {
+  h1: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => {
     const id = slugify(children);
     return (
-      <h1 id={id} className="text-4xl font-extrabold text-slate-100 mb-6 mt-8 leading-tight scroll-mt-24 text-center">
+      <h1 id={id} className="text-4xl font-extrabold text-slate-100 mb-6 mt-8 leading-tight scroll-mt-24 text-center" {...props}>
         {children}
       </h1>
     );
   },
-  h2: ({ children }: { children: React.ReactNode }) => {
+  h2: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => {
     const id = slugify(children);
     return (
-      <h2 id={id} className="text-3xl font-bold text-purple-200 mb-5 mt-7 leading-tight scroll-mt-24 text-center">
+      <h2 id={id} className="text-3xl font-bold text-purple-200 mb-5 mt-7 leading-tight scroll-mt-24 text-center" {...props}>
         {children}
       </h2>
     );
   },
-  h3: ({ children }: { children: React.ReactNode }) => {
+  h3: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => {
     const id = slugify(children);
     return (
-      <h3 id={id} className="text-2xl font-semibold text-slate-200 mb-4 mt-6 leading-tight scroll-mt-24 text-center">
+      <h3 id={id} className="text-2xl font-semibold text-slate-200 mb-4 mt-6 leading-tight scroll-mt-24 text-center" {...props}>
         {children}
       </h3>
     );
