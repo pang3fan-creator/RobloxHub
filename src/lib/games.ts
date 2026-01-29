@@ -23,12 +23,25 @@ export interface GameMetadata {
   locale: string;
 }
 
-const postsDirectory = path.join(process.cwd(), 'posts');
+const postsBaseDirectory = path.join(process.cwd(), 'posts');
+
+/**
+ * Get posts directory for a specific locale
+ */
+function getPostsDirectory(locale: string = 'en'): string {
+  return path.join(postsBaseDirectory, locale);
+}
 
 /**
  * Get all game posts from the posts directory
  */
-export function getAllGamePosts(): GamePost[] {
+export function getAllGamePosts(locale: string = 'en'): GamePost[] {
+  const postsDirectory = getPostsDirectory(locale);
+
+  if (!fs.existsSync(postsDirectory)) {
+    return [];
+  }
+
   const fileNames = fs.readdirSync(postsDirectory);
 
   const allPosts = fileNames
@@ -57,10 +70,18 @@ export function getAllGamePosts(): GamePost[] {
 
 /**
  * Get a single game post by slug using gray-matter
+ * Falls back to English if locale version doesn't exist
  */
-export function getGamePostBySlug(slug: string): GamePost | null {
+export function getGamePostBySlug(slug: string, locale: string = 'en'): GamePost | null {
   try {
-    const fullPath = path.join(postsDirectory, `${slug}.mdx`);
+    let postsDirectory = getPostsDirectory(locale);
+    let fullPath = path.join(postsDirectory, `${slug}.mdx`);
+
+    // Fallback to English if locale version doesn't exist
+    if (!fs.existsSync(fullPath) && locale !== 'en') {
+      postsDirectory = getPostsDirectory('en');
+      fullPath = path.join(postsDirectory, `${slug}.mdx`);
+    }
 
     if (!fs.existsSync(fullPath)) {
       return null;
@@ -82,7 +103,7 @@ export function getGamePostBySlug(slug: string): GamePost | null {
       content,
     } as GamePost;
   } catch (error) {
-    console.error(`Error loading game post "${slug}":`, error);
+    console.error(`Error loading game post "${slug}" for locale "${locale}":`, error);
     return null;
   }
 }
@@ -90,9 +111,17 @@ export function getGamePostBySlug(slug: string): GamePost | null {
 /**
  * Get all game slugs
  */
-export function getGameSlugs(): string[] {
+export function getGameSlugs(locale: string = 'en'): string[] {
+  const postsDirectory = getPostsDirectory(locale);
+
+  if (!fs.existsSync(postsDirectory)) {
+    return [];
+  }
+
   const fileNames = fs.readdirSync(postsDirectory);
-  return fileNames.map((name) => name.replace(/\.mdx$/, ''));
+  return fileNames
+    .filter((name) => name.endsWith('.mdx'))
+    .map((name) => name.replace(/\.mdx$/, ''));
 }
 
 /**

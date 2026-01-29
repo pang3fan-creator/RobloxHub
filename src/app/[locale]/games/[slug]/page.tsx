@@ -76,8 +76,13 @@ export async function generateMetadata({ params }: PageProps) {
   const { locale, slug } = await params;
   const t = await getTranslations({ locale, namespace: 'game' });
 
+  // Load game post to get excerpt for description
+  const gamePost = getGamePostBySlug(slug, locale);
+  const description = gamePost?.excerpt || '';
+
   return {
     title: `Scary Shawarma Kiosk - ${t('quickGuide')} | BloxGuides`,
+    description,
     alternates: {
       canonical: generateCanonical(locale as Locale, `/games/${slug}`),
       ...generateAlternates(`/games/${slug}`),
@@ -93,8 +98,8 @@ export default async function GameDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  // Load MDX content
-  const gamePost = getGamePostBySlug(slug);
+  // Load MDX content with locale support
+  const gamePost = getGamePostBySlug(slug, locale);
   if (!gamePost) {
     notFound();
   }

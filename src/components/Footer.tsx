@@ -47,7 +47,7 @@ export async function Footer({ locale = 'en' }: FooterProps) {
           <nav className="flex flex-wrap gap-6">
             {navLinks.map((link) => (
               <a
-                key={link.href}
+                key={link.label}
                 href={link.href}
                 className="text-sm text-slate-400 hover:text-purple-400 transition-colors"
               >
