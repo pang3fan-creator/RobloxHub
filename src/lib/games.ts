@@ -146,3 +146,27 @@ export function extractImagePaths(content: string): string[] {
   const matches = content.matchAll(imageRegex);
   return Array.from(matches).map((match) => match[1]);
 }
+
+/**
+ * Get featured game posts (sorted by featured flag and date)
+ */
+export function getFeaturedPosts(locale: string = 'en', limit: number = 3): GamePost[] {
+  const allPosts = getAllGamePosts(locale);
+
+  // Featured posts first, then by date
+  const sorted = allPosts.sort((a, b) => {
+    if (a.featured && !b.featured) return -1;
+    if (!a.featured && b.featured) return 1;
+    return a.date > b.date ? -1 : 1;
+  });
+
+  return sorted.slice(0, limit);
+}
+
+/**
+ * Get recently updated posts
+ */
+export function getRecentUpdates(locale: string = 'en', limit: number = 5): GamePost[] {
+  const allPosts = getAllGamePosts(locale);
+  return allPosts.sort((a, b) => (a.date > b.date ? -1 : 1)).slice(0, limit);
+}
