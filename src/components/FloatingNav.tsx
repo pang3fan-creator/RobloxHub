@@ -87,7 +87,7 @@ export function FloatingNav({ locale = 'en' }: { locale?: string }) {
       >
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="group relative flex items-center justify-center gap-2 px-6 h-12 bg-slate-900/80 backdrop-blur-md border border-slate-700 hover:border-purple-500 rounded-full text-slate-200 hover:text-white transition-all hover:scale-105 active:scale-95 shadow-xl"
+          className="group relative flex items-center justify-center gap-2 px-6 h-12 bg-slate-900/80 backdrop-blur-md border-2 border-purple-500/50 hover:border-purple-400 rounded-full text-slate-200 hover:text-white transition-all hover:scale-105 active:scale-95 shadow-xl animate-pulse-subtle"
           style={{
             width: 'min(200px, 80vw)',
             height: '48px',
@@ -157,7 +157,7 @@ export function FloatingNav({ locale = 'en' }: { locale?: string }) {
                       className={`group flex flex-col items-center gap-2 p-4 rounded-2xl border transition-all hover:scale-105 active:scale-95 min-w-[120px] ${
                         isActive
                           ? 'bg-purple-500/20 border-purple-500/50 text-purple-400'
-                          : 'bg-slate-800/50 border-slate-700 hover:border-slate-600 text-slate-300 hover:text-white'
+                          : 'bg-gradient-to-br from-slate-800/50 to-slate-900/50 border-slate-700 hover:border-purple-500/50 text-slate-300 hover:text-white hover:from-purple-900/30 hover:to-slate-800/50'
                       }`}
                     >
                       {/* Icon */}
@@ -194,14 +194,16 @@ export function FloatingNav({ locale = 'en' }: { locale?: string }) {
         @keyframes slide-down {
           from {
             transform: translateY(-100%);
+            opacity: 0;
           }
           to {
             transform: translateY(0);
+            opacity: 1;
           }
         }
 
         .animate-slide-down {
-          animation: slide-down 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          animation: slide-down 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
       `}</style>
     </>
