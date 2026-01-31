@@ -22,6 +22,9 @@ const gradients = [
 export function TrendingNow({ locale, games }: TrendingNowProps) {
   const t = useTranslations('home.trending');
 
+  // 现有游戏列表 - 只有这些游戏的链接是有效的
+  const existingGames = new Set(['scary-shawarma-kiosk']);
+
   return (
     <section className="py-12">
       {/* Header */}
@@ -30,12 +33,9 @@ export function TrendingNow({ locale, games }: TrendingNowProps) {
           <span>⚡</span>
           {t('title')}
         </h2>
-        <Link
-          href={`/${locale}/games`}
-          className="text-slate-400 hover:text-purple-400 text-sm font-medium transition-colors"
-        >
+        <span className="text-slate-600 text-sm font-medium cursor-not-allowed">
           {t('viewAll')} →
-        </Link>
+        </span>
       </div>
 
       {/* Scrollable Tags */}
@@ -45,23 +45,40 @@ export function TrendingNow({ locale, games }: TrendingNowProps) {
 
         {/* Tags container */}
         <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide -mx-2 px-2">
-          {games.map((game, index) => (
-            <Link
-              key={game.slug}
-              href={`/${locale}/games/${game.slug}`}
-              className={`
-                flex-shrink-0 px-5 py-2.5 rounded-full
-                bg-gradient-to-r ${gradients[index % gradients.length]}
-                text-white font-medium text-sm
-                shadow-lg shadow-purple-500/20
-                transition-all duration-200
-                hover:scale-110 hover:shadow-xl
-                active:scale-105
-              `}
-            >
-              {game.name}
-            </Link>
-          ))}
+          {games.map((game, index) => {
+            const isGameExist = existingGames.has(game.slug);
+
+            return isGameExist ? (
+              <Link
+                key={game.slug}
+                href={`/${locale}/games/${game.slug}`}
+                className={`
+                  flex-shrink-0 px-5 py-2.5 rounded-full
+                  bg-gradient-to-r ${gradients[index % gradients.length]}
+                  text-white font-medium text-sm
+                  shadow-lg shadow-purple-500/20
+                  transition-all duration-200
+                  hover:scale-110 hover:shadow-xl
+                  active:scale-105
+                `}
+              >
+                {game.name}
+              </Link>
+            ) : (
+              <span
+                key={game.slug}
+                className={`
+                  flex-shrink-0 px-5 py-2.5 rounded-full
+                  bg-gradient-to-r ${gradients[index % gradients.length]}
+                  text-white/50 font-medium text-sm
+                  shadow-lg shadow-purple-500/20
+                  cursor-not-allowed opacity-60
+                `}
+              >
+                {game.name}
+              </span>
+            );
+          })}
         </div>
 
         {/* Right fade */}

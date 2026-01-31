@@ -32,12 +32,9 @@ export function RecentUpdates({ locale, posts }: RecentUpdatesProps) {
           <span>📝</span>
           {t('title')}
         </h2>
-        <Link
-          href={`/${locale}/games`}
-          className="text-slate-400 hover:text-purple-400 text-sm font-medium transition-colors"
-        >
+        <span className="text-slate-600 text-sm font-medium cursor-not-allowed">
           {t('viewAll')} →
-        </Link>
+        </span>
       </div>
 
       {/* Updates List */}

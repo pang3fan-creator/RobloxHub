@@ -15,9 +15,9 @@ export async function Footer({ locale = 'en' }: FooterProps) {
 
   const navLinks = [
     { label: t('home'), href: `/${locale}` },
-    { label: t('games'), href: '#' },
-    { label: t('codes'), href: '#' },
-    { label: t('guides'), href: '#' },
+    { label: t('games'), href: '#', disabled: true },
+    { label: t('codes'), href: '#', disabled: true },
+    { label: t('guides'), href: '#', disabled: true },
   ];
 
   const currentYear = new Date().getFullYear();
@@ -45,15 +45,24 @@ export async function Footer({ locale = 'en' }: FooterProps) {
 
           {/* Navigation Links */}
           <nav className="flex flex-wrap gap-6">
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="text-sm text-slate-400 hover:text-purple-400 transition-colors"
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) =>
+              (link as any).disabled ? (
+                <span
+                  key={link.label}
+                  className="text-sm text-slate-600 cursor-not-allowed"
+                >
+                  {link.label}
+                </span>
+              ) : (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className="text-sm text-slate-400 hover:text-purple-400 transition-colors"
+                >
+                  {link.label}
+                </a>
+              )
+            )}
           </nav>
         </div>
 

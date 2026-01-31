@@ -8,6 +8,7 @@ interface NavItem {
   label: string;
   href: string;
   icon: string;
+  disabled?: boolean;
 }
 
 /**
@@ -33,10 +34,10 @@ export function FloatingNav({ locale = 'en' }: { locale?: string }) {
   // Navigation items
   const navItems: NavItem[] = [
     { label: t('home'), href: `/${locale}`, icon: '🏠' },
-    { label: t('games'), href: '#', icon: '🎮' },
-    { label: t('codes'), href: '#', icon: '🎁' },
-    { label: t('guides'), href: '#', icon: '📖' },
-    { label: t('settings'), href: '#', icon: '⚙️' },
+    { label: t('games'), href: '#', icon: '🎮', disabled: true },
+    { label: t('codes'), href: '#', icon: '🎁', disabled: true },
+    { label: t('guides'), href: '#', icon: '📖', disabled: true },
+    { label: t('settings'), href: '#', icon: '⚙️', disabled: true },
   ];
 
   // Hide/show on scroll
@@ -149,6 +150,19 @@ export function FloatingNav({ locale = 'en' }: { locale?: string }) {
               <div className="flex flex-wrap justify-center gap-3 max-w-2xl mx-auto">
                 {navItems.map((item, index) => {
                   const isActive = pathname === item.href;
+
+                  if (item.disabled) {
+                    return (
+                      <button
+                        key={`${item.label}-${index}`}
+                        disabled
+                        className="group flex flex-col items-center gap-2 p-4 rounded-2xl border min-w-[120px] bg-slate-800/30 border-slate-700 text-slate-600 cursor-not-allowed opacity-50"
+                      >
+                        <span className="text-3xl filter grayscale">{item.icon}</span>
+                        <span className="text-sm font-medium">{item.label}</span>
+                      </button>
+                    );
+                  }
 
                   return (
                     <a
