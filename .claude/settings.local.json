@@ -9,7 +9,8 @@
       "Bash(npm test:*)",
       "Bash(npm run test:coverage:*)",
       "Bash(git:*)",
-      "Bash(del:*)"
+      "Bash(del:*)",
+      "Bash(npm run build)"
     ],
     "deny": [],
     "ask": [],
@@ -17,26 +18,6 @@
   },
   "model": "opus",
   "hooks": {
-    "Notification": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "powershell.exe -ExecutionPolicy Bypass -File C:\\Users\\pang1fan\\.claude\\hooks\\idle-notification.ps1"
-          }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash C:\\Users\\pang1fan\\.claude\\hooks\\stop-hook.sh"
-          }
-        ]
-      }
-    ],
     "UserPromptSubmit": [
       {
         "hooks": [
@@ -59,12 +40,9 @@
     ]
   },
   "enabledPlugins": {
-    "claude-mem@thedotmack": true,
-    "ralph-wiggum@claude-plugins-official": true,
-    "glm-plan-usage@zai-coding-plugins": true,
-    "glm-plan-bug@zai-coding-plugins": true,
-    "superpowers@superpowers-marketplace": true,
-    "frontend-design@claude-plugins-official": true
+    "context7@claude-plugins-official": true,
+    "ralph-loop@claude-plugins-official": true,
+    "superpowers@superpowers-marketplace": true
   },
   "outputStyle": "Default",
   "language": "简体中文",

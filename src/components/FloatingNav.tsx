@@ -147,12 +147,12 @@ export function FloatingNav({ locale = 'en' }: { locale?: string }) {
             {/* Navigation Grid */}
             <nav className="px-6 pb-8 pt-2">
               <div className="flex flex-wrap justify-center gap-3 max-w-2xl mx-auto">
-                {navItems.map((item) => {
+                {navItems.map((item, index) => {
                   const isActive = pathname === item.href;
 
                   return (
                     <a
-                      key={item.href}
+                      key={`${item.label}-${index}`}
                       href={item.href}
                       className={`group flex flex-col items-center gap-2 p-4 rounded-2xl border transition-all hover:scale-105 active:scale-95 min-w-[120px] ${
                         isActive

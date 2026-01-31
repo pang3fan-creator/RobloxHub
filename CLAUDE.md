@@ -1,7 +1,7 @@
-# 产品需求文档
+## 产品需求文档
 
-prd.md
+详见 `prd.md`
 
-# 有关`claude code`的笔记
+## `Claude`使用说明
 
-C:\Users\pang1fan\Desktop\Claude使用说明
+详见 `C:\Users\pang1fan\Desktop\Claude使用说明`
