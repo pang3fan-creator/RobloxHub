@@ -1,8 +1,12 @@
 import { getTranslations } from 'next-intl/server';
-import Link from 'next/link';
 import { FloatingNav } from '@/components/FloatingNav';
 import { Footer } from '@/components/Footer';
+import { HeroSearch } from '@/components/HeroSearch';
+import { FeaturedGameCard } from '@/components/FeaturedGameCard';
+import { TrendingNow } from '@/components/TrendingNow';
+import { RecentUpdates } from '@/components/RecentUpdates';
 import { generateAlternates, generateCanonical } from '@/lib/seo';
+import { getFeaturedPosts, getRecentUpdates } from '@/lib/games';
 import { Locale } from '@/lib/i18n';
 
 interface PageProps {
@@ -24,100 +28,73 @@ export async function generateMetadata({ params }: PageProps) {
   };
 }
 
+// Trending games (can be moved to config or CMS later)
+const trendingGames = [
+  { slug: 'scary-shawarma-kiosk', name: 'Scary Shawarma Kiosk' },
+  { slug: 'dress-to-impress', name: 'Dress to Impress' },
+  { slug: 'blue-lock-rivals', name: 'Blue Lock Rivals' },
+  { slug: 'fisch', name: 'Fisch' },
+  { slug: 'murder-mystery-2', name: 'Murder Mystery 2' },
+  { slug: 'blox-fruits', name: 'Blox Fruits' },
+];
+
 export default async function HomePage({ params }: PageProps) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'home' });
 
+  const featuredPosts = getFeaturedPosts(locale, 3);
+  const recentPosts = getRecentUpdates(locale, 5);
+
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-slate-950">
       <FloatingNav locale={locale} />
 
       {/* Hero Section */}
-      <section className="relative px-6 py-20 lg:px-8">
+      <section className="relative px-6 pt-24 pb-12 lg:px-8">
         <div className="mx-auto max-w-4xl text-center">
-          <h1 className="text-5xl font-bold tracking-tight text-white sm:text-7xl">
-            {t('title')}
+          <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mb-4">
+            🎮 {t('title')}
           </h1>
-          <p className="mt-6 text-lg leading-8 text-slate-300">
+          <p className="text-lg leading-8 text-slate-300 mb-8">
             {t('subtitle')}
           </p>
+
+          {/* Search Box */}
+          <HeroSearch locale={locale} />
         </div>
       </section>
 
-      {/* Featured Game */}
+      {/* Featured Games */}
       <section className="px-6 py-12 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <h2 className="text-3xl font-bold text-white mb-8">
-            {t('hero.featured')}
+          <h2 className="text-2xl font-bold text-white mb-8 flex items-center gap-2">
+            <span>🔥</span>
+            {t('featured.title')}
           </h2>
-          <Link
-            href={`/${locale}/games/scary-shawarma-kiosk`}
-            className="block group relative overflow-hidden rounded-2xl bg-slate-900 p-8 shadow-xl transition-transform hover:scale-[1.02]"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-900/50 to-slate-900/50" />
-            <div className="relative">
-              <h3 className="text-2xl font-bold text-white mb-2">
-                Scary Shawarma Kiosk
-              </h3>
-              <p className="text-slate-300 mb-4">
-                Complete anomaly list, all endings, and event walkthroughs
-              </p>
-              <span className="inline-flex items-center text-purple-400 font-medium">
-                {t('hero.viewGuide')} →
-              </span>
-            </div>
-          </Link>
-        </div>
-      </section>
 
-      {/* Categories */}
-      <section className="px-6 py-12 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <h2 className="text-3xl font-bold text-white mb-8">Categories</h2>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            <CategoryCard
-              title={t('categories.anomalies')}
-              description="Find all anomalies and secrets"
-              emoji="👻"
-            />
-            <CategoryCard
-              title={t('categories.codes')}
-              description="Redeem codes for rewards"
-              emoji="🎁"
-            />
-            <CategoryCard
-              title={t('categories.tiers')}
-              description="Character and item rankings"
-              emoji="📊"
-            />
-            <CategoryCard
-              title={t('categories.fixes')}
-              description="Technical fixes and tips"
-              emoji="🔧"
-            />
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {featuredPosts.map((post) => (
+              <FeaturedGameCard key={post.slug} game={post} locale={locale} />
+            ))}
           </div>
         </div>
       </section>
 
-      <Footer locale={locale} />
-    </div>
-  );
-}
+      {/* Trending Now */}
+      <section className="px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <TrendingNow locale={locale} games={trendingGames} />
+        </div>
+      </section>
 
-function CategoryCard({
-  title,
-  description,
-  emoji,
-}: {
-  title: string;
-  description: string;
-  emoji: string;
-}) {
-  return (
-    <div className="rounded-xl bg-slate-900 p-6 shadow-lg transition-transform hover:scale-105">
-      <div className="text-4xl mb-4">{emoji}</div>
-      <h3 className="text-xl font-semibold text-white mb-2">{title}</h3>
-      <p className="text-slate-400">{description}</p>
+      {/* Recent Updates */}
+      <section className="px-6 pb-12 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <RecentUpdates locale={locale} posts={recentPosts} />
+        </div>
+      </section>
+
+      <Footer locale={locale} />
     </div>
   );
 }
