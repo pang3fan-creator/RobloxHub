@@ -90,3 +90,12 @@ body {
     @apply -mx-4 px-4 overflow-x-auto;
   }
 }
+
+/* Hide scrollbar */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
