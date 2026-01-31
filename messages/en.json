@@ -19,6 +19,24 @@
       "codes": "Game Codes",
       "tiers": "Tier Lists",
       "fixes": "Technical Fixes"
+    },
+    "search": {
+      "placeholder": "Search games, guides, codes...",
+      "button": "Search"
+    },
+    "featured": {
+      "title": "Hot Guides",
+      "viewGuide": "View Guide",
+      "anomalies": "anomalies",
+      "endings": "endings"
+    },
+    "trending": {
+      "title": "Trending Now",
+      "viewAll": "View All"
+    },
+    "recent": {
+      "title": "Recent Updates",
+      "viewAll": "View All"
     }
   },
   "game": {

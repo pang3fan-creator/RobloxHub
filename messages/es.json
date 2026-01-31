@@ -19,6 +19,24 @@
       "codes": "Códigos de Juego",
       "tiers": "Listas de Niveles",
       "fixes": "Soluciones Técnicas"
+    },
+    "search": {
+      "placeholder": "Buscar juegos, guías, códigos...",
+      "button": "Buscar"
+    },
+    "featured": {
+      "title": "Guías Populares",
+      "viewGuide": "Ver Guía",
+      "anomalies": "anomalías",
+      "endings": "finales"
+    },
+    "trending": {
+      "title": "Tendencias",
+      "viewAll": "Ver Todo"
+    },
+    "recent": {
+      "title": "Actualizaciones Recientes",
+      "viewAll": "Ver Todo"
     }
   },
   "game": {
