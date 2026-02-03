@@ -15,16 +15,10 @@ interface AnomalySliderProps {
 }
 
 /**
- * AnomalySlider - Interactive before/after comparison component
+ * AnomalySlider - Split View Comparison
  *
- * Signature component for Roblox horror game guides.
- * Features touch-optimized drag handle for mobile one-hand use.
- *
- * Design tokens from system.md:
- * - Container height: 200px (mobile), 300px (desktop)
- * - Handle size: 44px (touch target minimum)
- * - Border: 1px solid var(--border-default)
- * - Border-radius: var(--radius-md)
+ * Implements a side-by-side resizing layout using absolute positioning
+ * to ensure zero gaps and perfect height filling.
  */
 export function AnomalySlider({
   beforeImage,
@@ -54,44 +48,50 @@ export function AnomalySlider({
     setSliderPosition(percentage);
   };
 
-  // Mouse events
+  // Start dragging
   const handleMouseDown = (e: MouseEvent<HTMLDivElement>) => {
     setIsDragging(true);
-    updateSliderPosition(e.clientX);
-  };
-
-  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
-    if (!isDragging) return;
-    updateSliderPosition(e.clientX);
-  };
-
-  const handleMouseUp = () => {
-    setIsDragging(false);
-  };
-
-  // Touch events
-  const handleTouchMove = (e: TouchEvent<HTMLDivElement>) => {
-    if (!isDragging) return;
-    const touch = e.touches[0];
-    updateSliderPosition(touch.clientX);
+    e.preventDefault();
   };
 
   const handleTouchStart = (e: TouchEvent<HTMLDivElement>) => {
     setIsDragging(true);
-    const touch = e.touches[0];
-    updateSliderPosition(touch.clientX);
   };
 
-  const handleTouchEnd = () => {
-    setIsDragging(false);
-  };
+  // Global drag handling
+  useEffect(() => {
+    if (!isDragging) return;
 
-  // Handle found checkbox
+    const handleGlobalMouseMove = (e: globalThis.MouseEvent) => {
+      updateSliderPosition(e.clientX);
+    };
+
+    const handleGlobalMouseUp = () => {
+      setIsDragging(false);
+    };
+
+    const handleGlobalTouchMove = (e: globalThis.TouchEvent) => {
+      const touch = e.touches[0];
+      updateSliderPosition(touch.clientX);
+    };
+
+    window.addEventListener('mousemove', handleGlobalMouseMove);
+    window.addEventListener('mouseup', handleGlobalMouseUp);
+    window.addEventListener('touchmove', handleGlobalTouchMove);
+    window.addEventListener('touchend', handleGlobalMouseUp);
+
+    return () => {
+      window.removeEventListener('mousemove', handleGlobalMouseMove);
+      window.removeEventListener('mouseup', handleGlobalMouseUp);
+      window.removeEventListener('touchmove', handleGlobalTouchMove);
+      window.removeEventListener('touchend', handleGlobalMouseUp);
+    };
+  }, [isDragging]);
+
+  // Handle found state
   const handleFoundChange = (checked: boolean) => {
     setFound(checked);
     onFoundChange?.(checked);
-
-    // Save to localStorage for persistence
     if (anomalyId) {
       const key = `anomaly-found-${anomalyId}`;
       if (checked) {
@@ -102,7 +102,7 @@ export function AnomalySlider({
     }
   };
 
-  // Check localStorage on mount
+  // Initialize found state
   useEffect(() => {
     if (typeof window !== 'undefined' && anomalyId) {
       const key = `anomaly-found-${anomalyId}`;
@@ -122,63 +122,51 @@ export function AnomalySlider({
         <span className="font-medium text-purple-400">{t('after')}</span>
       </div>
 
-      {/* Slider Container */}
+      {/* Main Container - Absolute Positioning Layout */}
       <div
         ref={containerRef}
-        className="relative overflow-hidden rounded-lg border border-slate-800 bg-slate-950 select-none h-[200px] md:h-[300px]"
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        onMouseLeave={handleMouseUp}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-        onTouchStart={handleTouchStart}
+        className="relative aspect-video w-full overflow-hidden rounded-lg border border-slate-800 bg-slate-950 select-none touch-none"
       >
-        {/* After Image (Background) */}
+        {/* Left Pane (Before) - Anchored Left */}
         <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${afterImage})` }}
-        >
-          <img
-            src={afterImage}
-            alt={afterAlt || t('after')}
-            className="w-full h-full object-cover"
-            style={{ visibility: 'hidden' }}
-          />
-        </div>
-
-        {/* Before Image (Foreground, clipped) */}
-        <div
-          className="absolute inset-0 overflow-hidden bg-cover bg-center"
-          style={{
-            width: `${sliderPosition}%`,
-            backgroundImage: `url(${beforeImage})`,
-          }}
+          className="absolute left-0 top-0 bottom-0 overflow-hidden bg-black/20 z-10"
+          style={{ width: `${sliderPosition}%` }}
         >
           <img
             src={beforeImage}
             alt={beforeAlt || t('before')}
-            className="w-full h-full object-cover"
-            style={{ visibility: 'hidden' }}
+            className="w-full h-full object-cover pointer-events-none"
+            draggable={false}
           />
         </div>
 
-        {/* Slider Handle */}
+        {/* Right Pane (After) - Anchored Right */}
         <div
-          className="absolute top-0 bottom-0 w-1 bg-purple-500 cursor-ew-resize hover:bg-purple-400 transition-colors"
+          className="absolute right-0 top-0 bottom-0 overflow-hidden bg-black/20"
+          style={{ width: `${100 - sliderPosition}%` }}
+        >
+          <img
+            src={afterImage}
+            alt={afterAlt || t('after')}
+            className="w-full h-full object-cover pointer-events-none"
+            draggable={false}
+          />
+        </div>
+
+        {/* Drag Handle (Divider) */}
+        <div
+          className="absolute top-0 bottom-0 w-1 bg-purple-500 hover:bg-purple-400 cursor-ew-resize z-20 flex items-center justify-center group transition-colors -translate-x-1/2"
           style={{ left: `${sliderPosition}%` }}
           onMouseDown={handleMouseDown}
           onTouchStart={handleTouchStart}
         >
-          {/* Touch-optimized drag handle */}
-          <div
-            className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-11 h-11 bg-purple-500 hover:bg-purple-400 rounded-full flex items-center justify-center shadow-lg transition-all hover:scale-110 active:scale-95"
-            style={{
-              width: '44px',
-              height: '44px',
-            }}
-          >
+          {/* Touch target (invisible wider area) */}
+          <div className="absolute inset-y-0 -left-4 -right-4 z-30 cursor-ew-resize" />
+
+          {/* Visible Handle Button */}
+          <div className="w-8 h-8 rounded-full bg-purple-500 text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
             <svg
-              className="w-6 h-6 text-white"
+              className="w-4 h-4"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -186,17 +174,17 @@ export function AnomalySlider({
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                strokeWidth={2}
+                strokeWidth={2.5}
                 d="M8 9l4-4 4 4m0 6l-4 4-4-4"
               />
             </svg>
           </div>
         </div>
 
-        {/* Drag hint overlay (fades out on interaction) */}
+        {/* Hint Overlay (only when centered and idle) */}
         {sliderPosition === 50 && !isDragging && (
-          <div className="absolute inset-0 flex items-center justify-center bg-black/20 pointer-events-none">
-            <span className="text-white/80 text-sm font-medium px-4 py-2 bg-black/50 rounded-full backdrop-blur-sm">
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-30">
+            <span className="text-white/90 text-sm font-medium px-4 py-2 bg-black/60 rounded-full backdrop-blur-sm shadow-xl translate-y-12">
               {t('dragHint')}
             </span>
           </div>

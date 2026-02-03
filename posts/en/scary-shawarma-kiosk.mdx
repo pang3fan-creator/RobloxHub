@@ -16,11 +16,91 @@ So, obviously, to survive in the game, you need to be aware of all sorts of anom
 
 ### Quick Reference
 
-<QuickReference />
+<QuickReference items={[
+  {
+    href: '#how-to-play',
+    icon: '🎮',
+    title: 'How to Play',
+    desc: 'Basic gameplay instructions for beginners',
+    color: 'blue'
+  },
+  {
+    href: '#anomalies-that-you-should-not-serve',
+    icon: '☠️',
+    title: 'Dangerous Anomalies',
+    desc: 'Dangerous anomalies to identify and avoid',
+    color: 'red'
+  },
+  {
+    href: '#anomalies-that-you-should-serve',
+    icon: '✓',
+    title: 'Safe Customers',
+    desc: 'Strange but safe customers you must serve',
+    color: 'emerald'
+  },
+  {
+    href: '#events',
+    icon: '⚡',
+    title: 'Events',
+    desc: 'In-game events you need to handle correctly',
+    color: 'amber'
+  },
+  {
+    href: '#jumpscares',
+    icon: '😱',
+    title: 'Jumpscares',
+    desc: 'Terrifying jumpscare events in the game',
+    color: 'orange'
+  },
+  {
+    href: '#all-endings-guide',
+    icon: '🎭',
+    title: 'All Endings Guide',
+    desc: 'Complete guide to all 5 possible endings',
+    color: 'purple'
+  },
+  {
+    href: '#pro-tips--tricks',
+    icon: '💡',
+    title: 'Pro Tips & Tricks',
+    desc: 'Advanced strategies to master the game',
+    color: 'cyan'
+  },
+
+{
+    href: '#roblox-horror-games-similar-to-scary-shawarma-kiosk',
+    icon: '🎲',
+    title: 'Similar Games',
+    desc: 'Similar horror games you might enjoy',
+    color: 'violet'
+  }  ,
+
+{
+    href: '#faq-section',
+    icon: '❓',
+    title: 'FAQ Section',
+    desc: 'Frequently asked questions and answers',
+    color: 'pink'
+  }
+
+]} />
 
 ## How to Play
 
-<HowToPlay />
+<HowToPlay items={[
+  {
+    title: '1. Work Flow',
+    desc: 'Greet customers, take orders, prepare shawarma. Complete the "safety check" for each customer.',
+  },
+  {
+    title: '2. Identify Anomalies',
+    desc: 'Check security cameras from multiple angles. Spot strange behavior, unusual appearances, or paranormal events.',
+  },
+  {
+    title: '3. Survival',
+    desc: "Don't serve anomalies. Keep normal customers happy. Survive until 7 AM.",
+  }
+]} />
 
 ## Anomalies that you should not serve
 
@@ -54,63 +134,97 @@ Find all anomalies that **you should not serve** and how to identify them in the
 
 This customer appears normal at first glance, but they will be very conspicuous when viewed on security camera footage, which will reveal their true form. Under the camera's view, you will see that this customer's appearance is very strange, or rather, like a skeleton. Please close the windows immediately and do not provide them with any service.
 
-![Strange Stickers anomaly - customer appears normal in person](/Scary-Shawarma-Kiosk/image-20260126173326097.webp)
+<AnomalySlider
+  beforeImage="/Scary-Shawarma-Kiosk/image-20260126173326097.webp"
+  afterImage="/Scary-Shawarma-Kiosk/image-20260126173419962.webp"
+  beforeAlt="Strange Stickers anomaly - customer appears normal in person"
+  afterAlt="Strange Stickers anomaly - skeleton revealed on security camera"
+  anomalyId="strange-stickers"
+/>
 
-![Strange Stickers anomaly - skeleton revealed on security camera](/Scary-Shawarma-Kiosk/image-20260126173419962.webp)
-
-### Black Holes 
+### Black Holes
 
 The customer stumbles towards you, looking as if they've just been in a fight, and you immediately notice something is wrong with them. You can sense something is off about their back, and checking the security footage, you'll see strange black holes covering their back. Close the windows and absolutely do not serve them.
 
-![Black Holes anomaly - customer stumbling towards kiosk](/Scary-Shawarma-Kiosk/image-20260126173227129.webp)
-
-![Black Holes anomaly - strange black holes visible on customer's back on camera](/Scary-Shawarma-Kiosk/image-20260126173258234.webp)
+<AnomalySlider
+  beforeImage="/Scary-Shawarma-Kiosk/image-20260126173227129.webp"
+  afterImage="/Scary-Shawarma-Kiosk/image-20260126173258234.webp"
+  beforeAlt="Black Holes anomaly - customer stumbling towards kiosk"
+  afterAlt="Black Holes anomaly - strange black holes visible on customer's back on camera"
+  anomalyId="black-holes"
+/>
 
 ### Nightvision Missing
 
 This customer's abnormality is quite difficult to spot. You look at him and everything seems normal, even in the surveillance footage, until you switch to night vision mode. Then, the customer completely disappears. Close the windows, do not serve him; he is not a normal human being.
 
-![Nightvision Missing anomaly - customer appears normal on regular camera](/Scary-Shawarma-Kiosk/image-20260126173647029.webp)
-
-![Nightvision Missing anomaly - customer completely disappears in night vision mode](/Scary-Shawarma-Kiosk/image-20260126173712639.webp)
+<AnomalySlider
+  beforeImage="/Scary-Shawarma-Kiosk/image-20260126173647029.webp"
+  afterImage="/Scary-Shawarma-Kiosk/image-20260126173712639.webp"
+  beforeAlt="Nightvision Missing anomaly - customer appears normal on regular camera"
+  afterAlt="Nightvision Missing anomaly - customer completely disappears in night vision mode"
+  anomalyId="nightvision-missing"
+/>
 
 ### Body Double
 
 There was a person who looked completely normal in person, but when reviewing the security footage, a doppelganger was seen standing next to them. This is not normal. Close the windows, and whatever you do, don't give her shawarma.
 
-![Body Double anomaly - customer looks normal in person](/Scary-Shawarma-Kiosk/image-20260126173754835.webp)
-
-![Body Double anomaly - doppelganger appears beside customer on security camera](/Scary-Shawarma-Kiosk/image-20260126173822359.webp)
+<AnomalySlider
+  beforeImage="/Scary-Shawarma-Kiosk/image-20260126173754835.webp"
+  afterImage="/Scary-Shawarma-Kiosk/image-20260126173822359.webp"
+  beforeAlt="Body Double anomaly - customer looks normal in person"
+  afterAlt="Body Double anomaly - doppelganger appears beside customer on security camera"
+  anomalyId="body-double"
+/>
 
 ### Out Back Body Double
 
 This anomaly is similar to the "Body Double" anomaly, but the difference is that the double appears in the rear camera's view. Switching to the second camera, you will see the double standing behind the kiosk.
 
-![Out Back Body Double anomaly - customer appears normal from front](/Scary-Shawarma-Kiosk/image-20260126174314367.webp)
-
-![Out Back Body Double anomaly - double appears in rear camera view](/Scary-Shawarma-Kiosk/image-20260126174344879.webp)
+<AnomalySlider
+  beforeImage="/Scary-Shawarma-Kiosk/image-20260126174314367.webp"
+  afterImage="/Scary-Shawarma-Kiosk/image-20260126174344879.webp"
+  beforeAlt="Out Back Body Double anomaly - customer appears normal from front"
+  afterAlt="Out Back Body Double anomaly - double appears in rear camera view"
+  anomalyId="out-back-body-double"
+/>
 
 ### Screamer
 
-This is the most terrifying anomaly; you need to watch out for the jumpscare. You should lower the volume or mute your sound in advance to protect your eardrums! Like many of the monsters in Scary Shawarma Kiosk: the ANOMALY, this customer appears normal at first glance. But when you check the security footage, the camera briefly shows static, and then you'll be startled—this anomaly will suddenly scream right in front of you.![Screamer anomaly - customer appears normal at first](/Scary-Shawarma-Kiosk/image-20260126173911651.webp)
+This is the most terrifying anomaly; you need to watch out for the jumpscare. You should lower the volume or mute your sound in advance to protect your eardrums! Like many of the monsters in Scary Shawarma Kiosk: the ANOMALY, this customer appears normal at first glance. But when you check the security footage, the camera briefly shows static, and then you'll be startled—this anomaly will suddenly scream right in front of you.
 
-![Screamer anomaly - terrifying jumpscare face on camera](/Scary-Shawarma-Kiosk/image-20260126173945311.webp)
+<AnomalySlider
+  beforeImage="/Scary-Shawarma-Kiosk/image-20260126173911651.webp"
+  afterImage="/Scary-Shawarma-Kiosk/image-20260126173945311.webp"
+  beforeAlt="Screamer anomaly - customer appears normal at first"
+  afterAlt="Screamer anomaly - terrifying jumpscare face on camera"
+  anomalyId="screamer"
+/>
 
 ### Monster on his back
 
 This unusual situation might seem normal at first glance. But after reviewing the security footage, you'll see a strange creature clinging to the customer's back. Upon seeing this, immediately close the window and refuse to serve the customer.
 
-![Monster on his back anomaly - customer looks normal in person](/Scary-Shawarma-Kiosk/image-20260126174040249.webp)
-
-![Monster on his back anomaly - strange creature clinging to customer's back on camera](/Scary-Shawarma-Kiosk/image-20260126174106310.webp)
+<AnomalySlider
+  beforeImage="/Scary-Shawarma-Kiosk/image-20260126174040249.webp"
+  afterImage="/Scary-Shawarma-Kiosk/image-20260126174106310.webp"
+  beforeAlt="Monster on his back anomaly - customer looks normal in person"
+  afterAlt="Monster on his back anomaly - strange creature clinging to customer's back on camera"
+  anomalyId="monster-on-back"
+/>
 
 ### Night Vision Dancer
 
 The "Night Vision Dancer" anomaly initially appears as a regular customer, but when you switch to the security camera's night vision mode, it begins to dance strangely. Close the window immediately and do not serve this customer; it is not normal.
 
-![Night Vision Dancer anomaly - customer appears normal](/Scary-Shawarma-Kiosk/image-20260126174132143.webp)
-
-![Night Vision Dancer anomaly - customer dancing strangely in night vision mode](/Scary-Shawarma-Kiosk/image-20260126174158675.webp)
+<AnomalySlider
+  beforeImage="/Scary-Shawarma-Kiosk/image-20260126174132143.webp"
+  afterImage="/Scary-Shawarma-Kiosk/image-20260126174158675.webp"
+  beforeAlt="Night Vision Dancer anomaly - customer appears normal"
+  afterAlt="Night Vision Dancer anomaly - customer dancing strangely in night vision mode"
+  anomalyId="night-vision-dancer"
+/>
 
 ### Rambling Old Man
 
@@ -122,25 +236,37 @@ An old man approaches the kiosk, muttering some nonsensical things. In *Scary Sh
 
 This is a rather interesting anomaly. It will approach your self-service terminal, directly address you by your username, and then start taunting you, claiming it can hack into your computer and cut off your internet connection. Don't waste time, just deny it service.
 
-![Hacker anomaly - hacker approaching the kiosk](/Scary-Shawarma-Kiosk/image-20260126174712718.webp)
-
-![Hacker anomaly - hacker threatening to hack your computer](/Scary-Shawarma-Kiosk/image-20260126174747658.webp)
+<AnomalySlider
+  beforeImage="/Scary-Shawarma-Kiosk/image-20260126174712718.webp"
+  afterImage="/Scary-Shawarma-Kiosk/image-20260126174747658.webp"
+  beforeAlt="Hacker anomaly - hacker approaching the kiosk"
+  afterAlt="Hacker anomaly - hacker threatening to hack your computer"
+  anomalyId="hacker"
+/>
 
 ### Santa Claus
 
 This isn't the real Santa Claus. Don't entertain this imposter. CCTV footage shows that there's something alive struggling in the sack he's carrying.
 
-![Santa Claus anomaly - fake Santa approaching kiosk](/Scary-Shawarma-Kiosk/image-20260126175330519.webp)
-
-![Santa Claus anomaly - something alive struggling in Santa's sack on camera](/Scary-Shawarma-Kiosk/image-20260126175419895.webp)
+<AnomalySlider
+  beforeImage="/Scary-Shawarma-Kiosk/image-20260126175330519.webp"
+  afterImage="/Scary-Shawarma-Kiosk/image-20260126175419895.webp"
+  beforeAlt="Santa Claus anomaly - fake Santa approaching kiosk"
+  afterAlt="Santa Claus anomaly - something alive struggling in Santa's sack on camera"
+  anomalyId="santa-claus"
+/>
 
 ### White Eyes Lady
 
 Observation reveals that her eyes are white with no pupils, which is not typical of a normal human being.
 
-![White Eyes Lady anomaly - woman with completely white eyes](/Scary-Shawarma-Kiosk/image-20260126175113081.webp)
-
-![White Eyes Lady anomaly - close-up showing no pupils](/Scary-Shawarma-Kiosk/image-20260126175135159.webp)
+<AnomalySlider
+  beforeImage="/Scary-Shawarma-Kiosk/image-20260126175113081.webp"
+  afterImage="/Scary-Shawarma-Kiosk/image-20260126175135159.webp"
+  beforeAlt="White Eyes Lady anomaly - woman with completely white eyes"
+  afterAlt="White Eyes Lady anomaly - close-up showing no pupils"
+  anomalyId="white-eyes-lady"
+/>
 
 ### twin girls
 
@@ -150,7 +276,9 @@ These twin girls look very strange; their heads are constantly twisting backward
 
 ### Headless man
 
-A customer without a head walks towards you and says he can't feel his head anymore.  The situation couldn't be any clearer. So, absolutely do not serve him.![Headless Man anomaly - customer without a head at kiosk window](/Scary-Shawarma-Kiosk/image-20260127114938091.webp)
+A customer without a head walks towards you and says he can't feel his head anymore.  The situation couldn't be any clearer. So, absolutely do not serve him.
+
+![Headless Man anomaly - customer without a head at kiosk window](/Scary-Shawarma-Kiosk/image-20260127114938091.webp)
 
 ### Chopped Head
 
@@ -168,9 +296,13 @@ The customer was tilting his head back, staring straight up and to the side. Oka
 
 The customer said the face mask wasn't suitable, it was always itchy. Observing the customer at this point, you'd see he was scratching himself through a human skin mask. Therefore, close the windows and don't serve him.
 
-![The Thief of Faces anomaly - customer scratching through human skin mask](/Scary-Shawarma-Kiosk/image-20260127123605481.webp)
-
-![The Thief of Faces anomaly - close-up of face mask being scratched](/Scary-Shawarma-Kiosk/image-20260127123715795.webp)
+<AnomalySlider
+  beforeImage="/Scary-Shawarma-Kiosk/image-20260127123605481.webp"
+  afterImage="/Scary-Shawarma-Kiosk/image-20260127123715795.webp"
+  beforeAlt="The Thief of Faces anomaly - customer scratching through human skin mask"
+  afterAlt="The Thief of Faces anomaly - close-up of face mask being scratched"
+  anomalyId="thief-of-faces"
+/>
 
 ### Opposite-sex voice
 
@@ -178,11 +310,13 @@ This phenomenon of "abnormal voice in the opposite sex" attempts to blend in wit
 
 Note that this customer is a male, but his voice sounds like a young girl's, and his posture is also very feminine.
 
-![Opposite-sex voice anomaly - male customer speaking with girl's voice](/Scary-Shawarma-Kiosk/image-20260126174843208.webp)
-
-Note that this customer is a woman, but she speaks with a man's voice. Also, her arms and legs appear to be covered in abrasions. Do not serve her. You might also notice that her collarbone protrudes at an odd angle.
-
-![Opposite-sex voice anomaly - female customer speaking with man's voice](/Scary-Shawarma-Kiosk/image-20260126175206122.webp)
+<AnomalySlider
+  beforeImage="/Scary-Shawarma-Kiosk/image-20260126174843208.webp"
+  afterImage="/Scary-Shawarma-Kiosk/image-20260126175206122.webp"
+  beforeAlt="Opposite-sex voice anomaly - male customer speaking with girl's voice"
+  afterAlt="Opposite-sex voice anomaly - female customer speaking with man's voice"
+  anomalyId="opposite-sex-voice"
+/>
 
 ### Zombie
 
@@ -198,17 +332,25 @@ This customer says he's from the police department, and he orders two shawarmas 
 
 - Of course, you also have another option: refuse to serve him.
 
-![Evict Note anomaly - fake police officer at kiosk](/Scary-Shawarma-Kiosk/image-20260127115729696.webp)
-
-![Evict Note anomaly - notebook asking for player's name](/Scary-Shawarma-Kiosk/image-20260127120204989.webp)
+<AnomalySlider
+  beforeImage="/Scary-Shawarma-Kiosk/image-20260127115729696.webp"
+  afterImage="/Scary-Shawarma-Kiosk/image-20260127120204989.webp"
+  beforeAlt="Evict Note anomaly - fake police officer at kiosk"
+  afterAlt="Evict Note anomaly - notebook asking for player's name"
+  anomalyId="evict-note"
+/>
 
 ### Deer
 
 A deer appeared in the middle of the road. The deer slowly stood up, its eyes emitting an eerie red glow. It stood motionless in front of the window. This situation is too strange; don't try to make shawarma out of this deer, close the windows.
 
-![Deer anomaly - deer standing in the road](/Scary-Shawarma-Kiosk/image-20260127122931117.webp)
-
-![Deer anomaly - deer with glowing red eyes standing upright](/Scary-Shawarma-Kiosk/image-20260127123108516.webp)
+<AnomalySlider
+  beforeImage="/Scary-Shawarma-Kiosk/image-20260127122931117.webp"
+  afterImage="/Scary-Shawarma-Kiosk/image-20260127123108516.webp"
+  beforeAlt="Deer anomaly - deer standing in the road"
+  afterAlt="Deer anomaly - deer with glowing red eyes standing upright"
+  anomalyId="deer"
+/>
 
 ## Anomalies that you should serve
 
@@ -241,9 +383,13 @@ This customer seems strange, and indeed he is. He has a smile on his face, but i
 - If you don't open the envelope, the strange man will leave, and you can continue working.
 - If you open the envelope, you will immediately reach the third ending of the game. If you want to experience all the endings of the game, or want to unlock all the achievements, perhaps you can try this.
 
-![Smiling Man - creepy customer with unsettling smile](/Scary-Shawarma-Kiosk/image-20260126175508104.webp)
-
-![Smiling Man - receiving strange envelope after giving soda](/Scary-Shawarma-Kiosk/image-20260126175600381.webp)
+<AnomalySlider
+  beforeImage="/Scary-Shawarma-Kiosk/image-20260126175508104.webp"
+  afterImage="/Scary-Shawarma-Kiosk/image-20260126175600381.webp"
+  beforeAlt="Smiling Man - creepy customer with unsettling smile"
+  afterAlt="Smiling Man - receiving strange envelope after giving soda"
+  anomalyId="smiling-man"
+/>
 
 ### No-Face
 
@@ -276,9 +422,13 @@ This drunk man was very strange and completely penniless. He swore he would come
 - If you give him a shawarma, he'll pay you more next time.
 - If you don't give him a shawarma, he threatens to pull a knife on you and storm into your shop. However, he doesn't actually have a knife, so it's just a false alarm.
 
-![Drunken Man - penniless drunk customer at kiosk](/Scary-Shawarma-Kiosk/image-20260126180256294.webp)
-
-![Drunken Man - drunk promising to pay tomorrow](/Scary-Shawarma-Kiosk/image-20260126180319637.webp)
+<AnomalySlider
+  beforeImage="/Scary-Shawarma-Kiosk/image-20260126180256294.webp"
+  afterImage="/Scary-Shawarma-Kiosk/image-20260126180319637.webp"
+  beforeAlt="Drunken Man - penniless drunk customer at kiosk"
+  afterAlt="Drunken Man - drunk promising to pay tomorrow"
+  anomalyId="drunken-man"
+/>
 
 ### Terrifying ringtone
 
@@ -316,17 +466,21 @@ This customer seems perfectly normal; he orders a shawarma from you. After you p
 
 Okay, this customer's behavior is strange, but he's still a normal human being, so you should still make him the shawarma.
 
-![Throwing Shawarma - customer receiving shawarma](/Scary-Shawarma-Kiosk/image-20260127121757003.webp)
+<AnomalySlider
+  beforeImage="/Scary-Shawarma-Kiosk/image-20260127121757003.webp"
+  afterImage="/Scary-Shawarma-Kiosk/image-20260127121940982.webp"
+  beforeAlt="Throwing Shawarma - customer receiving shawarma"
+  afterAlt="Throwing Shawarma - shawarma thrown at window needs cleaning"
+  anomalyId="throwing-shawarma"
+/>
 
-![Throwing Shawarma - shawarma thrown at window needs cleaning](/Scary-Shawarma-Kiosk/image-20260127121940982.webp)
-
-### fat women doing sports 
+### fat women doing sports
 
 A slightly overweight woman kept emphasizing that she trains hard and that you shouldn't be fooled by her physique. She also said that she hadn't eaten for an hour, and this was her reward meal. Haha, maybe she needs to be more disciplined, but right now you need to serve her.
 
 ![Fat Women Doing Sports - overweight woman claiming she trains hard](/Scary-Shawarma-Kiosk/image-20260127124413431.webp)
 
-### Tall Man 
+### Tall Man
 
 A very tall man politely asked the player for a shawarma. The tall man looked a bit strange, but checking the CCTV footage revealed nothing unusual. Perhaps you should serve him.
 
@@ -359,9 +513,13 @@ A white car stopped in front of your shop, emitted a cloud of green mist, and th
 
 In Scary Shawarma Kiosk, besides having to fend off various paranormal phenomena, even your own meat will turn against you. If the meat on the grill starts pulsating or whispering, immediately turn off the grill (the switch is on the wall to the right of the meat). This sign is easy to miss, but the most obvious sign is when the lights around the meat start turning red.
 
-![Meat on the Grill event - meat pulsating with red lights](/Scary-Shawarma-Kiosk/image-20260126181201202.webp)
-
-![Meat on the Grill event - grill switch on wall to turn off](/Scary-Shawarma-Kiosk/image-20260126181246531.webp)
+<AnomalySlider
+  beforeImage="/Scary-Shawarma-Kiosk/image-20260126181201202.webp"
+  afterImage="/Scary-Shawarma-Kiosk/image-20260126181246531.webp"
+  beforeAlt="Meat on the Grill event - meat pulsating with red lights"
+  afterAlt="Meat on the Grill event - grill switch on wall to turn off"
+  anomalyId="meat-on-grill"
+/>
 
 ### Floating figures
 
@@ -404,9 +562,13 @@ First, a strange sound effect plays, and a clown figure appears across the stree
 
 Of course, you can try to keep closing the roller shutter, but it will get stuck. You'll need to try many times, but eventually, when he gets close enough, you can successfully close it.
 
-![Clown Jumpscare - clown figure appearing across the street](/Scary-Shawarma-Kiosk/image-20260127122144030.webp)
-
-![Clown Jumpscare - clown walking closer to kiosk](/Scary-Shawarma-Kiosk/image-20260127122405270.webp)
+<AnomalySlider
+  beforeImage="/Scary-Shawarma-Kiosk/image-20260127122144030.webp"
+  afterImage="/Scary-Shawarma-Kiosk/image-20260127122405270.webp"
+  beforeAlt="Clown Jumpscare - clown figure appearing across the street"
+  afterAlt="Clown Jumpscare - clown walking closer to kiosk"
+  anomalyId="clown-jumpscare"
+/>
 
 ![Clown Jumpscare - clown jumping through window](/Scary-Shawarma-Kiosk/image-20260127122501753.webp)
 
@@ -414,33 +576,57 @@ Of course, you can try to keep closing the roller shutter, but it will get stuck
 
 In *Scary Shawarma Kiosk: the ANOMALY*,This is one of the most terrifying events you might encounter during your shift. Sometime during the night, the lights might start flickering, and a terrifying figure will appear on the street. Close the blinds and then open them again, and you'll find it has moved closer. Repeat this action until the figure is right outside your window. Close the blinds again, and it should disappear completely.
 
-![Peeping Tom - terrifying figure appearing on street](/Scary-Shawarma-Kiosk/image-20260126181713468.webp)
-
-![Peeping Tom - figure moved closer after closing blinds](/Scary-Shawarma-Kiosk/image-20260126181747989.webp)
+<AnomalySlider
+  beforeImage="/Scary-Shawarma-Kiosk/image-20260126181713468.webp"
+  afterImage="/Scary-Shawarma-Kiosk/image-20260126181747989.webp"
+  beforeAlt="Peeping Tom - terrifying figure appearing on street"
+  afterAlt="Peeping Tom - figure moved closer after closing blinds"
+  anomalyId="peeping-tom"
+/>
 
 ### Observer
 
 The "Observer" is a strange entity that you'll encounter in multiple locations during your shift. This naked, humanoid creature will appear on the grill, on top of the refrigerator, on the ceiling, behind the trash can, under the counter, and even through the window. Until the very last encounter, it will suddenly appear in front of you in a jumpscare fashion. Staring directly at it will make it disappear.
 
-![Observer - naked humanoid creature on grill](/Scary-Shawarma-Kiosk/image-20260126182240593.webp)
+<AnomalySlider
+  beforeImage="/Scary-Shawarma-Kiosk/image-20260126182240593.webp"
+  afterImage="/Scary-Shawarma-Kiosk/image-20260126182257426.webp"
+  beforeAlt="Observer - naked humanoid creature on grill"
+  afterAlt="Observer - creature on top of refrigerator"
+  anomalyId="observer-1"
+/>
 
-![Observer - creature on top of refrigerator](/Scary-Shawarma-Kiosk/image-20260126182257426.webp)
+<AnomalySlider
+  beforeImage="/Scary-Shawarma-Kiosk/image-20260126182327362.webp"
+  afterImage="/Scary-Shawarma-Kiosk/image-20260126182345405.webp"
+  beforeAlt="Observer - creature on ceiling"
+  afterAlt="Observer - creature behind trash can"
+  anomalyId="observer-2"
+/>
 
-![Observer - creature on ceiling](/Scary-Shawarma-Kiosk/image-20260126182327362.webp)
+<AnomalySlider
+  beforeImage="/Scary-Shawarma-Kiosk/image-20260126182405135.webp"
+  afterImage="/Scary-Shawarma-Kiosk/image-20260126182422303.webp"
+  beforeAlt="Observer - creature under counter"
+  afterAlt="Observer - creature through window"
+  anomalyId="observer-3"
+/>
 
-![Observer - creature behind trash can](/Scary-Shawarma-Kiosk/image-20260126182345405.webp)
+<AnomalySlider
+  beforeImage="/Scary-Shawarma-Kiosk/image-20260126182436558.webp"
+  afterImage="/Scary-Shawarma-Kiosk/image-20260126182455371.webp"
+  beforeAlt="Observer - creature appearing suddenly"
+  afterAlt="Observer - creature jumpscare moment"
+  anomalyId="observer-4"
+/>
 
-![Observer - creature under counter](/Scary-Shawarma-Kiosk/image-20260126182405135.webp)
-
-![Observer - creature through window](/Scary-Shawarma-Kiosk/image-20260126182422303.webp)
-
-![Observer - creature appearing suddenly](/Scary-Shawarma-Kiosk/image-20260126182436558.webp)
-
-![Observer - creature jumpscare moment](/Scary-Shawarma-Kiosk/image-20260126182455371.webp)
-
-![Observer - staring at creature to make it disappear](/Scary-Shawarma-Kiosk/image-20260126182511015.webp)
-
-![Observer - final encounter with creature](/Scary-Shawarma-Kiosk/image-20260126182535218.webp)
+<AnomalySlider
+  beforeImage="/Scary-Shawarma-Kiosk/image-20260126182511015.webp"
+  afterImage="/Scary-Shawarma-Kiosk/image-20260126182535218.webp"
+  beforeAlt="Observer - staring at creature to make it disappear"
+  afterAlt="Observer - final encounter with creature"
+  anomalyId="observer-5"
+/>
 
 ## All Endings Guide
 
@@ -474,13 +660,21 @@ Do you remember this smiling man? He looks rather creepy, doesn't he? During our
 
 You will be instantly transported to a bizarre and eerie alternate dimension. The sky is a deep green, and many blurry shapes float above. You will also pass by several gigantic and unsettling human body parts. After walking for a sufficient amount of time, a pair of massive jaws will suddenly snap shut, devouring you, and you will die, unlocking the "Silent Ending."
 
-![Ending 3 Silent - transported to alternate dimension after opening envelope](/Scary-Shawarma-Kiosk/image-20260126183120827.webp)
+<AnomalySlider
+  beforeImage="/Scary-Shawarma-Kiosk/image-20260126183120827.webp"
+  afterImage="/Scary-Shawarma-Kiosk/image-20260126183200411.webp"
+  beforeAlt="Ending 3 Silent - transported to alternate dimension after opening envelope"
+  afterAlt="Ending 3 Silent - walking through eerie green dimension"
+  anomalyId="ending-3-part1"
+/>
 
-![Ending 3 Silent - walking through eerie green dimension](/Scary-Shawarma-Kiosk/image-20260126183200411.webp)
-
-![Ending 3 Silent - giant human body parts floating](/Scary-Shawarma-Kiosk/image-20260126183238045.webp)
-
-![Ending 3 Silent - massive jaws about to devour player](/Scary-Shawarma-Kiosk/image-20260126183320946.webp)
+<AnomalySlider
+  beforeImage="/Scary-Shawarma-Kiosk/image-20260126183238045.webp"
+  afterImage="/Scary-Shawarma-Kiosk/image-20260126183320946.webp"
+  beforeAlt="Ending 3 Silent - giant human body parts floating"
+  afterAlt="Ending 3 Silent - massive jaws about to devour player"
+  anomalyId="ending-3-part2"
+/>
 
 ### Fourth ending: The erased ending.
 
@@ -490,13 +684,21 @@ Around 2 AM, when the vehicle drives in and the edges of the screen turn red, yo
 
 If you choose to look back, you will be teleported to another world where you become incredibly small (or everything around you becomes incredibly large), and you'll find yourself moving down a conveyor belt. Just before you fall into a meat grinder, you will have a chance to look up and see a giant invisible creature wearing a suit and a hat, with bright lights for eyes, thus unlocking "The Erased Ending."
 
-![Ending 4 Erased - looking back during 2 AM inspection](/Scary-Shawarma-Kiosk/image-20260126183429831.webp)
+<AnomalySlider
+  beforeImage="/Scary-Shawarma-Kiosk/image-20260126183429831.webp"
+  afterImage="/Scary-Shawarma-Kiosk/image-20260126183414102.webp"
+  beforeAlt="Ending 4 Erased - looking back during 2 AM inspection"
+  afterAlt="Ending 4 Erased - teleported to giant world on conveyor belt"
+  anomalyId="ending-4-part1"
+/>
 
-![Ending 4 Erased - teleported to giant world on conveyor belt](/Scary-Shawarma-Kiosk/image-20260126183414102.webp)
-
-![Ending 4 Erased - moving down conveyor belt](/Scary-Shawarma-Kiosk/image-20260126183502392.webp)
-
-![Ending 4 Erased - approaching meat grinder](/Scary-Shawarma-Kiosk/image-20260126183539090.webp)
+<AnomalySlider
+  beforeImage="/Scary-Shawarma-Kiosk/image-20260126183502392.webp"
+  afterImage="/Scary-Shawarma-Kiosk/image-20260126183539090.webp"
+  beforeAlt="Ending 4 Erased - moving down conveyor belt"
+  afterAlt="Ending 4 Erased - approaching meat grinder"
+  anomalyId="ending-4-part2"
+/>
 
 ![Ending 4 Erased - giant invisible creature with glowing eyes](/Scary-Shawarma-Kiosk/image-20260126183612167.webp)
 
@@ -508,21 +710,54 @@ Each time you make a mistake, the Inspector will crawl out of the floor a little
 
 The best way to avoid this is to make sure you verify every customer's identity through the security cameras and check the footage from all angles. Keeping a close eye on your meat is also crucial. It's not always obvious when it will attack, and it might be too late before you realize it!
 
-![Ending 5 Neutralization - Inspector meat appearing after mistakes](/Scary-Shawarma-Kiosk/image-20260126183647794.webp)
-
-![Ending 5 Neutralization - Inspector crawling out of floor](/Scary-Shawarma-Kiosk/image-20260126183725447.webp)
+<AnomalySlider
+  beforeImage="/Scary-Shawarma-Kiosk/image-20260126183647794.webp"
+  afterImage="/Scary-Shawarma-Kiosk/image-20260126183725447.webp"
+  beforeAlt="Ending 5 Neutralization - Inspector meat appearing after mistakes"
+  afterAlt="Ending 5 Neutralization - Inspector crawling out of floor"
+  anomalyId="ending-5-part1"
+/>
 
 ![Ending 5 Neutralization - Inspector fully emerged ready to kill](/Scary-Shawarma-Kiosk/image-20260126183833291.webp)
 
 ## Pro Tips & Tricks
 
-<ProTips />
+<ProTips items={[
+  {
+    icon: '👂',
+    title: 'Sound Detection',
+    desc: 'Some anomalies have no visual features - listen carefully',
+  },
+  {
+    icon: '👀',
+    title: 'Scanning Path',
+    desc: 'Establish a left-to-right scanning pattern for cameras',
+  },
+  {
+    icon: '⚡',
+    title: 'Priority Handling',
+    desc: 'Some anomalies need immediate action, others can wait',
+  },
+]} />
+
+## Similar Game Recommendations
+
+- <a href="https://www.roblox.com/games/16906926480/Thats-Not-My-Blocky-Neighbor" rel="nofollow" target="_blank"><em>That's Not My Neighbor (Roblox Version)</em></a>
+- <a href="https://www.roblox.com/games/16894230496/The-Exit-8" rel="nofollow" target="_blank"><em>The Exit 8 (Roblox Remake)</em></a>
 
 ## FAQ Section
 
-<FAQSection />
-
-## Similar game recommendations
-
-- *That's Not My Neighbor (Roblox Version)*
-- *The Exit 8 (Roblox Remake)*
+<FAQSection items={[
+  {
+    q: 'Are there any codes for this game?',
+    a: 'No codes currently available. Follow official Discord for updates.',
+  },
+  {
+    q: "What's the hardest anomaly to spot?",
+    a: 'Nightvision Missing - completely invisible in night vision mode.',
+  },
+  {
+    q: 'Can I play on mobile?',
+    a: 'Yes! Roblox mobile fully supported, but cameras are harder to check.',
+  },
+]} />

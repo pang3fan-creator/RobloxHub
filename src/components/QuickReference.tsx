@@ -3,8 +3,26 @@
  *
  * 用于在 MDX 内容中展示页面章节导航卡片。
  */
-export function QuickReference() {
-  const sections = [
+export interface QuickReferenceItem {
+  href: string;
+  icon: string;
+  title: string;
+  desc: string;
+  color: string;
+}
+
+interface QuickReferenceProps {
+  items?: QuickReferenceItem[];
+}
+
+/**
+ * QuickReference - 快速导航组件
+ *
+ * 用于在 MDX 内容中展示页面章节导航卡片。
+ * 支持通过 props 传入自定义导航项，默认为 Scary Shawarma Kiosk 的数据。
+ */
+export function QuickReference({ items }: QuickReferenceProps) {
+  const defaultSections: QuickReferenceItem[] = [
     {
       href: '#how-to-play',
       icon: '🎮',
@@ -69,6 +87,8 @@ export function QuickReference() {
       color: 'violet',
     },
   ];
+
+  const sections = items || defaultSections;
 
   const colorMap: Record<string, string> = {
     blue: 'text-blue-400 group-hover:text-blue-300 hover:border-blue-500/50',

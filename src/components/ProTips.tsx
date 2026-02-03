@@ -4,8 +4,24 @@
  * 用于在 MDX 内容中展示游戏的进阶技巧。
  * 包含图标、标题和描述的卡片布局。
  */
-export function ProTips() {
-  const tips = [
+export interface ProTipItem {
+  icon: string;
+  title: string;
+  desc: string;
+}
+
+interface ProTipsProps {
+  items?: ProTipItem[];
+}
+
+/**
+ * ProTips - 游戏技巧提示组件
+ *
+ * 用于在 MDX 内容中展示游戏的进阶技巧。
+ * 包含图标、标题和描述的卡片布局。
+ */
+export function ProTips({ items }: ProTipsProps) {
+  const defaultTips: ProTipItem[] = [
     {
       icon: '👂',
       title: 'Sound Detection',
@@ -23,9 +39,11 @@ export function ProTips() {
     },
   ];
 
+  const displayTips = items || defaultTips;
+
   return (
     <div className="grid gap-4 mb-8">
-      {tips.map((tip, index) => (
+      {displayTips.map((tip, index) => (
         <div
           key={index}
           className="bg-slate-900 border border-slate-800 rounded-lg p-5 flex items-start gap-4"
