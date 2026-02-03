@@ -94,9 +94,9 @@ export default async function GameDetailPage({ params }: PageProps) {
   const { locale, slug } = await params;
 
   // Validate slug
-  if (slug !== 'scary-shawarma-kiosk') {
-    notFound();
-  }
+  // if (slug !== 'scary-shawarma-kiosk') {
+  //   notFound();
+  // }
 
   // Load MDX content with locale support
   const gamePost = getGamePostBySlug(slug, locale);
@@ -140,20 +140,22 @@ export default async function GameDetailPage({ params }: PageProps) {
           <GameMDX source={content} />
         </section>
 
-        {/* Progress Tracker */}
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold mb-6 text-slate-200">📊 Your Progress</h2>
-          <div className="bg-slate-900 border border-slate-800 rounded-lg p-6">
-            <div className="flex items-center justify-between mb-4">
-              <span className="text-slate-300">Anomalies Discovered</span>
-              <span className="text-2xl font-bold text-purple-400">0 / {anomaliesData.length}</span>
+        {/* Progress Tracker - Only for Scary Shawarma Kiosk */}
+        {slug === 'scary-shawarma-kiosk' && (
+          <section className="mb-16">
+            <h2 className="text-3xl font-bold mb-6 text-slate-200">📊 Your Progress</h2>
+            <div className="bg-slate-900 border border-slate-800 rounded-lg p-6">
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-slate-300">Anomalies Discovered</span>
+                <span className="text-2xl font-bold text-purple-400">0 / {anomaliesData.length}</span>
+              </div>
+              <div className="w-full bg-slate-800 rounded-full h-3">
+                <div className="bg-gradient-to-r from-purple-500 to-pink-500 h-3 rounded-full transition-all duration-500" style={{ width: '0%' }} id="progress-bar" />
+              </div>
+              <p className="text-xs text-slate-500 mt-2">Check off anomalies as you find them to track your progress</p>
             </div>
-            <div className="w-full bg-slate-800 rounded-full h-3">
-              <div className="bg-gradient-to-r from-purple-500 to-pink-500 h-3 rounded-full transition-all duration-500" style={{ width: '0%' }} id="progress-bar" />
-            </div>
-            <p className="text-xs text-slate-500 mt-2">Check off anomalies as you find them to track your progress</p>
-          </div>
-        </section>
+          </section>
+        )}
 
         {/* Back Link */}
         <div className="text-center py-8 border-t border-slate-800">

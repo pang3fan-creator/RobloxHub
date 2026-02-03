@@ -23,7 +23,7 @@ export function TrendingNow({ locale, games }: TrendingNowProps) {
   const t = useTranslations('home.trending');
 
   // 现有游戏列表 - 只有这些游戏的链接是有效的
-  const existingGames = new Set(['scary-shawarma-kiosk']);
+  const existingGames = new Set(['scary-shawarma-kiosk', 'sorcerer-ascent']);
 
   return (
     <section className="py-12">

@@ -30,6 +30,7 @@ export async function generateMetadata({ params }: PageProps) {
 
 // Trending games (can be moved to config or CMS later)
 const trendingGames = [
+  { slug: 'sorcerer-ascent', name: 'Sorcerer Ascent' },
   { slug: 'scary-shawarma-kiosk', name: 'Scary Shawarma Kiosk' },
   { slug: 'dress-to-impress', name: 'Dress to Impress' },
   { slug: 'blue-lock-rivals', name: 'Blue Lock Rivals' },

@@ -18,16 +18,6 @@
   },
   "model": "opus",
   "hooks": {
-    "UserPromptSubmit": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/hooks/claudeception-activator.sh"
-          }
-        ]
-      }
-    ],
     "PreCompact": [
       {
         "hooks": [
@@ -44,7 +34,7 @@
     "ralph-loop@claude-plugins-official": true,
     "superpowers@superpowers-marketplace": true
   },
-  "outputStyle": "Default",
+  "outputStyle": "Explanatory",
   "language": "简体中文",
   "autoUpdatesChannel": "latest",
   "dangerouslySkipPermissions": true
