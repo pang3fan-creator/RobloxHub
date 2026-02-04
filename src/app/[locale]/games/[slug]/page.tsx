@@ -169,7 +169,7 @@ export default async function GameDetailPage({ params }: PageProps) {
         </section>
 
         {/* Progress Tracker - Only for Scary Shawarma Kiosk */}
-        {slug === "scary-shawarma-kiosk" && (
+        {/* {slug === "scary-shawarma-kiosk" && (
           <section className="mb-16">
             <h2 className="text-3xl font-bold mb-6 text-slate-200">
               📊 Your Progress
@@ -193,7 +193,7 @@ export default async function GameDetailPage({ params }: PageProps) {
               </p>
             </div>
           </section>
-        )}
+        )} */}
 
         {/* Back Link */}
         <div className="text-center py-8 border-t border-slate-800">
