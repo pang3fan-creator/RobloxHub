@@ -5,6 +5,7 @@
 ## ✨ 特性
 
 ### 核心功能
+
 - **🚀 极速加载**：基于 Next.js 15 SSG/ISR 技术，首屏加载时间 < 1s
 - **🌍 多语言支持**：原生支持英语 (EN)、中文 (ZH)、西班牙语 (ES)
 - **🎨 暗黑模式**：默认夜间模式，完美契合恐怖游戏氛围
@@ -12,6 +13,7 @@
 - **🔍 SEO 优化**：集成 JSON-LD 结构化数据，自动生成 Sitemap
 
 ### 技术亮点
+
 - **Anomaly Slider**：创新的左右滑块对比组件，直观展示"正常 vs 异常"
 - **Floating Navigation**：移动端底部悬浮导航，毛玻璃效果
 - **MDX 支持**：动态内容生成，快速响应游戏更新
@@ -20,29 +22,35 @@
 ## 🛠️ 技术栈
 
 ### 前端框架
+
 - **Next.js 15** - React 框架 (App Router)
 - **React 19** - UI 库
 - **TypeScript** - 类型安全
 
 ### 样式与 UI
+
 - **Tailwind CSS** - 原子化 CSS 框架
 - **Tailwind Typography** - 优美的排版插件
 - **clsx & tailwind-merge** - 条件类名工具
 
 ### 内容管理
+
 - **MDX** - Markdown + JSX
 - **gray-matter** - Frontmatter 解析
 - **remark-gfm** - GitHub Flavored Markdown
 
 ### 国际化
+
 - **next-intl** - Next.js i18n 解决方案
 
 ### 测试
+
 - **Jest** - 单元测试
 - **React Testing Library** - React 组件测试
 - **Playwright** - E2E 测试
 
 ### 开发工具
+
 - **ESLint** - 代码检查
 - **PostCSS** - CSS 处理
 - **Autoprefixer** - CSS 兼容性
@@ -132,9 +140,11 @@ roblox-hub/
 ## 🎯 核心组件
 
 ### AnomalySlider
+
 异常对比滑块组件，支持左右拖拽对比"正常 vs 异常"状态。
 
 **使用示例：**
+
 ```tsx
 <AnomalySlider
   normalImage="/path/to/normal.webp"
@@ -144,9 +154,11 @@ roblox-hub/
 ```
 
 ### FloatingNav
+
 移动端底部悬浮导航，点击弹出毛玻璃效果的菜单。
 
 ### QuickReference
+
 速查表组件，支持锚点跳转和移动端优化。
 
 ## 🌐 国际化
@@ -154,12 +166,15 @@ roblox-hub/
 项目使用 `next-intl` 实现多语言支持。
 
 ### 添加新语言
+
 1. 在 `messages/` 目录下创建新的 JSON 文件（如 `fr.json`）
 2. 在 `src/i18n.ts` 中添加语言配置
 3. 在 `src/middleware.ts` 中更新语言列表
 
 ### 添加新翻译
+
 编辑对应语言的 JSON 文件：
+
 ```json
 {
   "nav": {
@@ -172,11 +187,13 @@ roblox-hub/
 ## 📄 内容管理
 
 ### 添加新游戏攻略
+
 1. 在 `posts/` 目录创建新的 MDX 文件
 2. 在 `src/lib/games.ts` 中添加游戏元数据
 3. 在 `public/` 目录添加对应的图片资源
 
 **MDX 文件模板：**
+
 ```mdx
 ---
 title: "Game Title"
@@ -225,6 +242,7 @@ npm run test:e2e
 - **缓存策略**：合理的 Cache-Control 配置
 
 **性能目标：**
+
 - Lighthouse Performance: > 90
 - Lighthouse SEO: > 90
 - 首屏加载时间: < 1s
@@ -232,24 +250,29 @@ npm run test:e2e
 ## 🔧 配置
 
 ### 环境变量
+
 创建 `.env.local` 文件：
+
 ```env
 # 添加你的环境变量
 NEXT_PUBLIC_SITE_URL=https://your-domain.com
 ```
 
 ### SEO 配置
+
 在 `src/lib/seo.ts` 中配置默认 SEO 元数据。
 
 ## 🚢 部署
 
 ### Vercel (推荐)
+
 ```bash
 # 一键部署到 Vercel
 vercel
 ```
 
 ### 其他平台
+
 ```bash
 # 构建生产版本
 npm run build

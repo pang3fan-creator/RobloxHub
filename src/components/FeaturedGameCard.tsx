@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { useRef } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import { useTranslations } from 'next-intl';
-import type { GamePost } from '@/lib/games';
+import { useRef } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { useTranslations } from "next-intl";
+import type { GamePost } from "@/lib/games";
 
 interface FeaturedGameCardProps {
   game: GamePost;
@@ -12,7 +12,7 @@ interface FeaturedGameCardProps {
 }
 
 export function FeaturedGameCard({ game, locale }: FeaturedGameCardProps) {
-  const t = useTranslations('home.featured');
+  const t = useTranslations("home.featured");
   const cardRef = useRef<HTMLAnchorElement>(null);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -25,7 +25,8 @@ export function FeaturedGameCard({ game, locale }: FeaturedGameCardProps) {
 
   const handleMouseLeave = () => {
     if (!cardRef.current) return;
-    cardRef.current.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1)';
+    cardRef.current.style.transform =
+      "perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1)";
   };
 
   return (
@@ -46,7 +47,7 @@ export function FeaturedGameCard({ game, locale }: FeaturedGameCardProps) {
         hover:before:opacity-100 hover:before:animate-gradient
         before:-z-10
       "
-      style={{ transformStyle: 'preserve-3d' }}
+      style={{ transformStyle: "preserve-3d" }}
     >
       {/* Cover Image */}
       <div className="relative aspect-[16/10] overflow-hidden">
@@ -77,9 +78,19 @@ export function FeaturedGameCard({ game, locale }: FeaturedGameCardProps) {
         )}
 
         <span className="inline-flex items-center gap-2 text-purple-400 font-medium text-sm group-hover:text-purple-300 transition-colors">
-          {t('viewGuide')}
-          <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          {t("viewGuide")}
+          <svg
+            className="w-4 h-4 transition-transform group-hover:translate-x-1"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 5l7 7-7 7"
+            />
           </svg>
         </span>
       </div>

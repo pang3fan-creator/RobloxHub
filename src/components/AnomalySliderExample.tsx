@@ -5,15 +5,18 @@
  * in a game guide page.
  */
 
-import { AnomalySlider } from './AnomalySlider';
+import { AnomalySlider } from "./AnomalySlider";
 
 export function AnomalySliderExample() {
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-8">
-      <h2 className="text-2xl font-bold text-slate-200">Anomaly #12 - Moving Statue</h2>
+      <h2 className="text-2xl font-bold text-slate-200">
+        Anomaly #12 - Moving Statue
+      </h2>
 
       <p className="text-slate-400">
-        In the hallway, check if the statue has moved from its original position.
+        In the hallway, check if the statue has moved from its original
+        position.
       </p>
 
       <AnomalySlider
@@ -24,7 +27,7 @@ export function AnomalySliderExample() {
         anomalyId="statue-12"
         initialFound={false}
         onFoundChange={(found) => {
-          console.log('Anomaly found status:', found);
+          console.log("Anomaly found status:", found);
         }}
       />
 

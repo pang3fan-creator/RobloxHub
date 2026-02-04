@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server';
+import { getTranslations } from "next-intl/server";
 
 interface FooterProps {
   locale?: string;
@@ -10,14 +10,14 @@ interface FooterProps {
  * 包含网站 logo、导航链接和版权信息。
  * 设计风格与整体深色主题一致。
  */
-export async function Footer({ locale = 'en' }: FooterProps) {
-  const t = await getTranslations({ locale, namespace: 'components.footer' });
+export async function Footer({ locale = "en" }: FooterProps) {
+  const t = await getTranslations({ locale, namespace: "components.footer" });
 
   const navLinks = [
-    { label: t('home'), href: `/${locale}` },
-    { label: t('games'), href: '#', disabled: true },
-    { label: t('codes'), href: '#', disabled: true },
-    { label: t('guides'), href: '#', disabled: true },
+    { label: t("home"), href: `/${locale}` },
+    { label: t("games"), href: "#", disabled: true },
+    { label: t("codes"), href: "#", disabled: true },
+    { label: t("guides"), href: "#", disabled: true },
   ];
 
   const currentYear = new Date().getFullYear();
@@ -39,7 +39,7 @@ export async function Footer({ locale = 'en' }: FooterProps) {
               </span>
             </a>
             <p className="text-sm text-slate-400 leading-relaxed">
-              {t('description')}
+              {t("description")}
             </p>
           </div>
 
@@ -61,7 +61,7 @@ export async function Footer({ locale = 'en' }: FooterProps) {
                 >
                   {link.label}
                 </a>
-              )
+              ),
             )}
           </nav>
         </div>
@@ -72,13 +72,11 @@ export async function Footer({ locale = 'en' }: FooterProps) {
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             {/* Copyright */}
             <p className="text-sm text-slate-500">
-              © {currentYear} RobloxHub. {t('rights')}
+              © {currentYear} RobloxHub. {t("rights")}
             </p>
 
             {/* Disclaimer */}
-            <p className="text-xs text-slate-600">
-              {t('disclaimer')}
-            </p>
+            <p className="text-xs text-slate-600">{t("disclaimer")}</p>
           </div>
         </div>
       </div>

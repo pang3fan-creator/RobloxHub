@@ -22,15 +22,15 @@ interface HowToPlayProps {
 export function HowToPlay({ items }: HowToPlayProps) {
   const defaultItems: HowToPlayItem[] = [
     {
-      title: '1. Work Flow',
+      title: "1. Work Flow",
       desc: 'Greet customers, take orders, prepare shawarma. Complete the "safety check" for each customer.',
     },
     {
-      title: '2. Identify Anomalies',
-      desc: 'Check security cameras from multiple angles. Spot strange behavior, unusual appearances, or paranormal events.',
+      title: "2. Identify Anomalies",
+      desc: "Check security cameras from multiple angles. Spot strange behavior, unusual appearances, or paranormal events.",
     },
     {
-      title: '3. Survival',
+      title: "3. Survival",
       desc: "Don't serve anomalies. Keep normal customers happy. Survive until 6 AM.",
     },
   ];

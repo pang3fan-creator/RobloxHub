@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 interface HeroSearchProps {
   locale: string;
 }
 
 export function HeroSearch({ locale }: HeroSearchProps) {
-  const t = useTranslations('home.search');
+  const t = useTranslations("home.search");
   const [isFocused, setIsFocused] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -25,15 +25,18 @@ export function HeroSearch({ locale }: HeroSearchProps) {
           border-2 rounded-full
           transition-all duration-300
           opacity-70 cursor-not-allowed
-          ${isFocused
-            ? 'border-transparent bg-gradient-to-r from-purple-500 via-cyan-500 to-pink-500 p-[2px] scale-105'
-            : 'border-slate-600'
+          ${
+            isFocused
+              ? "border-transparent bg-gradient-to-r from-purple-500 via-cyan-500 to-pink-500 p-[2px] scale-105"
+              : "border-slate-600"
           }
         `}
       >
-        <div className={`
-          ${isFocused ? 'flex items-center gap-3 w-full bg-slate-800 rounded-full px-6 py-4' : 'contents'}
-        `}>
+        <div
+          className={`
+          ${isFocused ? "flex items-center gap-3 w-full bg-slate-800 rounded-full px-6 py-4" : "contents"}
+        `}
+        >
           {/* Search Icon */}
           <svg
             className="w-5 h-5 text-slate-500 flex-shrink-0"
@@ -53,12 +56,14 @@ export function HeroSearch({ locale }: HeroSearchProps) {
           <input
             type="text"
             disabled
-            placeholder={t('placeholder')}
+            placeholder={t("placeholder")}
             className="flex-1 bg-transparent text-slate-500 placeholder-slate-600 outline-none text-lg cursor-not-allowed"
           />
         </div>
       </div>
-      <p className="text-center text-slate-600 text-sm mt-3">搜索功能即将上线</p>
+      <p className="text-center text-slate-600 text-sm mt-3">
+        搜索功能即将上线
+      </p>
     </form>
   );
 }

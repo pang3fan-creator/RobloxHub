@@ -22,16 +22,16 @@ interface FAQSectionProps {
 export function FAQSection({ items }: FAQSectionProps) {
   const defaultFaqs: FAQItem[] = [
     {
-      q: 'Are there any codes for this game?',
-      a: 'No codes currently available. Follow official Discord for updates.',
+      q: "Are there any codes for this game?",
+      a: "No codes currently available. Follow official Discord for updates.",
     },
     {
       q: "What's the hardest anomaly to spot?",
-      a: 'Nightvision Missing - completely invisible in night vision mode.',
+      a: "Nightvision Missing - completely invisible in night vision mode.",
     },
     {
-      q: 'Can I play on mobile?',
-      a: 'Yes! Roblox mobile fully supported, but cameras are harder to check.',
+      q: "Can I play on mobile?",
+      a: "Yes! Roblox mobile fully supported, but cameras are harder to check.",
     },
   ];
 

@@ -1,7 +1,7 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import { useTranslations } from 'next-intl';
-import type { GamePost } from '@/lib/games';
+import Link from "next/link";
+import Image from "next/image";
+import { useTranslations } from "next-intl";
+import type { GamePost } from "@/lib/games";
 
 interface RecentUpdatesProps {
   locale: string;
@@ -14,15 +14,15 @@ function formatRelativeTime(dateString: string): string {
   const diffMs = now.getTime() - date.getTime();
   const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
 
-  if (diffDays === 0) return 'Today';
-  if (diffDays === 1) return 'Yesterday';
+  if (diffDays === 0) return "Today";
+  if (diffDays === 1) return "Yesterday";
   if (diffDays < 7) return `${diffDays} days ago`;
   if (diffDays < 30) return `${Math.floor(diffDays / 7)} weeks ago`;
   return `${Math.floor(diffDays / 30)} months ago`;
 }
 
 export function RecentUpdates({ locale, posts }: RecentUpdatesProps) {
-  const t = useTranslations('home.recent');
+  const t = useTranslations("home.recent");
 
   return (
     <section className="py-12">
@@ -30,10 +30,10 @@ export function RecentUpdates({ locale, posts }: RecentUpdatesProps) {
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-2xl font-bold text-white flex items-center gap-2">
           <span>📝</span>
-          {t('title')}
+          {t("title")}
         </h2>
         <span className="text-slate-600 text-sm font-medium cursor-not-allowed">
-          {t('viewAll')} →
+          {t("viewAll")} →
         </span>
       </div>
 
@@ -66,9 +66,7 @@ export function RecentUpdates({ locale, posts }: RecentUpdatesProps) {
 
             {/* Content */}
             <div className="flex-1 min-w-0">
-              <h3 className="text-white font-medium truncate">
-                {post.title}
-              </h3>
+              <h3 className="text-white font-medium truncate">{post.title}</h3>
               {post.excerpt && (
                 <p className="text-slate-400 text-sm truncate">
                   {post.excerpt}

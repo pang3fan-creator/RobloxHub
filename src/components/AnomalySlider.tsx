@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useRef, MouseEvent, TouchEvent } from 'react';
-import { useTranslations } from 'next-intl';
+import { useState, useEffect, useRef, MouseEvent, TouchEvent } from "react";
+import { useTranslations } from "next-intl";
 
 interface AnomalySliderProps {
   beforeImage: string;
@@ -28,9 +28,9 @@ export function AnomalySlider({
   initialFound = false,
   onFoundChange,
   anomalyId,
-  className = '',
+  className = "",
 }: AnomalySliderProps) {
-  const t = useTranslations('components.anomalySlider');
+  const t = useTranslations("components.anomalySlider");
   const [sliderPosition, setSliderPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
   const [found, setFound] = useState(initialFound);
@@ -75,16 +75,16 @@ export function AnomalySlider({
       updateSliderPosition(touch.clientX);
     };
 
-    window.addEventListener('mousemove', handleGlobalMouseMove);
-    window.addEventListener('mouseup', handleGlobalMouseUp);
-    window.addEventListener('touchmove', handleGlobalTouchMove);
-    window.addEventListener('touchend', handleGlobalMouseUp);
+    window.addEventListener("mousemove", handleGlobalMouseMove);
+    window.addEventListener("mouseup", handleGlobalMouseUp);
+    window.addEventListener("touchmove", handleGlobalTouchMove);
+    window.addEventListener("touchend", handleGlobalMouseUp);
 
     return () => {
-      window.removeEventListener('mousemove', handleGlobalMouseMove);
-      window.removeEventListener('mouseup', handleGlobalMouseUp);
-      window.removeEventListener('touchmove', handleGlobalTouchMove);
-      window.removeEventListener('touchend', handleGlobalMouseUp);
+      window.removeEventListener("mousemove", handleGlobalMouseMove);
+      window.removeEventListener("mouseup", handleGlobalMouseUp);
+      window.removeEventListener("touchmove", handleGlobalTouchMove);
+      window.removeEventListener("touchend", handleGlobalMouseUp);
     };
   }, [isDragging]);
 
@@ -95,7 +95,7 @@ export function AnomalySlider({
     if (anomalyId) {
       const key = `anomaly-found-${anomalyId}`;
       if (checked) {
-        localStorage.setItem(key, 'true');
+        localStorage.setItem(key, "true");
       } else {
         localStorage.removeItem(key);
       }
@@ -104,9 +104,9 @@ export function AnomalySlider({
 
   // Initialize found state
   useEffect(() => {
-    if (typeof window !== 'undefined' && anomalyId) {
+    if (typeof window !== "undefined" && anomalyId) {
       const key = `anomaly-found-${anomalyId}`;
-      const wasFound = localStorage.getItem(key) === 'true';
+      const wasFound = localStorage.getItem(key) === "true";
       if (wasFound && !found) {
         setFound(true);
         onFoundChange?.(true);
@@ -118,8 +118,8 @@ export function AnomalySlider({
     <div className={`anomaly-slider-wrapper ${className}`}>
       {/* Labels */}
       <div className="flex justify-between text-sm mb-2 text-slate-400">
-        <span className="font-medium">{t('before')}</span>
-        <span className="font-medium text-purple-400">{t('after')}</span>
+        <span className="font-medium">{t("before")}</span>
+        <span className="font-medium text-purple-400">{t("after")}</span>
       </div>
 
       {/* Main Container - Absolute Positioning Layout */}
@@ -134,7 +134,7 @@ export function AnomalySlider({
         >
           <img
             src={beforeImage}
-            alt={beforeAlt || t('before')}
+            alt={beforeAlt || t("before")}
             className="w-full h-full object-cover pointer-events-none"
             draggable={false}
           />
@@ -147,7 +147,7 @@ export function AnomalySlider({
         >
           <img
             src={afterImage}
-            alt={afterAlt || t('after')}
+            alt={afterAlt || t("after")}
             className="w-full h-full object-cover pointer-events-none"
             draggable={false}
           />
@@ -185,7 +185,7 @@ export function AnomalySlider({
         {sliderPosition === 50 && !isDragging && (
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-30">
             <span className="text-white/90 text-sm font-medium px-4 py-2 bg-black/60 rounded-full backdrop-blur-sm shadow-xl translate-y-12">
-              {t('dragHint')}
+              {t("dragHint")}
             </span>
           </div>
         )}
@@ -203,8 +203,8 @@ export function AnomalySlider({
           <div
             className={`w-5 h-5 rounded border-2 transition-all ${
               found
-                ? 'bg-purple-500 border-purple-500'
-                : 'border-slate-600 group-hover:border-slate-500'
+                ? "bg-purple-500 border-purple-500"
+                : "border-slate-600 group-hover:border-slate-500"
             }`}
           >
             {found && (
@@ -224,8 +224,10 @@ export function AnomalySlider({
             )}
           </div>
         </div>
-        <span className={`text-sm ${found ? 'text-purple-400 line-through' : 'text-slate-300'}`}>
-          {found ? t('markedAsFound') : t('markAsFound')}
+        <span
+          className={`text-sm ${found ? "text-purple-400 line-through" : "text-slate-300"}`}
+        >
+          {found ? t("markedAsFound") : t("markAsFound")}
         </span>
       </label>
     </div>

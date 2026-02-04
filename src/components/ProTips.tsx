@@ -23,19 +23,19 @@ interface ProTipsProps {
 export function ProTips({ items }: ProTipsProps) {
   const defaultTips: ProTipItem[] = [
     {
-      icon: '👂',
-      title: 'Sound Detection',
-      desc: 'Some anomalies have no visual features - listen carefully',
+      icon: "👂",
+      title: "Sound Detection",
+      desc: "Some anomalies have no visual features - listen carefully",
     },
     {
-      icon: '👀',
-      title: 'Scanning Path',
-      desc: 'Establish a left-to-right scanning pattern for cameras',
+      icon: "👀",
+      title: "Scanning Path",
+      desc: "Establish a left-to-right scanning pattern for cameras",
     },
     {
-      icon: '⚡',
-      title: 'Priority Handling',
-      desc: 'Some anomalies need immediate action, others can wait',
+      icon: "⚡",
+      title: "Priority Handling",
+      desc: "Some anomalies need immediate action, others can wait",
     },
   ];
 

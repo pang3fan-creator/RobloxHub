@@ -4,7 +4,7 @@
 
 - **核心目标**：建立一个专业、极速的 Roblox 游戏攻略门户
 - **竞争策略**：针对目前游戏攻略市场（如 Fandom、老旧博客）UX 破烂、广告密集的现状进行“降维打击”。通过极致的加载速度、现代感设计和结构化的数据，抢占搜索排名。
-- **扩展性要求**：初期以《Scary Shawarma Kiosk》作为首发流量破局点（Pillar Content），但系统架构必须支持无限横向扩展其他 Roblox 游戏（如 *SAVE THE PEOPLE*、*BIZARRE LINEAGE* 等）。
+- **扩展性要求**：初期以《Scary Shawarma Kiosk》作为首发流量破局点（Pillar Content），但系统架构必须支持无限横向扩展其他 Roblox 游戏（如 _SAVE THE PEOPLE_、_BIZARRE LINEAGE_ 等）。
 
 ## 2. 页面架构 (Information Architecture)
 

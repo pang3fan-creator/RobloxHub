@@ -1,25 +1,25 @@
-import { MDXRemote } from 'next-mdx-remote/rsc';
-import remarkGfm from 'remark-gfm';
-import React from 'react';
-import { AnomalySlider } from '@/components/AnomalySlider';
-import { QuickCard } from '@/components/QuickCard';
-import { HowToPlay } from '@/components/HowToPlay';
-import { FAQSection } from '@/components/FAQSection';
-import { ProTips } from '@/components/ProTips';
-import { QuickReference } from '@/components/QuickReference';
-import { Table, THead, TBody, TR, TH, TD } from '@/components/MdxTable';
+import { MDXRemote } from "next-mdx-remote/rsc";
+import remarkGfm from "remark-gfm";
+import React from "react";
+import { AnomalySlider } from "@/components/AnomalySlider";
+import { QuickCard } from "@/components/QuickCard";
+import { HowToPlay } from "@/components/HowToPlay";
+import { FAQSection } from "@/components/FAQSection";
+import { ProTips } from "@/components/ProTips";
+import { QuickReference } from "@/components/QuickReference";
+import { Table, THead, TBody, TR, TH, TD } from "@/components/MdxTable";
 
 // 将标题文本转换为 slug 格式
 function slugify(text: React.ReactNode): string {
   const str = React.Children.toArray(text)
-    .map((child) => (typeof child === 'string' ? child : ''))
-    .join('');
+    .map((child) => (typeof child === "string" ? child : ""))
+    .join("");
   return str
     .toLowerCase()
     .trim()
-    .replace(/[^\w\s-]/g, '')
-    .replace(/\s+/g, '-')
-    .replace(/-+/g, '-');
+    .replace(/[^\w\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-");
 }
 
 /**
@@ -49,7 +49,11 @@ const components = {
   h1: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => {
     const id = slugify(children);
     return (
-      <h1 id={id} className="text-4xl font-extrabold text-slate-100 mb-6 mt-8 leading-tight scroll-mt-24 text-center" {...props}>
+      <h1
+        id={id}
+        className="text-4xl font-extrabold text-slate-100 mb-6 mt-8 leading-tight scroll-mt-24 text-center"
+        {...props}
+      >
         {children}
       </h1>
     );
@@ -57,7 +61,11 @@ const components = {
   h2: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => {
     const id = slugify(children);
     return (
-      <h2 id={id} className="text-3xl font-bold text-purple-200 mb-5 mt-7 leading-tight scroll-mt-24 text-center" {...props}>
+      <h2
+        id={id}
+        className="text-3xl font-bold text-purple-200 mb-5 mt-7 leading-tight scroll-mt-24 text-center"
+        {...props}
+      >
         {children}
       </h2>
     );
@@ -65,7 +73,11 @@ const components = {
   h3: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => {
     const id = slugify(children);
     return (
-      <h3 id={id} className="text-2xl font-semibold text-slate-200 mb-4 mt-6 leading-tight scroll-mt-24 text-center" {...props}>
+      <h3
+        id={id}
+        className="text-2xl font-semibold text-slate-200 mb-4 mt-6 leading-tight scroll-mt-24 text-center"
+        {...props}
+      >
         {children}
       </h3>
     );
@@ -74,7 +86,8 @@ const components = {
 
 export function GameMDX({ source }: GameMDXProps) {
   return (
-    <div className="prose prose-invert prose-slate prose-lg max-w-none
+    <div
+      className="prose prose-invert prose-slate prose-lg max-w-none
                     prose-headings:font-bold prose-headings:text-slate-100
                     prose-h1:text-4xl prose-h1:mb-6 prose-h1:mt-8 prose-h1:leading-tight prose-h1:font-extrabold
                     prose-h2:text-3xl prose-h2:mb-5 prose-h2:mt-7 prose-h2:leading-tight prose-h2:font-bold prose-h2:text-purple-200
@@ -89,7 +102,8 @@ export function GameMDX({ source }: GameMDXProps) {
                     prose-ol:text-slate-300 prose-li:marker:text-purple-400
                     prose-img:rounded-lg prose-img:shadow-lg prose-img:my-6
                     prose-hr:border-slate-800 prose-hr:my-8
-                    [&>div]:overflow-x-auto [&>div>table]:w-full [&>div>table]:display:[table]">
+                    [&>div]:overflow-x-auto [&>div>table]:w-full [&>div>table]:display:[table]"
+    >
       <MDXRemote
         source={source}
         components={components}

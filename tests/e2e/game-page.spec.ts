@@ -1,30 +1,32 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from "@playwright/test";
 
-test.describe('Game Page', () => {
+test.describe("Game Page", () => {
   test.beforeEach(async ({ page }) => {
     // Navigate to a game page
-    await page.goto('/en/games/scary-shawarma-kiosk');
+    await page.goto("/en/games/scary-shawarma-kiosk");
   });
 
-  test('should load game page successfully', async ({ page }) => {
+  test("should load game page successfully", async ({ page }) => {
     await expect(page).toHaveTitle(/Scary Shawarma Kiosk/i);
   });
 
-  test('should display game title', async ({ page }) => {
-    const heading = page.locator('h1');
+  test("should display game title", async ({ page }) => {
+    const heading = page.locator("h1");
     await expect(heading).toBeVisible();
     await expect(heading).toContainText(/Shawarma/i);
   });
 
-  test('should display quick reference table', async ({ page }) => {
+  test("should display quick reference table", async ({ page }) => {
     // Look for quick reference section
-    const quickRef = page.locator('text=/quick reference|anomalies|endings/i').first();
+    const quickRef = page
+      .locator("text=/quick reference|anomalies|endings/i")
+      .first();
     await expect(quickRef).toBeVisible();
   });
 
-  test('should display anomaly slider if present', async ({ page }) => {
+  test("should display anomaly slider if present", async ({ page }) => {
     // Check if there's an anomaly slider component
-    const slider = page.locator('.anomaly-slider-wrapper').first();
+    const slider = page.locator(".anomaly-slider-wrapper").first();
 
     const isVisible = await slider.isVisible().catch(() => false);
 
@@ -32,19 +34,21 @@ test.describe('Game Page', () => {
       await expect(slider).toBeVisible();
 
       // Test dragging the slider
-      const sliderContainer = slider.locator('.relative.overflow-hidden').first();
+      const sliderContainer = slider
+        .locator(".relative.overflow-hidden")
+        .first();
       await sliderContainer.click({ position: { x: 100, y: 150 } });
     }
   });
 
-  test('should display game content', async ({ page }) => {
+  test("should display game content", async ({ page }) => {
     // Look for MDX content
-    const content = page.locator('article, .prose, main').first();
+    const content = page.locator("article, .prose, main").first();
     await expect(content).toBeVisible();
   });
 
-  test('should have working navigation', async ({ page }) => {
-    const menuButton = page.getByRole('button', { name: /menu/i });
+  test("should have working navigation", async ({ page }) => {
+    const menuButton = page.getByRole("button", { name: /menu/i });
     await menuButton.click();
 
     // Should show navigation
@@ -52,9 +56,9 @@ test.describe('Game Page', () => {
   });
 });
 
-test.describe('Game Page Interactions', () => {
-  test('should toggle found checkboxes', async ({ page }) => {
-    await page.goto('/en/games/scary-shawarma-kiosk');
+test.describe("Game Page Interactions", () => {
+  test("should toggle found checkboxes", async ({ page }) => {
+    await page.goto("/en/games/scary-shawarma-kiosk");
 
     // Find checkboxes
     const checkboxes = page.locator('input[type="checkbox"]');
@@ -67,7 +71,9 @@ test.describe('Game Page Interactions', () => {
 
       // Check if localStorage is updated
       const foundState = await page.evaluate(() => {
-        const keys = Object.keys(localStorage).filter(key => key.includes('anomaly-found'));
+        const keys = Object.keys(localStorage).filter((key) =>
+          key.includes("anomaly-found"),
+        );
         return keys.length > 0;
       });
 
@@ -75,8 +81,8 @@ test.describe('Game Page Interactions', () => {
     }
   });
 
-  test('should expand/collapse details cards', async ({ page }) => {
-    await page.goto('/en/games/scary-shawarma-kiosk');
+  test("should expand/collapse details cards", async ({ page }) => {
+    await page.goto("/en/games/scary-shawarma-kiosk");
 
     // Look for "Show Details" buttons
     const showDetailsButtons = page.getByText(/show details/i);
@@ -91,11 +97,13 @@ test.describe('Game Page Interactions', () => {
     }
   });
 
-  test('should display risk level badges', async ({ page }) => {
-    await page.goto('/en/games/scary-shawarma-kiosk');
+  test("should display risk level badges", async ({ page }) => {
+    await page.goto("/en/games/scary-shawarma-kiosk");
 
     // Look for risk level indicators
-    const riskBadges = page.locator('text=/low risk|medium risk|high risk|extreme/i');
+    const riskBadges = page.locator(
+      "text=/low risk|medium risk|high risk|extreme/i",
+    );
 
     const count = await riskBadges.count();
 
@@ -105,9 +113,9 @@ test.describe('Game Page Interactions', () => {
   });
 });
 
-test.describe('Game Page Navigation', () => {
-  test('should have breadcrumb or back navigation', async ({ page }) => {
-    await page.goto('/en/games/scary-shawarma-kiosk');
+test.describe("Game Page Navigation", () => {
+  test("should have breadcrumb or back navigation", async ({ page }) => {
+    await page.goto("/en/games/scary-shawarma-kiosk");
 
     // Check for any navigation elements
     const navLinks = page.locator('a[href*="/"], button').all();
@@ -116,8 +124,8 @@ test.describe('Game Page Navigation', () => {
     expect((await navLinks).length).toBeGreaterThan(0);
   });
 
-  test('should scroll smoothly to anchor links', async ({ page }) => {
-    await page.goto('/en/games/scary-shawarma-kiosk');
+  test("should scroll smoothly to anchor links", async ({ page }) => {
+    await page.goto("/en/games/scary-shawarma-kiosk");
 
     // Look for anchor links
     const anchorLinks = page.locator('a[href^="#"]');
@@ -134,70 +142,72 @@ test.describe('Game Page Navigation', () => {
   });
 });
 
-test.describe('Game Page Accessibility', () => {
-  test('should have proper heading hierarchy', async ({ page }) => {
-    await page.goto('/en/games/scary-shawarma-kiosk');
+test.describe("Game Page Accessibility", () => {
+  test("should have proper heading hierarchy", async ({ page }) => {
+    await page.goto("/en/games/scary-shawarma-kiosk");
 
-    const h1 = page.locator('h1');
+    const h1 = page.locator("h1");
     await expect(h1).toHaveCount(1);
 
-    const h2s = page.locator('h2');
+    const h2s = page.locator("h2");
     const h2Count = await h2s.count();
 
     // Should have some h2s for content organization
     expect(h2Count).toBeGreaterThan(0);
   });
 
-  test('should have alt text for images', async ({ page }) => {
-    await page.goto('/en/games/scary-shawarma-kiosk');
+  test("should have alt text for images", async ({ page }) => {
+    await page.goto("/en/games/scary-shawarma-kiosk");
 
-    const images = page.locator('img');
+    const images = page.locator("img");
 
     const count = await images.count();
 
     if (count > 0) {
       for (let i = 0; i < Math.min(count, 5); i++) {
-        const alt = await images.nth(i).getAttribute('alt');
+        const alt = await images.nth(i).getAttribute("alt");
         expect(alt).toBeTruthy();
       }
     }
   });
 
-  test('should be keyboard navigable', async ({ page }) => {
-    await page.goto('/en/games/scary-shawarma-kiosk');
+  test("should be keyboard navigable", async ({ page }) => {
+    await page.goto("/en/games/scary-shawarma-kiosk");
 
     // Test Tab navigation
-    await page.keyboard.press('Tab');
+    await page.keyboard.press("Tab");
 
     // Something should be focused
-    const focusedElement = await page.evaluate(() => document.activeElement?.tagName);
-    expect(['BUTTON', 'A', 'INPUT']).toContain(focusedElement);
+    const focusedElement = await page.evaluate(
+      () => document.activeElement?.tagName,
+    );
+    expect(["BUTTON", "A", "INPUT"]).toContain(focusedElement);
   });
 });
 
-test.describe('Game Page Responsive Design', () => {
-  test('should work on mobile', async ({ page }) => {
+test.describe("Game Page Responsive Design", () => {
+  test("should work on mobile", async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 });
-    await page.goto('/en/games/scary-shawarma-kiosk');
+    await page.goto("/en/games/scary-shawarma-kiosk");
 
     // Content should be visible
-    const heading = page.locator('h1');
+    const heading = page.locator("h1");
     await expect(heading).toBeVisible();
   });
 
-  test('should work on tablet', async ({ page }) => {
+  test("should work on tablet", async ({ page }) => {
     await page.setViewportSize({ width: 768, height: 1024 });
-    await page.goto('/en/games/scary-shawarma-kiosk');
+    await page.goto("/en/games/scary-shawarma-kiosk");
 
-    const heading = page.locator('h1');
+    const heading = page.locator("h1");
     await expect(heading).toBeVisible();
   });
 
-  test('should work on desktop', async ({ page }) => {
+  test("should work on desktop", async ({ page }) => {
     await page.setViewportSize({ width: 1920, height: 1080 });
-    await page.goto('/en/games/scary-shawarma-kiosk');
+    await page.goto("/en/games/scary-shawarma-kiosk");
 
-    const heading = page.locator('h1');
+    const heading = page.locator("h1");
     await expect(heading).toBeVisible();
   });
 });

@@ -1,80 +1,84 @@
-import { generateJsonLd, generateWebSiteJsonLd, generateItemListJsonLd } from '@/lib/seo';
+import {
+  generateJsonLd,
+  generateWebSiteJsonLd,
+  generateItemListJsonLd,
+} from "@/lib/seo";
 
-describe('SEO Utilities', () => {
-  describe('generateJsonLd', () => {
-    it('should generate valid JSON-LD string', () => {
+describe("SEO Utilities", () => {
+  describe("generateJsonLd", () => {
+    it("should generate valid JSON-LD string", () => {
       const result = generateJsonLd({
-        type: 'WebSite',
-        data: { name: 'Test Site' },
+        type: "WebSite",
+        data: { name: "Test Site" },
       });
 
-      expect(typeof result).toBe('string');
+      expect(typeof result).toBe("string");
     });
 
-    it('should include context and type', () => {
+    it("should include context and type", () => {
       const result = generateJsonLd({
-        type: 'ItemList',
+        type: "ItemList",
         data: { itemListElement: [] },
       });
 
       const parsed = JSON.parse(result);
-      expect(parsed['@context']).toBe('https://schema.org');
-      expect(parsed['@type']).toBe('ItemList');
+      expect(parsed["@context"]).toBe("https://schema.org");
+      expect(parsed["@type"]).toBe("ItemList");
     });
 
-    it('should merge data correctly', () => {
+    it("should merge data correctly", () => {
       const result = generateJsonLd({
-        type: 'WebSite',
+        type: "WebSite",
         data: {
-          name: 'Test Site',
-          url: 'https://example.com',
+          name: "Test Site",
+          url: "https://example.com",
         },
       });
 
       const parsed = JSON.parse(result);
-      expect(parsed.name).toBe('Test Site');
-      expect(parsed.url).toBe('https://example.com');
+      expect(parsed.name).toBe("Test Site");
+      expect(parsed.url).toBe("https://example.com");
     });
   });
 
-  describe('generateWebSiteJsonLd', () => {
-    it('should generate WebSite JSON-LD with correct structure', () => {
+  describe("generateWebSiteJsonLd", () => {
+    it("should generate WebSite JSON-LD with correct structure", () => {
       const result = generateWebSiteJsonLd();
       const parsed = JSON.parse(result);
 
-      expect(parsed['@type']).toBe('WebSite');
-      expect(parsed.name).toBe('RobloxHub - Game Guides & Walkthroughs');
-      expect(parsed.url).toBe('https://robloxhub.com');
+      expect(parsed["@type"]).toBe("WebSite");
+      expect(parsed.name).toBe("RobloxHub - Game Guides & Walkthroughs");
+      expect(parsed.url).toBe("https://robloxhub.com");
     });
 
-    it('should include search action', () => {
+    it("should include search action", () => {
       const result = generateWebSiteJsonLd();
       const parsed = JSON.parse(result);
 
-      expect(parsed.potentialAction['@type']).toBe('SearchAction');
-      expect(parsed.potentialAction.target).toContain('search?q=');
+      expect(parsed.potentialAction["@type"]).toBe("SearchAction");
+      expect(parsed.potentialAction.target).toContain("search?q=");
     });
   });
 
-  describe('generateItemListJsonLd', () => {
-    it('should generate ItemList with correct structure', () => {
+  describe("generateItemListJsonLd", () => {
+    it("should generate ItemList with correct structure", () => {
       const items = [
-        { name: 'Item 1', url: 'https://example.com/1' },
-        { name: 'Item 2', url: 'https://example.com/2' },
+        { name: "Item 1", url: "https://example.com/1" },
+        { name: "Item 2", url: "https://example.com/2" },
       ];
 
       const result = generateItemListJsonLd(items);
       const parsed = JSON.parse(result);
 
-      expect(parsed['@type']).toBe('ItemList');
+      expect(parsed["@type"]).toBe("ItemList");
       expect(parsed.itemListElement).toHaveLength(2);
     });
 
-    it('should assign correct positions to items', () => {
+    it("should assign correct positions to items", () => {
       const items = [
-        { name: 'Item 1', url: 'https://example.com/1' },
-        { name: 'Item 2', url: 'https://example.com/2' },
-        { name: 'Item 3', url: 'https://example.com/3' },
+        { name: "Item 1", url: "https://example.com/1" },
+        { name: "Item 2", url: "https://example.com/2" },
+        { name: "Item 3", url: "https://example.com/3" },
       ];
 
       const result = generateItemListJsonLd(items);
@@ -85,7 +89,7 @@ describe('SEO Utilities', () => {
       expect(parsed.itemListElement[2].position).toBe(3);
     });
 
-    it('should handle empty items array', () => {
+    it("should handle empty items array", () => {
       const result = generateItemListJsonLd([]);
       const parsed = JSON.parse(result);
 

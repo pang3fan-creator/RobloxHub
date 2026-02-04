@@ -32,6 +32,7 @@ This is a **functional tool for gamers**, not a decorative marketing site.
 **Product World:** Roblox horror game guides, anomaly hunting, trigger events, ending routes
 
 **Concepts:**
+
 - Anomaly Hunting（异常狩猎）
 - Quick Reference（快速速查）
 - Trigger Events（事件触发）
@@ -40,6 +41,7 @@ This is a **functional tool for gamers**, not a decorative marketing site.
 - Mobile Gaming（移动游戏）
 
 **Color World:**
+
 - Dark Abyss（深渊黑）- slate-950
 - Blood Crimson（血色红）- warning/danger
 - Phantom Purple（幽灵紫）- anomaly highlight
@@ -48,6 +50,7 @@ This is a **functional tool for gamers**, not a decorative marketing site.
 - Ink Dark（墨黑）- primary text
 
 **Signature Element:**
+
 - **Before/After Anomaly Slider** - Interactive comparison component for "Normal vs Anomaly" scenarios
 
 ---
@@ -71,6 +74,7 @@ This is a **functional tool for gamers**, not a decorative marketing site.
 ```
 
 **Usage:**
+
 - Component padding: 16px (spacing-4)
 - Section gaps: 24px (spacing-6)
 - Information cards: 12px (spacing-3) - tighter than usual for density
@@ -80,23 +84,27 @@ This is a **functional tool for gamers**, not a decorative marketing site.
 ### Typography
 
 **Font Stack:**
+
 ```css
---font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
---font-mono: 'SF Mono', 'Consolas', 'Monaco', monospace;
+--font-sans:
+  system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+--font-mono: "SF Mono", "Consolas", "Monaco", monospace;
 ```
 
 **Type Scale:**
+
 ```css
---text-xs: 0.75rem;   /* 12px - labels, metadata */
---text-sm: 0.875rem;  /* 14px - secondary text */
---text-base: 1rem;    /* 16px - body text */
---text-lg: 1.125rem;  /* 18px - emphasized */
---text-xl: 1.25rem;   /* 20px - section headers */
---text-2xl: 1.5rem;   /* 24px - page title */
+--text-xs: 0.75rem; /* 12px - labels, metadata */
+--text-sm: 0.875rem; /* 14px - secondary text */
+--text-base: 1rem; /* 16px - body text */
+--text-lg: 1.125rem; /* 18px - emphasized */
+--text-xl: 1.25rem; /* 20px - section headers */
+--text-2xl: 1.5rem; /* 24px - page title */
 --text-3xl: 1.875rem; /* 30px - hero title */
 ```
 
 **Weights:**
+
 - Regular (400): Body text
 - Medium (500): Emphasized text
 - Semibold (600): Headers, interactive elements
@@ -107,18 +115,19 @@ This is a **functional tool for gamers**, not a decorative marketing site.
 ### Colors (Dark Mode Default)
 
 **Primitive Colors:**
+
 ```css
 /* Semantic - Dark Mode */
---background-primary: #020617;  /* slate-950 */
+--background-primary: #020617; /* slate-950 */
 --background-secondary: #0f172a; /* slate-900 */
 --background-tertiary: #1e293b; /* slate-800 */
 
---foreground-primary: #e2e8f0;   /* slate-200 */
+--foreground-primary: #e2e8f0; /* slate-200 */
 --foreground-secondary: #94a3b8; /* slate-400 */
---foreground-tertiary: #64748b;  /* slate-500 */
+--foreground-tertiary: #64748b; /* slate-500 */
 
---border-default: rgba(148, 163, 184, 0.1);  /* slate-400/10 */
---border-strong: rgba(148, 163, 184, 0.2);   /* slate-400/20 */
+--border-default: rgba(148, 163, 184, 0.1); /* slate-400/10 */
+--border-strong: rgba(148, 163, 184, 0.2); /* slate-400/20 */
 
 /* Brand & Semantic */
 --brand-primary: #a855f7; /* purple-500 - anomaly highlight */
@@ -131,6 +140,7 @@ This is a **functional tool for gamers**, not a decorative marketing site.
 ```
 
 **Light Mode (Opt-in):**
+
 ```css
 --background-primary: #ffffff;
 --background-secondary: #f8fafc; /* slate-50 */
@@ -145,12 +155,14 @@ This is a **functional tool for gamers**, not a decorative marketing site.
 **Approach:** Borders-only（仅边框，无阴影）
 
 **Rationale:**
+
 - Clean, technical feel（干净、技术感）
 - Works better in dark mode（暗黑模式下更清晰）
 - Reduces visual noise（减少视觉干扰）
 - Improves perceived performance（提升性能感知）
 
 **Implementation:**
+
 ```css
 /* Surface Elevation */
 --surface-base: background-primary;
@@ -170,14 +182,16 @@ This is a **functional tool for gamers**, not a decorative marketing site.
 ### Border Radius
 
 **Scale:**
+
 ```css
---radius-sm: 4px;   /* Small elements, badges */
---radius-md: 8px;   /* Cards, buttons, inputs */
---radius-lg: 12px;  /* Large cards, modals */
+--radius-sm: 4px; /* Small elements, badges */
+--radius-md: 8px; /* Cards, buttons, inputs */
+--radius-lg: 12px; /* Large cards, modals */
 --radius-full: 9999px; /* Pills, avatars */
 ```
 
 **Usage:**
+
 - Buttons: `radius-md` (8px)
 - Cards: `radius-md` (8px)
 - Floating nav: `radius-full` (pill shape)
@@ -191,12 +205,14 @@ This is a **functional tool for gamers**, not a decorative marketing site.
 **Purpose:** Interactive before/after comparison for anomaly detection
 
 **Key Features:**
+
 - Touch-optimized drag handle（44px × 44px minimum）
 - Real-time image comparison
 - Brightness adjustment slider（optional）
 - "Mark as Found" checkbox integration
 
 **Structure:**
+
 ```
 ┌─────────────────────────────────────┐
 │  [Before Image | After Image]        │
@@ -206,6 +222,7 @@ This is a **functional tool for gamers**, not a decorative marketing site.
 ```
 
 **Tokens:**
+
 - Container height: 200px (mobile), 300px (desktop)
 - Handle size: 44px (touch target)
 - Border: 1px solid var(--border-default)
@@ -217,12 +234,14 @@ This is a **functional tool for gamers**, not a decorative marketing site.
 **Purpose:** Bottom pill-shaped floating nav for mobile one-hand use
 
 **Key Features:**
+
 - Fixed position bottom-center（底部居中固定）
 - Blur glass effect（毛玻璃背景）
 - Collapses on scroll（滚动时收起）
 - Semi-screen modal on tap（点击弹出半屏菜单）
 
 **Structure:**
+
 ```
       ┌──────────────────┐
       │  ≡ Menu (48px)   │ ← Pill shape
@@ -230,6 +249,7 @@ This is a **functional tool for gamers**, not a decorative marketing site.
 ```
 
 **Tokens:**
+
 - Height: 48px
 - Width: min(200px, 80vw)
 - Background: rgba(15, 23, 42, 0.8) + backdrop-blur-md
@@ -243,12 +263,14 @@ This is a **functional tool for gamers**, not a decorative marketing site.
 **Purpose:** Compact information display for anomaly lists, event tables
 
 **Key Features:**
+
 - Tight spacing (12px padding)
 - High contrast borders
 - Checkbox for "Found" state
 - Tap to expand details
 
 **Structure:**
+
 ```
 ┌──────────────────────────────────┐
 │ ☐ Anomaly #12 - "Moving Statue"  │
@@ -258,6 +280,7 @@ This is a **functional tool for gamers**, not a decorative marketing site.
 ```
 
 **Tokens:**
+
 - Padding: spacing-3 (12px)
 - Border: 1px solid var(--border-default)
 - Border-radius: radius-md (8px)
@@ -270,12 +293,14 @@ This is a **functional tool for gamers**, not a decorative marketing site.
 **Purpose:** Primary actions（CTA, navigation）
 
 **Tokens:**
+
 ```css
 --button-height: 44px; /* Touch target minimum */
 --button-padding: 0 spacing-4; /* 16px horizontal */
 ```
 
 **States:**
+
 - Default: `bg-brand-primary text-white`
 - Hover: `bg-brand-secondary`
 - Active: `scale-95`（subtle press feedback）
@@ -288,6 +313,7 @@ This is a **functional tool for gamers**, not a decorative marketing site.
 ### Mobile-First Grid
 
 **Container:**
+
 ```css
 --container-max: 1200px;
 --container-padding-mobile: spacing-4; /* 16px */
@@ -295,6 +321,7 @@ This is a **functional tool for gamers**, not a decorative marketing site.
 ```
 
 **Grid:**
+
 - Mobile: 1 column（单列）
 - Tablet: 2 columns（双列）
 - Desktop: 3 columns（三列）
@@ -304,6 +331,7 @@ This is a **functional tool for gamers**, not a decorative marketing site.
 ### Information Hierarchy
 
 **Visual Priority:**
+
 1. **Critical warnings** - Semantic danger color, bold
 2. **Anomaly names** - Brand primary color, semibold
 3. **Action labels** - Foreground primary, medium weight
@@ -315,11 +343,13 @@ This is a **functional tool for gamers**, not a decorative marketing site.
 ## Animation & Micro-interactions
 
 **Timing:**
+
 - Fast transitions: 150ms（hover, focus）
 - Medium transitions: 300ms（modals, navigation）
 - Slow transitions: 500ms（page transitions）
 
 **Easing:**
+
 ```css
 --ease-out: cubic-bezier(0, 0, 0.2, 1);
 --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
@@ -345,14 +375,17 @@ This is a **functional tool for gamers**, not a decorative marketing site.
 ## Accessibility
 
 **Contrast Requirements:**
+
 - All text: WCAG AA (4.5:1 minimum)
 - Critical warnings: WCAG AAA (7:1 preferred)
 
 **Touch Targets:**
+
 - Minimum size: 44px × 44px
 - Spacing between targets: 8px
 
 **Focus States:**
+
 - All interactive elements must have visible focus rings
 - Focus color: var(--brand-primary)
 
@@ -360,15 +393,15 @@ This is a **functional tool for gamers**, not a decorative marketing site.
 
 ## Decisions Log
 
-| Decision | Rationale | Date |
-|----------|-----------|------|
-| Dark mode default | Fits horror game atmosphere, reduces eye strain during gameplay | 2025-01-28 |
-| Borders-only depth | Cleaner in dark mode, better performance perception | 2025-01-28 |
-| 4px spacing base | Mobile-friendly small grid, allows tight information density | 2025-01-28 |
-| Purple brand color | Represents "anomaly" mystery, stands out in dark theme | 2025-01-28 |
-| Floating pill nav | Mobile-first, single-thumb operation optimization | 2025-01-28 |
-| Tight card padding (12px) | Enables more information per screen, reduces scrolling | 2025-01-28 |
-| 44px touch targets | Apple HIG compliance, comfortable thumb interaction | 2025-01-28 |
+| Decision                  | Rationale                                                       | Date       |
+| ------------------------- | --------------------------------------------------------------- | ---------- |
+| Dark mode default         | Fits horror game atmosphere, reduces eye strain during gameplay | 2025-01-28 |
+| Borders-only depth        | Cleaner in dark mode, better performance perception             | 2025-01-28 |
+| 4px spacing base          | Mobile-friendly small grid, allows tight information density    | 2025-01-28 |
+| Purple brand color        | Represents "anomaly" mystery, stands out in dark theme          | 2025-01-28 |
+| Floating pill nav         | Mobile-first, single-thumb operation optimization               | 2025-01-28 |
+| Tight card padding (12px) | Enables more information per screen, reduces scrolling          | 2025-01-28 |
+| 44px touch targets        | Apple HIG compliance, comfortable thumb interaction             | 2025-01-28 |
 
 ---
 

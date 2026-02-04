@@ -1,13 +1,13 @@
-import { getTranslations } from 'next-intl/server';
-import { FloatingNav } from '@/components/FloatingNav';
-import { Footer } from '@/components/Footer';
-import { HeroSearch } from '@/components/HeroSearch';
-import { FeaturedGameCard } from '@/components/FeaturedGameCard';
-import { TrendingNow } from '@/components/TrendingNow';
-import { RecentUpdates } from '@/components/RecentUpdates';
-import { generateAlternates, generateCanonical } from '@/lib/seo';
-import { getFeaturedPosts, getRecentUpdates } from '@/lib/games';
-import { Locale } from '@/lib/i18n';
+import { getTranslations } from "next-intl/server";
+import { FloatingNav } from "@/components/FloatingNav";
+import { Footer } from "@/components/Footer";
+import { HeroSearch } from "@/components/HeroSearch";
+import { FeaturedGameCard } from "@/components/FeaturedGameCard";
+import { TrendingNow } from "@/components/TrendingNow";
+import { RecentUpdates } from "@/components/RecentUpdates";
+import { generateAlternates, generateCanonical } from "@/lib/seo";
+import { getFeaturedPosts, getRecentUpdates } from "@/lib/games";
+import { Locale } from "@/lib/i18n";
 
 interface PageProps {
   params: Promise<{
@@ -17,10 +17,10 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'home' });
+  const t = await getTranslations({ locale, namespace: "home" });
 
   return {
-    title: t('title'),
+    title: t("title"),
     alternates: {
       canonical: generateCanonical(locale as Locale),
       ...generateAlternates(),
@@ -30,18 +30,18 @@ export async function generateMetadata({ params }: PageProps) {
 
 // Trending games (can be moved to config or CMS later)
 const trendingGames = [
-  { slug: 'sorcerer-ascent', name: 'Sorcerer Ascent' },
-  { slug: 'scary-shawarma-kiosk', name: 'Scary Shawarma Kiosk' },
-  { slug: 'dress-to-impress', name: 'Dress to Impress' },
-  { slug: 'blue-lock-rivals', name: 'Blue Lock Rivals' },
-  { slug: 'fisch', name: 'Fisch' },
-  { slug: 'murder-mystery-2', name: 'Murder Mystery 2' },
-  { slug: 'blox-fruits', name: 'Blox Fruits' },
+  { slug: "sorcerer-ascent", name: "Sorcerer Ascent" },
+  { slug: "scary-shawarma-kiosk", name: "Scary Shawarma Kiosk" },
+  { slug: "dress-to-impress", name: "Dress to Impress" },
+  { slug: "blue-lock-rivals", name: "Blue Lock Rivals" },
+  { slug: "fisch", name: "Fisch" },
+  { slug: "murder-mystery-2", name: "Murder Mystery 2" },
+  { slug: "blox-fruits", name: "Blox Fruits" },
 ];
 
 export default async function HomePage({ params }: PageProps) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'home' });
+  const t = await getTranslations({ locale, namespace: "home" });
 
   const featuredPosts = getFeaturedPosts(locale, 3);
   const recentPosts = getRecentUpdates(locale, 5);
@@ -54,10 +54,10 @@ export default async function HomePage({ params }: PageProps) {
       <section className="relative px-6 pt-24 pb-12 lg:px-8">
         <div className="mx-auto max-w-4xl text-center">
           <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mb-4">
-            🎮 {t('title')}
+            🎮 {t("title")}
           </h1>
           <p className="text-lg leading-8 text-slate-300 mb-8">
-            {t('subtitle')}
+            {t("subtitle")}
           </p>
 
           {/* Search Box */}
@@ -70,7 +70,7 @@ export default async function HomePage({ params }: PageProps) {
         <div className="mx-auto max-w-7xl">
           <h2 className="text-2xl font-bold text-white mb-8 flex items-center gap-2">
             <span>🔥</span>
-            {t('featured.title')}
+            {t("featured.title")}
           </h2>
 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
