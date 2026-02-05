@@ -7,6 +7,18 @@ import { getGamePostBySlug } from "@/lib/games";
 import { generateAlternates, generateCanonical } from "@/lib/seo";
 import { Locale } from "@/lib/i18n";
 import { RiskLevel } from "@/components/QuickCard";
+
+/**
+ * Format date string to display format (e.g., "2026-02-03" -> "Feb 2026")
+ */
+function formatDate(dateString: string): string {
+  const date = new Date(dateString);
+  return date.toLocaleDateString("en-US", {
+    month: "short",
+    year: "numeric",
+  });
+}
+
 const anomaliesData = [
   {
     id: "strange-stickers",
@@ -112,7 +124,7 @@ export default async function GameDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  const { title, content } = gamePost;
+  const { title, content, featured, date, readTime } = gamePost;
 
   return (
     <main className="min-h-screen bg-slate-950 text-slate-200">
@@ -120,14 +132,16 @@ export default async function GameDetailPage({ params }: PageProps) {
 
       <div className="container mx-auto px-4 py-12 max-w-5xl">
         {/* Header */}
-        <header className="mb-12">
-          <div className="inline-block px-3 py-1 bg-purple-500/20 text-purple-400 text-sm font-medium rounded-full mb-4 border border-purple-500/30">
-            Featured Game
-          </div>
+        <header className="mb-12 text-center">
+          {featured && (
+            <div className="inline-block px-3 py-1 bg-purple-500/20 text-purple-400 text-sm font-medium rounded-full mb-4 border border-purple-500/30">
+              Featured Game
+            </div>
+          )}
           <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
             {title}
           </h1>
-          <div className="flex flex-wrap gap-4 mt-6 text-sm text-slate-500">
+          <div className="flex flex-wrap gap-4 mt-6 text-sm text-slate-500 justify-center">
             <span className="flex items-center gap-2">
               <svg
                 className="w-4 h-4"
@@ -142,7 +156,7 @@ export default async function GameDetailPage({ params }: PageProps) {
                   d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                 />
               </svg>
-              Last updated: Jan 2026
+              Last updated: {formatDate(date)}
             </span>
             <span className="flex items-center gap-2">
               <svg
@@ -158,7 +172,7 @@ export default async function GameDetailPage({ params }: PageProps) {
                   d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
                 />
               </svg>
-              30 min read
+              {readTime}
             </span>
           </div>
         </header>
