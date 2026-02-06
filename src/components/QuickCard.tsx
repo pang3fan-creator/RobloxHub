@@ -120,13 +120,13 @@ export function QuickCard({
               type="checkbox"
               checked={found}
               onChange={(e) => handleFoundChange(e.target.checked)}
-              className="sr-only"
+              className="sr-only peer focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900"
             />
             <div
               className={`w-5 h-5 rounded border-2 transition-all flex items-center justify-center ${
                 found
                   ? 'bg-purple-500 border-purple-500'
-                  : 'border-slate-400 dark:border-slate-600 group-hover:border-slate-500 dark:group-hover:border-slate-500'
+                  : 'border-slate-400 dark:border-slate-600 group-hover:border-slate-500 dark:group-hover:border-slate-500 peer-focus-visible:ring-2 peer-focus-visible:ring-purple-500 peer-focus-visible:ring-offset-2 dark:peer-focus-visible:ring-offset-slate-900'
               }`}
             >
               {found && (

@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 /**
  * QuickReference - 快速导航组件
  *
@@ -114,10 +116,10 @@ export function QuickReference({ items }: QuickReferenceProps) {
           const colors = colorMap[section.color] || colorMap.blue;
           const [textColor, hoverColor, borderColor] = colors.split(' ');
           return (
-            <a
+            <Link
               key={section.href}
               href={section.href}
-              className={`group p-4 bg-slate-100/50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 ${borderColor} rounded-lg transition-all`}
+              className={`group p-4 bg-slate-100/50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 ${borderColor} rounded-lg transition-all focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900`}
             >
               <h3 className={`font-semibold ${textColor} ${hoverColor} mb-1`}>
                 {section.icon} {section.title}
@@ -125,7 +127,7 @@ export function QuickReference({ items }: QuickReferenceProps) {
               <p className="text-sm text-slate-600 dark:text-slate-400">
                 {section.desc}
               </p>
-            </a>
+            </Link>
           );
         })}
       </div>

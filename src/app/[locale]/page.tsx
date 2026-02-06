@@ -69,7 +69,7 @@ export default async function HomePage({ params }: PageProps) {
       <section className="px-6 py-12 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8 flex items-center gap-2">
-            <span>🔥</span>
+            <span aria-hidden="true">🔥</span>
             {t('featured.title')}
           </h2>
 

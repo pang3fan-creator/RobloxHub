@@ -86,10 +86,11 @@ export function FloatingNav({ locale = 'en' }: { locale?: string }) {
         className={`fixed top-6 left-1/2 -translate-x-1/2 z-40 transition-transform duration-300 ${
           isVisible ? 'translate-y-0' : '-translate-y-20'
         }`}
+        style={{ top: 'max(1.5rem, env(safe-area-inset-top))' }}
       >
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="group relative flex items-center justify-center gap-2 px-6 h-12 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-2 border-purple-500/50 hover:border-purple-400 rounded-full text-slate-800 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white transition-all hover:scale-105 active:scale-95 shadow-xl animate-pulse-subtle"
+          className="group relative flex items-center justify-center gap-2 px-6 h-12 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-2 border-purple-500/50 hover:border-purple-400 rounded-full text-slate-800 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white transition-all hover:scale-105 active:scale-95 shadow-xl animate-pulse-subtle focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900"
           style={{
             width: 'min(200px, 80vw)',
             height: '48px',
@@ -136,6 +137,7 @@ export function FloatingNav({ locale = 'en' }: { locale?: string }) {
         className={`fixed top-6 right-6 z-40 transition-transform duration-300 ${
           isVisible ? 'translate-y-0' : '-translate-y-20'
         }`}
+        style={{ top: 'max(1.5rem, env(safe-area-inset-top))' }}
       >
         <ThemeToggle />
       </div>
@@ -168,7 +170,7 @@ export function FloatingNav({ locale = 'en' }: { locale?: string }) {
                       <button
                         key={`${item.label}-${index}`}
                         disabled
-                        className="group flex flex-col items-center gap-2 p-4 rounded-2xl border min-w-[120px] bg-slate-100/30 dark:bg-slate-800/30 border-slate-300 dark:border-slate-700 text-slate-400 dark:text-slate-600 cursor-not-allowed opacity-50"
+                        className="group flex flex-col items-center gap-2 p-4 rounded-2xl border min-w-[120px] bg-slate-100/30 dark:bg-slate-800/30 border-slate-300 dark:border-slate-700 text-slate-400 dark:text-slate-600 cursor-not-allowed opacity-50 focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900"
                       >
                         <span className="text-3xl filter grayscale">
                           {item.icon}
@@ -184,7 +186,7 @@ export function FloatingNav({ locale = 'en' }: { locale?: string }) {
                     <a
                       key={`${item.label}-${index}`}
                       href={item.href}
-                      className={`group flex flex-col items-center gap-2 p-4 rounded-2xl border transition-all hover:scale-105 active:scale-95 min-w-[120px] ${
+                      className={`group flex flex-col items-center gap-2 p-4 rounded-2xl border transition-all hover:scale-105 active:scale-95 min-w-[120px] focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900 ${
                         isActive
                           ? 'bg-purple-500/20 dark:bg-purple-500/20 border-purple-500/50 dark:border-purple-500/50 text-purple-600 dark:text-purple-400'
                           : 'bg-gradient-to-br from-slate-100/50 to-slate-200/50 dark:from-slate-800/50 dark:to-slate-900/50 border-slate-300 dark:border-slate-700 hover:border-purple-500/50 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:from-purple-100/30 dark:hover:from-purple-900/30 hover:to-slate-200/50 dark:hover:to-slate-800/50'
@@ -211,7 +213,7 @@ export function FloatingNav({ locale = 'en' }: { locale?: string }) {
               <div className="mt-6 flex justify-center">
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="px-8 py-3 bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-700 rounded-full text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white font-medium transition-all hover:scale-105 active:scale-95"
+                  className="px-8 py-3 bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-700 rounded-full text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white font-medium transition-all hover:scale-105 active:scale-95 focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900"
                 >
                   {t('close')}
                 </button>

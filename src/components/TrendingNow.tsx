@@ -30,7 +30,7 @@ export function TrendingNow({ locale, games }: TrendingNowProps) {
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-          <span>⚡</span>
+          <span aria-hidden="true">⚡</span>
           {t('title')}
         </h2>
         <span className="text-slate-400 dark:text-slate-600 text-sm font-medium cursor-not-allowed">
@@ -60,6 +60,7 @@ export function TrendingNow({ locale, games }: TrendingNowProps) {
                   transition-all duration-200
                   hover:scale-110 hover:shadow-xl
                   active:scale-105
+                  focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900
                 `}
               >
                 {game.name}

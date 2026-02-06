@@ -29,7 +29,7 @@ export function RecentUpdates({ locale, posts }: RecentUpdatesProps) {
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-          <span>📝</span>
+          <span aria-hidden="true">📝</span>
           {t('title')}
         </h2>
         <span className="text-slate-400 dark:text-slate-600 text-sm font-medium cursor-not-allowed">

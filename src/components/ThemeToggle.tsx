@@ -29,7 +29,7 @@ export function ThemeToggle() {
     // 占位符，避免布局偏移
     return (
       <button
-        className="w-10 h-10 rounded-full bg-white/80 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700"
+        className="w-10 h-10 rounded-full bg-white/80 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900"
         aria-label="Toggle theme"
       />
     );
@@ -40,7 +40,7 @@ export function ThemeToggle() {
   return (
     <button
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
-      className="group relative w-10 h-10 flex items-center justify-center rounded-full bg-white/80 dark:bg-slate-800/80 backdrop-blur-md border border-slate-300 dark:border-slate-700 hover:border-purple-500/50 text-slate-700 dark:text-slate-300 hover:text-yellow-500 dark:hover:text-yellow-400 transition-all duration-300 hover:scale-110 active:scale-95 shadow-sm dark:shadow-none"
+      className="group relative w-10 h-10 flex items-center justify-center rounded-full bg-white/80 dark:bg-slate-800/80 backdrop-blur-md border border-slate-300 dark:border-slate-700 hover:border-purple-500/50 text-slate-700 dark:text-slate-300 hover:text-yellow-500 dark:hover:text-yellow-400 transition-all duration-300 hover:scale-110 active:scale-95 shadow-sm dark:shadow-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900"
       aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
     >
       {/* Sun icon (暗色模式下显示) */}
