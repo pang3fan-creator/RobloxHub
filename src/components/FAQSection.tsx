@@ -22,16 +22,16 @@ interface FAQSectionProps {
 export function FAQSection({ items }: FAQSectionProps) {
   const defaultFaqs: FAQItem[] = [
     {
-      q: "Are there any codes for this game?",
-      a: "No codes currently available. Follow official Discord for updates.",
+      q: 'Are there any codes for this game?',
+      a: 'No codes currently available. Follow official Discord for updates.',
     },
     {
       q: "What's the hardest anomaly to spot?",
-      a: "Nightvision Missing - completely invisible in night vision mode.",
+      a: 'Nightvision Missing - completely invisible in night vision mode.',
     },
     {
-      q: "Can I play on mobile?",
-      a: "Yes! Roblox mobile fully supported, but cameras are harder to check.",
+      q: 'Can I play on mobile?',
+      a: 'Yes! Roblox mobile fully supported, but cameras are harder to check.',
     },
   ];
 
@@ -42,12 +42,14 @@ export function FAQSection({ items }: FAQSectionProps) {
       {displayFaqs.map((faq, index) => (
         <details
           key={index}
-          className="bg-slate-900 border border-slate-800 rounded-lg group"
+          className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg group"
         >
-          <summary className="p-5 cursor-pointer flex items-center justify-between hover:bg-slate-800/50 transition-colors">
-            <span className="font-semibold text-slate-200">{faq.q}</span>
+          <summary className="p-5 cursor-pointer flex items-center justify-between hover:bg-slate-100/50 dark:hover:bg-slate-800/50 transition-colors">
+            <span className="font-semibold text-slate-800 dark:text-slate-200">
+              {faq.q}
+            </span>
             <svg
-              className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform"
+              className="w-5 h-5 text-slate-600 dark:text-slate-400 group-open:rotate-180 transition-transform"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -60,7 +62,9 @@ export function FAQSection({ items }: FAQSectionProps) {
               />
             </svg>
           </summary>
-          <div className="px-5 pb-5 text-slate-400">{faq.a}</div>
+          <div className="px-5 pb-5 text-slate-600 dark:text-slate-400">
+            {faq.a}
+          </div>
         </details>
       ))}
     </div>

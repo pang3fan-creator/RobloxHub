@@ -1,8 +1,9 @@
-"use client";
+'use client';
 
-import { useState, useEffect } from "react";
-import { useTranslations } from "next-intl";
-import { usePathname } from "next/navigation";
+import { useState, useEffect } from 'react';
+import { useTranslations } from 'next-intl';
+import { usePathname } from 'next/navigation';
+import { ThemeToggle } from './ThemeToggle';
 
 interface NavItem {
   label: string;
@@ -24,8 +25,8 @@ interface NavItem {
  * - Border-radius: radius-full (pill shape)
  * - Shadow: none (borders-only strategy)
  */
-export function FloatingNav({ locale = "en" }: { locale?: string }) {
-  const t = useTranslations("components.floatingNav");
+export function FloatingNav({ locale = 'en' }: { locale?: string }) {
+  const t = useTranslations('components.floatingNav');
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
@@ -33,11 +34,11 @@ export function FloatingNav({ locale = "en" }: { locale?: string }) {
 
   // Navigation items
   const navItems: NavItem[] = [
-    { label: t("home"), href: `/${locale}`, icon: "🏠" },
-    { label: t("games"), href: "#", icon: "🎮", disabled: true },
-    { label: t("codes"), href: "#", icon: "🎁", disabled: true },
-    { label: t("guides"), href: "#", icon: "📖", disabled: true },
-    { label: t("settings"), href: "#", icon: "⚙️", disabled: true },
+    { label: t('home'), href: `/${locale}`, icon: '🏠' },
+    { label: t('games'), href: '#', icon: '🎮', disabled: true },
+    { label: t('codes'), href: '#', icon: '🎁', disabled: true },
+    { label: t('guides'), href: '#', icon: '📖', disabled: true },
+    { label: t('settings'), href: '#', icon: '⚙️', disabled: true },
   ];
 
   // Hide/show on scroll
@@ -56,8 +57,8 @@ export function FloatingNav({ locale = "en" }: { locale?: string }) {
       setLastScrollY(currentScrollY);
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
   // Close modal on route change
@@ -68,13 +69,13 @@ export function FloatingNav({ locale = "en" }: { locale?: string }) {
   // Prevent body scroll when modal is open
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = "hidden";
+      document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = "";
+      document.body.style.overflow = '';
     }
 
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = '';
     };
   }, [isOpen]);
 
@@ -83,22 +84,22 @@ export function FloatingNav({ locale = "en" }: { locale?: string }) {
       {/* Floating Pill Button */}
       <div
         className={`fixed top-6 left-1/2 -translate-x-1/2 z-40 transition-transform duration-300 ${
-          isVisible ? "translate-y-0" : "-translate-y-20"
+          isVisible ? 'translate-y-0' : '-translate-y-20'
         }`}
       >
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="group relative flex items-center justify-center gap-2 px-6 h-12 bg-slate-900/80 backdrop-blur-md border-2 border-purple-500/50 hover:border-purple-400 rounded-full text-slate-200 hover:text-white transition-all hover:scale-105 active:scale-95 shadow-xl animate-pulse-subtle"
+          className="group relative flex items-center justify-center gap-2 px-6 h-12 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-2 border-purple-500/50 hover:border-purple-400 rounded-full text-slate-800 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white transition-all hover:scale-105 active:scale-95 shadow-xl animate-pulse-subtle"
           style={{
-            width: "min(200px, 80vw)",
-            height: "48px",
+            width: 'min(200px, 80vw)',
+            height: '48px',
           }}
-          aria-label={t("menu")}
+          aria-label={t('menu')}
           aria-expanded={isOpen}
         >
           {/* Menu icon */}
           <svg
-            className={`w-6 h-6 transition-transform duration-300 ${isOpen ? "rotate-90" : ""}`}
+            className={`w-6 h-6 transition-transform duration-300 ${isOpen ? 'rotate-90' : ''}`}
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -122,7 +123,7 @@ export function FloatingNav({ locale = "en" }: { locale?: string }) {
 
           {/* Label */}
           <span className="font-medium text-sm">
-            {isOpen ? t("close") : t("menu")}
+            {isOpen ? t('close') : t('menu')}
           </span>
 
           {/* Hover glow effect */}
@@ -130,21 +131,30 @@ export function FloatingNav({ locale = "en" }: { locale?: string }) {
         </button>
       </div>
 
+      {/* Theme Toggle Button */}
+      <div
+        className={`fixed top-6 right-6 z-40 transition-transform duration-300 ${
+          isVisible ? 'translate-y-0' : '-translate-y-20'
+        }`}
+      >
+        <ThemeToggle />
+      </div>
+
       {/* Semi-screen Modal Overlay */}
       {isOpen && (
         <>
           {/* Backdrop */}
           <div
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 transition-opacity"
+            className="fixed inset-0 bg-slate-900/60 dark:bg-black/60 backdrop-blur-sm z-40 transition-opacity"
             onClick={() => setIsOpen(false)}
             aria-hidden="true"
           />
 
           {/* Modal Content */}
-          <div className="fixed inset-x-0 top-0 z-50 bg-slate-900 border-b border-slate-800 rounded-b-3xl shadow-2xl animate-slide-down">
+          <div className="fixed inset-x-0 top-0 z-50 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 rounded-b-3xl shadow-2xl animate-slide-down">
             {/* Drag handle */}
             <div className="flex justify-center pt-3 pb-2">
-              <div className="w-12 h-1.5 bg-slate-700 rounded-full" />
+              <div className="w-12 h-1.5 bg-slate-300 dark:bg-slate-700 rounded-full" />
             </div>
 
             {/* Navigation Grid */}
@@ -158,7 +168,7 @@ export function FloatingNav({ locale = "en" }: { locale?: string }) {
                       <button
                         key={`${item.label}-${index}`}
                         disabled
-                        className="group flex flex-col items-center gap-2 p-4 rounded-2xl border min-w-[120px] bg-slate-800/30 border-slate-700 text-slate-600 cursor-not-allowed opacity-50"
+                        className="group flex flex-col items-center gap-2 p-4 rounded-2xl border min-w-[120px] bg-slate-100/30 dark:bg-slate-800/30 border-slate-300 dark:border-slate-700 text-slate-400 dark:text-slate-600 cursor-not-allowed opacity-50"
                       >
                         <span className="text-3xl filter grayscale">
                           {item.icon}
@@ -176,8 +186,8 @@ export function FloatingNav({ locale = "en" }: { locale?: string }) {
                       href={item.href}
                       className={`group flex flex-col items-center gap-2 p-4 rounded-2xl border transition-all hover:scale-105 active:scale-95 min-w-[120px] ${
                         isActive
-                          ? "bg-purple-500/20 border-purple-500/50 text-purple-400"
-                          : "bg-gradient-to-br from-slate-800/50 to-slate-900/50 border-slate-700 hover:border-purple-500/50 text-slate-300 hover:text-white hover:from-purple-900/30 hover:to-slate-800/50"
+                          ? 'bg-purple-500/20 dark:bg-purple-500/20 border-purple-500/50 dark:border-purple-500/50 text-purple-600 dark:text-purple-400'
+                          : 'bg-gradient-to-br from-slate-100/50 to-slate-200/50 dark:from-slate-800/50 dark:to-slate-900/50 border-slate-300 dark:border-slate-700 hover:border-purple-500/50 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:from-purple-100/30 dark:hover:from-purple-900/30 hover:to-slate-200/50 dark:hover:to-slate-800/50'
                       }`}
                     >
                       {/* Icon */}
@@ -201,9 +211,9 @@ export function FloatingNav({ locale = "en" }: { locale?: string }) {
               <div className="mt-6 flex justify-center">
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="px-8 py-3 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-full text-slate-300 hover:text-white font-medium transition-all hover:scale-105 active:scale-95"
+                  className="px-8 py-3 bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-700 rounded-full text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white font-medium transition-all hover:scale-105 active:scale-95"
                 >
-                  {t("close")}
+                  {t('close')}
                 </button>
               </div>
             </nav>

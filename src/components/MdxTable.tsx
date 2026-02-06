@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import React from "react";
+import React from 'react';
 
 /**
  * Custom table components for MDX
@@ -12,7 +12,7 @@ export function Table({
   ...props
 }: React.TableHTMLAttributes<HTMLTableElement>) {
   return (
-    <div className="overflow-x-auto my-6">
+    <div className="not-prose overflow-x-auto my-6">
       <table className="w-full border-collapse" {...props}>
         {children}
       </table>
@@ -25,7 +25,10 @@ export function THead({
   ...props
 }: React.HTMLAttributes<HTMLTableSectionElement>) {
   return (
-    <thead className="border-t-2 border-slate-600 bg-slate-800/50" {...props}>
+    <thead
+      className="border-t-2 border-slate-400 dark:border-slate-600 bg-slate-100/50 dark:bg-slate-800/50"
+      {...props}
+    >
       {children}
     </thead>
   );
@@ -43,7 +46,10 @@ export function TR({
   ...props
 }: React.HTMLAttributes<HTMLTableRowElement>) {
   return (
-    <tr className="hover:bg-slate-800/30 transition-colors" {...props}>
+    <tr
+      className="hover:bg-slate-100/30 dark:hover:bg-slate-800/30 transition-colors"
+      {...props}
+    >
       {children}
     </tr>
   );
@@ -55,7 +61,7 @@ export function TH({
 }: React.ThHTMLAttributes<HTMLTableCellElement>) {
   return (
     <th
-      className="border-b border-slate-700 py-3 px-4 text-left font-bold text-slate-100"
+      className="border-b border-slate-300 dark:border-slate-700 py-3 px-4 text-left font-bold text-slate-800 dark:text-slate-100"
       {...props}
     >
       {children}
@@ -69,7 +75,7 @@ export function TD({
 }: React.TdHTMLAttributes<HTMLTableCellElement>) {
   return (
     <td
-      className="border-b border-slate-800 py-3 px-4 text-slate-300"
+      className="border-b border-slate-200 dark:border-slate-800 py-3 px-4 text-slate-900 dark:text-slate-300"
       {...props}
     >
       {children}

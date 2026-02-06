@@ -1,6 +1,6 @@
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
 
 export interface GamePost {
   slug: string;
@@ -23,19 +23,19 @@ export interface GameMetadata {
   locale: string;
 }
 
-const postsBaseDirectory = path.join(process.cwd(), "posts");
+const postsBaseDirectory = path.join(process.cwd(), 'posts');
 
 /**
  * Get posts directory for a specific locale
  */
-function getPostsDirectory(locale: string = "en"): string {
+function getPostsDirectory(locale: string = 'en'): string {
   return path.join(postsBaseDirectory, locale);
 }
 
 /**
  * Get all game posts from the posts directory
  */
-export function getAllGamePosts(locale: string = "en"): GamePost[] {
+export function getAllGamePosts(locale: string = 'en'): GamePost[] {
   const postsDirectory = getPostsDirectory(locale);
 
   if (!fs.existsSync(postsDirectory)) {
@@ -45,14 +45,14 @@ export function getAllGamePosts(locale: string = "en"): GamePost[] {
   const fileNames = fs.readdirSync(postsDirectory);
 
   const allPosts = fileNames
-    .filter((name) => name.endsWith(".mdx"))
+    .filter((name) => name.endsWith('.mdx'))
     .map((fileName) => {
       const filePath = path.join(postsDirectory, fileName);
-      const fileContents = fs.readFileSync(filePath, "utf-8");
+      const fileContents = fs.readFileSync(filePath, 'utf-8');
       const { data, content } = matter(fileContents);
 
       return {
-        slug: data.slug || fileName.replace(/\.mdx$/, ""),
+        slug: data.slug || fileName.replace(/\.mdx$/, ''),
         title: data.title,
         category: data.category,
         date: data.date,
@@ -74,15 +74,15 @@ export function getAllGamePosts(locale: string = "en"): GamePost[] {
  */
 export function getGamePostBySlug(
   slug: string,
-  locale: string = "en",
+  locale: string = 'en'
 ): GamePost | null {
   try {
     let postsDirectory = getPostsDirectory(locale);
     let fullPath = path.join(postsDirectory, `${slug}.mdx`);
 
     // Fallback to English if locale version doesn't exist
-    if (!fs.existsSync(fullPath) && locale !== "en") {
-      postsDirectory = getPostsDirectory("en");
+    if (!fs.existsSync(fullPath) && locale !== 'en') {
+      postsDirectory = getPostsDirectory('en');
       fullPath = path.join(postsDirectory, `${slug}.mdx`);
     }
 
@@ -90,7 +90,7 @@ export function getGamePostBySlug(
       return null;
     }
 
-    const fileContents = fs.readFileSync(fullPath, "utf-8");
+    const fileContents = fs.readFileSync(fullPath, 'utf-8');
     const { data, content } = matter(fileContents);
 
     return {
@@ -108,7 +108,7 @@ export function getGamePostBySlug(
   } catch (error) {
     console.error(
       `Error loading game post "${slug}" for locale "${locale}":`,
-      error,
+      error
     );
     return null;
   }
@@ -117,7 +117,7 @@ export function getGamePostBySlug(
 /**
  * Get all game slugs
  */
-export function getGameSlugs(locale: string = "en"): string[] {
+export function getGameSlugs(locale: string = 'en'): string[] {
   const postsDirectory = getPostsDirectory(locale);
 
   if (!fs.existsSync(postsDirectory)) {
@@ -126,8 +126,8 @@ export function getGameSlugs(locale: string = "en"): string[] {
 
   const fileNames = fs.readdirSync(postsDirectory);
   return fileNames
-    .filter((name) => name.endsWith(".mdx"))
-    .map((name) => name.replace(/\.mdx$/, ""));
+    .filter((name) => name.endsWith('.mdx'))
+    .map((name) => name.replace(/\.mdx$/, ''));
 }
 
 /**
@@ -157,8 +157,8 @@ export function extractImagePaths(content: string): string[] {
  * Get featured game posts (sorted by featured flag and date)
  */
 export function getFeaturedPosts(
-  locale: string = "en",
-  limit: number = 3,
+  locale: string = 'en',
+  limit: number = 3
 ): GamePost[] {
   const allPosts = getAllGamePosts(locale);
 
@@ -176,8 +176,8 @@ export function getFeaturedPosts(
  * Get recently updated posts
  */
 export function getRecentUpdates(
-  locale: string = "en",
-  limit: number = 5,
+  locale: string = 'en',
+  limit: number = 5
 ): GamePost[] {
   const allPosts = getAllGamePosts(locale);
   return allPosts.sort((a, b) => (a.date > b.date ? -1 : 1)).slice(0, limit);

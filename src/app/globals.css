@@ -3,33 +3,31 @@
 @tailwind utilities;
 
 :root {
-  --background: #020617; /* slate-950 */
-  --foreground: #e2e8f0; /* slate-200 */
+  /* 默认浅色模式 */
+  --background: #ffffff;
+  --foreground: #0f172a;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    --background: #ffffff;
-    --foreground: #0f172a;
-  }
+/* 深色模式 - next-themes 会在 html 元素上添加 dark 类 */
+html.dark,
+.dark {
+  --background: #020617;
+  --foreground: #e2e8f0;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
-}
-
-/* 深色模式默认 */
-.dark {
-  --background: #020617;
-  --foreground: #e2e8f0;
 }
 
 /* 毛玻璃效果 */
@@ -39,35 +37,35 @@ body {
 
 /* 表格样式 - 为 prose 中的表格添加支持 */
 .prose table {
-  @apply w-full border-collapse my-6 !important;
-  display: table !important;
+  @apply w-full border-collapse my-6;
+  display: table;
 }
 
 .prose thead {
-  @apply border-t-2 border-slate-600 bg-slate-800/50 !important;
-  display: table-header-group !important;
+  @apply border-t-2 border-slate-400 dark:border-slate-600 bg-slate-100/50 dark:bg-slate-800/50;
+  display: table-header-group;
 }
 
 .prose tbody {
-  display: table-row-group !important;
+  display: table-row-group;
 }
 
 .prose tr {
-  display: table-row !important;
+  display: table-row;
 }
 
 .prose th {
-  @apply border-b border-slate-700 py-3 px-4 text-left font-bold text-slate-100 !important;
-  display: table-cell !important;
+  @apply border-b border-slate-300 dark:border-slate-700 py-3 px-4 text-left font-bold text-slate-800 dark:text-slate-100;
+  display: table-cell;
 }
 
 .prose td {
-  @apply border-b border-slate-800 py-3 px-4 text-slate-300 !important;
-  display: table-cell !important;
+  @apply border-b border-slate-200 dark:border-slate-800 py-3 px-4 text-slate-900 dark:text-slate-300;
+  display: table-cell;
 }
 
 .prose tr:hover {
-  @apply bg-slate-800/30 !important;
+  @apply bg-slate-100/30 dark:bg-slate-800/30;
 }
 
 /* 表格外层容器 - 用于响应式 */

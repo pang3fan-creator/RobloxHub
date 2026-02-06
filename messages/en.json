@@ -84,6 +84,10 @@
       "description": "Your ultimate destination for Roblox game guides, codes, and walkthroughs.",
       "rights": "All rights reserved.",
       "disclaimer": "RobloxHub is not affiliated with Roblox Corporation."
+    },
+    "themeToggle": {
+      "switchToLight": "Switch to light mode",
+      "switchToDark": "Switch to dark mode"
     }
   }
 }

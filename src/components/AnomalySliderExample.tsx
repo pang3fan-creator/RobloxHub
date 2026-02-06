@@ -5,7 +5,7 @@
  * in a game guide page.
  */
 
-import { AnomalySlider } from "./AnomalySlider";
+import { AnomalySlider } from './AnomalySlider';
 
 export function AnomalySliderExample() {
   return (
@@ -27,7 +27,7 @@ export function AnomalySliderExample() {
         anomalyId="statue-12"
         initialFound={false}
         onFoundChange={(found) => {
-          console.log("Anomaly found status:", found);
+          console.log('Anomaly found status:', found);
         }}
       />
 

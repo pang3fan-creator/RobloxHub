@@ -1,17 +1,17 @@
-import { MDXRemote } from "next-mdx-remote/rsc";
-import React from "react";
+import { MDXRemote } from 'next-mdx-remote/rsc';
+import React from 'react';
 
 // 将标题文本转换为 slug 格式
 function slugify(text: React.ReactNode): string {
   const str = React.Children.toArray(text)
-    .map((child) => (typeof child === "string" ? child : ""))
-    .join("");
+    .map((child) => (typeof child === 'string' ? child : ''))
+    .join('');
   return str
     .toLowerCase()
     .trim()
-    .replace(/[^\w\s-]/g, "")
-    .replace(/\s+/g, "-")
-    .replace(/-+/g, "-");
+    .replace(/[^\w\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-');
 }
 
 const components = {

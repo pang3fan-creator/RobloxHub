@@ -23,19 +23,19 @@ interface ProTipsProps {
 export function ProTips({ items }: ProTipsProps) {
   const defaultTips: ProTipItem[] = [
     {
-      icon: "👂",
-      title: "Sound Detection",
-      desc: "Some anomalies have no visual features - listen carefully",
+      icon: '👂',
+      title: 'Sound Detection',
+      desc: 'Some anomalies have no visual features - listen carefully',
     },
     {
-      icon: "👀",
-      title: "Scanning Path",
-      desc: "Establish a left-to-right scanning pattern for cameras",
+      icon: '👀',
+      title: 'Scanning Path',
+      desc: 'Establish a left-to-right scanning pattern for cameras',
     },
     {
-      icon: "⚡",
-      title: "Priority Handling",
-      desc: "Some anomalies need immediate action, others can wait",
+      icon: '⚡',
+      title: 'Priority Handling',
+      desc: 'Some anomalies need immediate action, others can wait',
     },
   ];
 
@@ -46,12 +46,16 @@ export function ProTips({ items }: ProTipsProps) {
       {displayTips.map((tip, index) => (
         <div
           key={index}
-          className="bg-slate-900 border border-slate-800 rounded-lg p-5 flex items-start gap-4"
+          className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg p-5 flex items-start gap-4"
         >
           <span className="text-3xl">{tip.icon}</span>
           <div>
-            <h3 className="font-semibold text-slate-200 mb-1">{tip.title}</h3>
-            <p className="text-sm text-slate-400">{tip.desc}</p>
+            <h3 className="font-semibold text-slate-800 dark:text-slate-200 mb-1">
+              {tip.title}
+            </h3>
+            <p className="text-sm text-slate-600 dark:text-slate-400">
+              {tip.desc}
+            </p>
           </div>
         </div>
       ))}

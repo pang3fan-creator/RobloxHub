@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { useRef } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { useTranslations } from "next-intl";
-import type { GamePost } from "@/lib/games";
+import { useRef } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { useTranslations } from 'next-intl';
+import type { GamePost } from '@/lib/games';
 
 interface FeaturedGameCardProps {
   game: GamePost;
@@ -12,7 +12,7 @@ interface FeaturedGameCardProps {
 }
 
 export function FeaturedGameCard({ game, locale }: FeaturedGameCardProps) {
-  const t = useTranslations("home.featured");
+  const t = useTranslations('home.featured');
   const cardRef = useRef<HTMLAnchorElement>(null);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -26,7 +26,7 @@ export function FeaturedGameCard({ game, locale }: FeaturedGameCardProps) {
   const handleMouseLeave = () => {
     if (!cardRef.current) return;
     cardRef.current.style.transform =
-      "perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1)";
+      'perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1)';
   };
 
   return (
@@ -37,7 +37,7 @@ export function FeaturedGameCard({ game, locale }: FeaturedGameCardProps) {
       onMouseLeave={handleMouseLeave}
       className="
         group relative block overflow-hidden rounded-3xl
-        bg-slate-900 border-2 border-transparent
+        bg-white dark:bg-slate-900 border-2 border-transparent
         shadow-xl shadow-purple-500/10
         transition-all duration-300 ease-out
         hover:shadow-2xl hover:shadow-purple-500/20
@@ -47,7 +47,7 @@ export function FeaturedGameCard({ game, locale }: FeaturedGameCardProps) {
         hover:before:opacity-100 hover:before:animate-gradient
         before:-z-10
       "
-      style={{ transformStyle: "preserve-3d" }}
+      style={{ transformStyle: 'preserve-3d' }}
     >
       {/* Cover Image */}
       <div className="relative aspect-[16/10] overflow-hidden">
@@ -59,26 +59,26 @@ export function FeaturedGameCard({ game, locale }: FeaturedGameCardProps) {
             className="object-cover transition-transform duration-300 group-hover:scale-105"
           />
         ) : (
-          <div className="w-full h-full bg-gradient-to-br from-purple-900 to-slate-900" />
+          <div className="w-full h-full bg-gradient-to-br from-purple-200 dark:from-purple-900 to-slate-200 dark:to-slate-900" />
         )}
         {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-100 dark:from-slate-900 via-slate-100/50 dark:via-slate-900/50 to-transparent" />
       </div>
 
       {/* Content */}
       <div className="relative p-6 -mt-16 z-10">
-        <h3 className="text-xl font-bold text-white mb-2 group-hover:text-purple-300 transition-colors">
+        <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-300 transition-colors">
           {game.title}
         </h3>
 
         {game.excerpt && (
-          <p className="text-slate-400 text-sm mb-4 line-clamp-2">
+          <p className="text-slate-600 dark:text-slate-400 text-sm mb-4 line-clamp-2">
             {game.excerpt}
           </p>
         )}
 
-        <span className="inline-flex items-center gap-2 text-purple-400 font-medium text-sm group-hover:text-purple-300 transition-colors">
-          {t("viewGuide")}
+        <span className="inline-flex items-center gap-2 text-purple-600 dark:text-purple-400 font-medium text-sm group-hover:text-purple-700 dark:group-hover:text-purple-300 transition-colors">
+          {t('viewGuide')}
           <svg
             className="w-4 h-4 transition-transform group-hover:translate-x-1"
             fill="none"
