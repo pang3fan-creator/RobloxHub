@@ -9,15 +9,17 @@ import { ProTips } from '@/components/ProTips';
 import { QuickReference } from '@/components/QuickReference';
 import { Table, THead, TBody, TR, TH, TD } from '@/components/MdxTable';
 
-// 将标题文本转换为 slug 格式
+// 将标题文本转换为 slug 格式（支持中文、西班牙语等多语言）
 function slugify(text: React.ReactNode): string {
   const str = React.Children.toArray(text)
     .map((child) => (typeof child === 'string' ? child : ''))
     .join('');
   return str
+    .normalize('NFD') // 分解重音字符: ó → o + ́
+    .replace(/[\u0300-\u036f]/g, '') // 移除组合标记（重音符号）
     .toLowerCase()
     .trim()
-    .replace(/[^\w\s-]/g, '')
+    .replace(/[^\w\s\u4e00-\u9fff-]/g, '') // 保留 ASCII、中文字符和连字符
     .replace(/\s+/g, '-')
     .replace(/-+/g, '-');
 }

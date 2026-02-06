@@ -41,13 +41,14 @@ async function convertImagesToWebp() {
     console.log(`  🔄 ${path.basename(pngPath)} → ${fileName}.webp`);
 
     try {
-      await sharp(pngPath)
-        .webp({ quality: 85 })
-        .toFile(webpPath);
+      await sharp(pngPath).webp({ quality: 85 }).toFile(webpPath);
 
       conversions.push({ png: pngPath, webp: webpPath });
     } catch (error) {
-      console.error(`  ❌ Error converting ${path.basename(pngPath)}:`, error.message);
+      console.error(
+        `  ❌ Error converting ${path.basename(pngPath)}:`,
+        error.message
+      );
     }
   }
 
@@ -58,7 +59,10 @@ async function convertImagesToWebp() {
       await fs.unlink(png);
       console.log(`  ✅ Deleted ${path.basename(png)}`);
     } catch (error) {
-      console.error(`  ❌ Error deleting ${path.basename(png)}:`, error.message);
+      console.error(
+        `  ❌ Error deleting ${path.basename(png)}:`,
+        error.message
+      );
     }
   }
 
@@ -93,7 +97,10 @@ async function updateMdxFiles(pngToWebpMap) {
         await fs.writeFile(postFile, content, 'utf-8');
       }
     } catch (error) {
-      console.error(`  ❌ Error updating ${path.basename(postFile)}:`, error.message);
+      console.error(
+        `  ❌ Error updating ${path.basename(postFile)}:`,
+        error.message
+      );
     }
   }
 }

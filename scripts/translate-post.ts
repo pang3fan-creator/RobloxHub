@@ -1,19 +1,19 @@
-import * as fs from "fs";
-import * as path from "path";
-import * as crypto from "crypto";
-import matter from "gray-matter";
+import * as fs from 'fs';
+import * as path from 'path';
+import * as crypto from 'crypto';
+import matter from 'gray-matter';
 
 // 加载 .env.local 文件
 function loadEnvFile(): void {
-  const envPath = path.join(process.cwd(), ".env.local");
+  const envPath = path.join(process.cwd(), '.env.local');
   if (fs.existsSync(envPath)) {
-    const envContent = fs.readFileSync(envPath, "utf-8");
-    envContent.split("\n").forEach((line) => {
+    const envContent = fs.readFileSync(envPath, 'utf-8');
+    envContent.split('\n').forEach((line) => {
       const trimmed = line.trim();
-      if (trimmed && !trimmed.startsWith("#")) {
-        const [key, ...valueParts] = trimmed.split("=");
+      if (trimmed && !trimmed.startsWith('#')) {
+        const [key, ...valueParts] = trimmed.split('=');
         if (key && valueParts.length > 0) {
-          process.env[key.trim()] = valueParts.join("=").trim();
+          process.env[key.trim()] = valueParts.join('=').trim();
         }
       }
     });
@@ -23,10 +23,10 @@ function loadEnvFile(): void {
 loadEnvFile();
 
 // 腾讯云 TMT API 配置
-const TENCENT_SECRET_ID = process.env.TENCENT_SECRET_ID || "";
-const TENCENT_SECRET_KEY = process.env.TENCENT_SECRET_KEY || "";
-const TMT_ENDPOINT = "tmt.tencentcloudapi.com";
-const TMT_REGION = "ap-guangzhou";
+const TENCENT_SECRET_ID = process.env.TENCENT_SECRET_ID || '';
+const TENCENT_SECRET_KEY = process.env.TENCENT_SECRET_KEY || '';
+const TMT_ENDPOINT = 'tmt.tencentcloudapi.com';
+const TMT_REGION = 'ap-guangzhou';
 
 interface TranslateOptions {
   sourceLocale: string;
@@ -36,20 +36,20 @@ interface TranslateOptions {
 
 // TC3-HMAC-SHA256 签名
 function sign(key: Buffer, msg: string): Buffer {
-  return crypto.createHmac("sha256", key).update(msg).digest();
+  return crypto.createHmac('sha256', key).update(msg).digest();
 }
 
 function getHash(msg: string): string {
-  return crypto.createHash("sha256").update(msg).digest("hex");
+  return crypto.createHash('sha256').update(msg).digest('hex');
 }
 
 async function callTencentTMT(
   text: string,
   source: string,
-  target: string,
+  target: string
 ): Promise<string> {
   const timestamp = Math.floor(Date.now() / 1000);
-  const date = new Date(timestamp * 1000).toISOString().split("T")[0];
+  const date = new Date(timestamp * 1000).toISOString().split('T')[0];
 
   const payload = JSON.stringify({
     SourceText: text,
@@ -59,11 +59,11 @@ async function callTencentTMT(
   });
 
   const hashedPayload = getHash(payload);
-  const httpRequestMethod = "POST";
-  const canonicalUri = "/";
-  const canonicalQueryString = "";
+  const httpRequestMethod = 'POST';
+  const canonicalUri = '/';
+  const canonicalQueryString = '';
   const canonicalHeaders = `content-type:application/json; charset=utf-8\nhost:${TMT_ENDPOINT}\nx-tc-action:texttranslate\n`;
-  const signedHeaders = "content-type;host;x-tc-action";
+  const signedHeaders = 'content-type;host;x-tc-action';
 
   const canonicalRequest = [
     httpRequestMethod,
@@ -72,9 +72,9 @@ async function callTencentTMT(
     canonicalHeaders,
     signedHeaders,
     hashedPayload,
-  ].join("\n");
+  ].join('\n');
 
-  const algorithm = "TC3-HMAC-SHA256";
+  const algorithm = 'TC3-HMAC-SHA256';
   const credentialScope = `${date}/tmt/tc3_request`;
   const hashedCanonicalRequest = getHash(canonicalRequest);
   const stringToSign = [
@@ -82,27 +82,27 @@ async function callTencentTMT(
     timestamp,
     credentialScope,
     hashedCanonicalRequest,
-  ].join("\n");
+  ].join('\n');
 
-  const secretDate = sign(Buffer.from("TC3" + TENCENT_SECRET_KEY), date);
-  const secretService = sign(secretDate, "tmt");
-  const secretSigning = sign(secretService, "tc3_request");
+  const secretDate = sign(Buffer.from('TC3' + TENCENT_SECRET_KEY), date);
+  const secretService = sign(secretDate, 'tmt');
+  const secretSigning = sign(secretService, 'tc3_request');
   const signature = crypto
-    .createHmac("sha256", secretSigning)
+    .createHmac('sha256', secretSigning)
     .update(stringToSign)
-    .digest("hex");
+    .digest('hex');
 
   const authorization = `${algorithm} Credential=${TENCENT_SECRET_ID}/${credentialScope}, SignedHeaders=${signedHeaders}, Signature=${signature}`;
 
   const response = await fetch(`https://${TMT_ENDPOINT}`, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json; charset=utf-8",
+      'Content-Type': 'application/json; charset=utf-8',
       Host: TMT_ENDPOINT,
-      "X-TC-Action": "TextTranslate",
-      "X-TC-Version": "2018-03-21",
-      "X-TC-Timestamp": timestamp.toString(),
-      "X-TC-Region": TMT_REGION,
+      'X-TC-Action': 'TextTranslate',
+      'X-TC-Version': '2018-03-21',
+      'X-TC-Timestamp': timestamp.toString(),
+      'X-TC-Region': TMT_REGION,
       Authorization: authorization,
     },
     body: payload,
@@ -112,7 +112,7 @@ async function callTencentTMT(
 
   if (result.Response?.Error) {
     throw new Error(
-      `TMT API Error: ${result.Response.Error.Code} - ${result.Response.Error.Message}`,
+      `TMT API Error: ${result.Response.Error.Code} - ${result.Response.Error.Message}`
     );
   }
 
@@ -122,8 +122,8 @@ async function callTencentTMT(
 // 分割长文本为多个片段（腾讯云 TMT 单次限制 6000 字符，保守使用 3000）
 function splitText(text: string, maxLength: number = 3000): string[] {
   const segments: string[] = [];
-  const lines = text.split("\n");
-  let current = "";
+  const lines = text.split('\n');
+  let current = '';
 
   for (const line of lines) {
     const potentialLength = current
@@ -134,7 +134,7 @@ function splitText(text: string, maxLength: number = 3000): string[] {
       segments.push(current);
       current = line;
     } else {
-      current = current ? current + "\n" + line : line;
+      current = current ? current + '\n' + line : line;
     }
   }
 
@@ -147,13 +147,13 @@ function splitText(text: string, maxLength: number = 3000): string[] {
   for (const segment of segments) {
     if (segment.length > maxLength) {
       const sentences = segment.split(/(?<=[.!?。！？])\s+/);
-      let subCurrent = "";
+      let subCurrent = '';
       for (const sentence of sentences) {
-        if ((subCurrent + " " + sentence).length > maxLength && subCurrent) {
+        if ((subCurrent + ' ' + sentence).length > maxLength && subCurrent) {
           finalSegments.push(subCurrent.trim());
           subCurrent = sentence;
         } else {
-          subCurrent = subCurrent ? subCurrent + " " + sentence : sentence;
+          subCurrent = subCurrent ? subCurrent + ' ' + sentence : sentence;
         }
       }
       if (subCurrent.trim()) {
@@ -185,14 +185,14 @@ function protectContent(text: string): {
 
   // 保护代码块（必须最先保护，因为代码块可能包含其他标记）
   protected_ = protected_.replace(/```[\s\S]*?```/g, (match) => {
-    const placeholder = createPlaceholder("CODE", counter++);
+    const placeholder = createPlaceholder('CODE', counter++);
     placeholders.set(placeholder, match);
     return placeholder;
   });
 
   // 保护行内代码
   protected_ = protected_.replace(/`[^`]+`/g, (match) => {
-    const placeholder = createPlaceholder("CODE", counter++);
+    const placeholder = createPlaceholder('CODE', counter++);
     placeholders.set(placeholder, match);
     return placeholder;
   });
@@ -202,25 +202,25 @@ function protectContent(text: string): {
     /<\/?([A-Z][a-zA-Z0-9]*)(?:\s[^>]*)?\/?>/g,
     (match) => {
       // 只匹配自闭合标签 <ComponentName />
-      if (match.endsWith("/>")) {
-        const placeholder = createPlaceholder("MDX", counter++);
+      if (match.endsWith('/>')) {
+        const placeholder = createPlaceholder('MDX', counter++);
         placeholders.set(placeholder, match);
         return placeholder;
       }
       return match;
-    },
+    }
   );
 
   // 保护图片 ![alt](url)
   protected_ = protected_.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (match) => {
-    const placeholder = createPlaceholder("IMG", counter++);
+    const placeholder = createPlaceholder('IMG', counter++);
     placeholders.set(placeholder, match);
     return placeholder;
   });
 
   // 保护链接中的锚点 [text](#anchor)
   protected_ = protected_.replace(/\[([^\]]+)\]\((#[^)]+)\)/g, (match) => {
-    const placeholder = createPlaceholder("LINK", counter++);
+    const placeholder = createPlaceholder('LINK', counter++);
     placeholders.set(placeholder, match);
     return placeholder;
   });
@@ -231,13 +231,13 @@ function protectContent(text: string): {
 // 还原保护的内容
 function restoreContent(
   text: string,
-  placeholders: Map<string, string>,
+  placeholders: Map<string, string>
 ): string {
   let restored = text;
 
   // 按占位符长度降序排序，避免部分匹配问题
   const sortedPlaceholders = Array.from(placeholders.entries()).sort(
-    (a, b) => b[0].length - a[0].length,
+    (a, b) => b[0].length - a[0].length
   );
 
   for (const [placeholder, original] of sortedPlaceholders) {
@@ -253,7 +253,7 @@ function restoreContent(
 async function translateSegment(
   text: string,
   source: string,
-  target: string,
+  target: string
 ): Promise<string> {
   const { protected: protectedText, placeholders } = protectContent(text);
 
@@ -275,7 +275,7 @@ async function translateSegment(
 async function translatePost(options: TranslateOptions): Promise<void> {
   const { sourceLocale, targetLocale, slug } = options;
 
-  const postsDir = path.join(process.cwd(), "posts");
+  const postsDir = path.join(process.cwd(), 'posts');
   const sourceDir = path.join(postsDir, sourceLocale);
   const targetDir = path.join(postsDir, targetLocale);
   const sourceFile = path.join(sourceDir, `${slug}.mdx`);
@@ -295,18 +295,18 @@ async function translatePost(options: TranslateOptions): Promise<void> {
   console.log(`Translating ${slug} from ${sourceLocale} to ${targetLocale}...`);
 
   // 读取源文件
-  const fileContents = fs.readFileSync(sourceFile, "utf-8");
+  const fileContents = fs.readFileSync(sourceFile, 'utf-8');
   const { data: frontmatter, content } = matter(fileContents);
 
   // 翻译 frontmatter 中的字段
-  console.log("Translating frontmatter...");
+  console.log('Translating frontmatter...');
   const translatedFrontmatter = { ...frontmatter };
 
   if (frontmatter.title) {
     translatedFrontmatter.title = await translateSegment(
       frontmatter.title,
       sourceLocale,
-      targetLocale,
+      targetLocale
     );
     console.log(`  title: ${translatedFrontmatter.title.substring(0, 50)}...`);
   }
@@ -315,7 +315,7 @@ async function translatePost(options: TranslateOptions): Promise<void> {
     translatedFrontmatter.excerpt = await translateSegment(
       frontmatter.excerpt,
       sourceLocale,
-      targetLocale,
+      targetLocale
     );
   }
 
@@ -323,12 +323,12 @@ async function translatePost(options: TranslateOptions): Promise<void> {
     translatedFrontmatter.category = await translateSegment(
       frontmatter.category,
       sourceLocale,
-      targetLocale,
+      targetLocale
     );
   }
 
   // 翻译正文内容
-  console.log("Translating content...");
+  console.log('Translating content...');
   const segments = splitText(content);
   const translatedSegments: string[] = [];
 
@@ -337,7 +337,7 @@ async function translatePost(options: TranslateOptions): Promise<void> {
     const translated = await translateSegment(
       segments[i],
       sourceLocale,
-      targetLocale,
+      targetLocale
     );
     translatedSegments.push(translated);
 
@@ -345,11 +345,11 @@ async function translatePost(options: TranslateOptions): Promise<void> {
     await new Promise((resolve) => setTimeout(resolve, 200));
   }
 
-  const translatedContent = translatedSegments.join("\n\n");
+  const translatedContent = translatedSegments.join('\n\n');
 
   // 生成翻译后的 MDX 文件
   const output = matter.stringify(translatedContent, translatedFrontmatter);
-  fs.writeFileSync(targetFile, output, "utf-8");
+  fs.writeFileSync(targetFile, output, 'utf-8');
 
   console.log(`Translation complete: ${targetFile}`);
 }
@@ -360,10 +360,10 @@ async function main() {
 
   if (args.length < 3) {
     console.log(
-      "Usage: npx ts-node scripts/translate-post.ts <slug> <sourceLocale> <targetLocale>",
+      'Usage: npx ts-node scripts/translate-post.ts <slug> <sourceLocale> <targetLocale>'
     );
     console.log(
-      "Example: npx ts-node scripts/translate-post.ts scary-shawarma-kiosk en zh",
+      'Example: npx ts-node scripts/translate-post.ts scary-shawarma-kiosk en zh'
     );
     process.exit(1);
   }
@@ -372,7 +372,7 @@ async function main() {
 
   if (!TENCENT_SECRET_ID || !TENCENT_SECRET_KEY) {
     console.error(
-      "Error: TENCENT_SECRET_ID and TENCENT_SECRET_KEY must be set in environment variables",
+      'Error: TENCENT_SECRET_ID and TENCENT_SECRET_KEY must be set in environment variables'
     );
     process.exit(1);
   }

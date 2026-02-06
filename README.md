@@ -196,10 +196,10 @@ roblox-hub/
 
 ```mdx
 ---
-title: "Game Title"
-slug: "game-slug"
-locale: "en"
-date: "2026-01-29"
+title: 'Game Title'
+slug: 'game-slug'
+locale: 'en'
+date: '2026-01-29'
 ---
 
 # Game Title

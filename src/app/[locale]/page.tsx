@@ -5,7 +5,13 @@ import { HeroSearch } from '@/components/HeroSearch';
 import { FeaturedGameCard } from '@/components/FeaturedGameCard';
 import { TrendingNow } from '@/components/TrendingNow';
 import { RecentUpdates } from '@/components/RecentUpdates';
-import { generateAlternates, generateCanonical } from '@/lib/seo';
+import { JsonLd } from '@/components/JsonLd';
+import {
+  generateAlternates,
+  generateCanonical,
+  generateOrganizationSchema,
+  generateGameListSchema,
+} from '@/lib/seo';
 import { getFeaturedPosts, getRecentUpdates } from '@/lib/games';
 import { Locale } from '@/lib/i18n';
 
@@ -46,8 +52,15 @@ export default async function HomePage({ params }: PageProps) {
   const featuredPosts = getFeaturedPosts(locale, 3);
   const recentPosts = getRecentUpdates(locale, 5);
 
+  // Generate structured data schemas for SEO
+  const schemas = [
+    generateOrganizationSchema(),
+    generateGameListSchema(featuredPosts, locale as Locale),
+  ];
+
   return (
     <div className="min-h-screen">
+      <JsonLd data={schemas} />
       <FloatingNav locale={locale} />
 
       {/* Hero Section */}

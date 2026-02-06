@@ -87,8 +87,8 @@ This is a **functional tool for gamers**, not a decorative marketing site.
 
 ```css
 --font-sans:
-  system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
---font-mono: "SF Mono", "Consolas", "Monaco", monospace;
+  system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+--font-mono: 'SF Mono', 'Consolas', 'Monaco', monospace;
 ```
 
 **Type Scale:**

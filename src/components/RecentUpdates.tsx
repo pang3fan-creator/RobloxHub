@@ -57,6 +57,7 @@ export function RecentUpdates({ locale, posts }: RecentUpdatesProps) {
                   src={post.coverImage}
                   alt={post.title}
                   fill
+                  sizes="64px"
                   className="object-cover"
                 />
               ) : (

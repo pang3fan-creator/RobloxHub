@@ -3,8 +3,17 @@ import { getTranslations } from 'next-intl/server';
 import { FloatingNav } from '@/components/FloatingNav';
 import { GameMDX } from '@/components/GameMDX';
 import { Footer } from '@/components/Footer';
+import { JsonLd } from '@/components/JsonLd';
 import { getGamePostBySlug } from '@/lib/games';
-import { generateAlternates, generateCanonical } from '@/lib/seo';
+import {
+  generateAlternates,
+  generateCanonical,
+  generateArticleSchema,
+  generateBreadcrumbSchema,
+  generateHowToSchema,
+  generateFAQPageSchema,
+  SITE_URL,
+} from '@/lib/seo';
 import { Locale } from '@/lib/i18n';
 import { RiskLevel } from '@/components/QuickCard';
 
@@ -126,8 +135,34 @@ export default async function GameDetailPage({ params }: PageProps) {
 
   const { title, content, featured, date, readTime } = gamePost;
 
+  // Generate structured data schemas for SEO
+  const schemas: Record<string, unknown>[] = [
+    generateArticleSchema(gamePost, locale as Locale),
+    generateBreadcrumbSchema([
+      { name: 'Home', url: `${SITE_URL}/${locale}` },
+      { name: 'Games', url: `${SITE_URL}/${locale}/games` },
+      { name: gamePost.title, url: `${SITE_URL}/${locale}/games/${slug}` },
+    ]),
+  ];
+
+  // Add HowTo schema if available in frontmatter
+  if (gamePost.schemaData?.howToSteps) {
+    schemas.push(
+      generateHowToSchema(
+        `How to Play ${gamePost.title}`,
+        gamePost.schemaData.howToSteps
+      )
+    );
+  }
+
+  // Add FAQ schema if available in frontmatter
+  if (gamePost.schemaData?.faqItems) {
+    schemas.push(generateFAQPageSchema(gamePost.schemaData.faqItems));
+  }
+
   return (
     <main className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-200">
+      <JsonLd data={schemas} />
       <FloatingNav locale={locale} />
 
       <div className="container mx-auto px-4 py-12 max-w-5xl">

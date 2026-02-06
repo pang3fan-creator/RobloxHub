@@ -3,6 +3,8 @@ import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { locales } from '@/lib/i18n';
 import { ThemeProvider } from '@/components/ThemeProvider';
+import { JsonLd } from '@/components/JsonLd';
+import { generateWebSiteJsonLd } from '@/lib/seo';
 import '../globals.css';
 
 export function generateStaticParams() {
@@ -28,6 +30,7 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <head>
+        <JsonLd data={JSON.parse(generateWebSiteJsonLd())} />
         <meta name="google-adsense-account" content="ca-pub-6636417287024414" />
         <script
           async

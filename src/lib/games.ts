@@ -2,6 +2,11 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 
+export interface SchemaData {
+  howToSteps?: Array<{ title: string; desc: string }>;
+  faqItems?: Array<{ q: string; a: string }>;
+}
+
 export interface GamePost {
   slug: string;
   title: string;
@@ -13,6 +18,7 @@ export interface GamePost {
   author: string;
   featured: boolean;
   content: string;
+  schemaData?: SchemaData;
 }
 
 export interface GameMetadata {
@@ -62,6 +68,7 @@ export function getAllGamePosts(locale: string = 'en'): GamePost[] {
         author: data.author,
         featured: data.featured || false,
         content,
+        schemaData: data.schemaData,
       } as GamePost;
     });
 
@@ -104,6 +111,7 @@ export function getGamePostBySlug(
       author: data.author,
       featured: data.featured || false,
       content,
+      schemaData: data.schemaData,
     } as GamePost;
   } catch (error) {
     console.error(
