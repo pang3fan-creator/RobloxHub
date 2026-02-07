@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
 import { ThemeToggle } from './ThemeToggle';
+import { LanguageToggle } from './LanguageToggle';
 
 interface NavItem {
   label: string;
@@ -130,6 +131,16 @@ export function FloatingNav({ locale = 'en' }: { locale?: string }) {
           {/* Hover glow effect */}
           <div className="absolute inset-0 rounded-full bg-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
         </button>
+      </div>
+
+      {/* Language Toggle Button */}
+      <div
+        className={`fixed top-6 right-20 z-40 transition-transform duration-300 ${
+          isVisible ? 'translate-y-0' : '-translate-y-20'
+        }`}
+        style={{ top: 'max(1.5rem, env(safe-area-inset-top))' }}
+      >
+        <LanguageToggle />
       </div>
 
       {/* Theme Toggle Button */}

@@ -131,7 +131,7 @@ export function AnomalySlider({
       >
         {/* Left Pane (Before) - Anchored Left */}
         <div
-          className="absolute left-0 top-0 bottom-0 overflow-hidden bg-black/20 z-10"
+          className="absolute left-0 top-0 bottom-0 overflow-hidden bg-black/5 dark:bg-black/20 z-10"
           style={{ width: `${sliderPosition}%` }}
         >
           <img
@@ -144,7 +144,7 @@ export function AnomalySlider({
 
         {/* Right Pane (After) - Anchored Right */}
         <div
-          className="absolute right-0 top-0 bottom-0 overflow-hidden bg-black/20"
+          className="absolute right-0 top-0 bottom-0 overflow-hidden bg-black/5 dark:bg-black/20"
           style={{ width: `${100 - sliderPosition}%` }}
         >
           <img
@@ -186,7 +186,7 @@ export function AnomalySlider({
         {/* Hint Overlay (only when centered and idle) */}
         {sliderPosition === 50 && !isDragging && (
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-30">
-            <span className="text-white/90 text-sm font-medium px-4 py-2 bg-black/60 rounded-full backdrop-blur-sm shadow-xl translate-y-12">
+            <span className="text-slate-900/90 dark:text-white/90 text-sm font-medium px-4 py-2 bg-black/60 rounded-full backdrop-blur-sm shadow-xl translate-y-12">
               {t('dragHint')}
             </span>
           </div>

@@ -88,6 +88,10 @@
     "themeToggle": {
       "switchToLight": "切换到浅色模式",
       "switchToDark": "切换到深色模式"
+    },
+    "languageToggle": {
+      "switchLanguage": "切换语言",
+      "selectLanguage": "选择语言"
     }
   }
 }

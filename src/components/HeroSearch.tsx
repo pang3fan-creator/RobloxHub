@@ -39,7 +39,7 @@ export function HeroSearch({ locale }: HeroSearchProps) {
         >
           {/* Search Icon */}
           <svg
-            className="w-5 h-5 text-slate-500 flex-shrink-0"
+            className="w-5 h-5 text-slate-500 dark:text-slate-400 flex-shrink-0"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"

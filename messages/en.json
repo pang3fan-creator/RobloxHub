@@ -88,6 +88,10 @@
     "themeToggle": {
       "switchToLight": "Switch to light mode",
       "switchToDark": "Switch to dark mode"
+    },
+    "languageToggle": {
+      "switchLanguage": "Switch language",
+      "selectLanguage": "Select language"
     }
   }
 }

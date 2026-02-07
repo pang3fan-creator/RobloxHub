@@ -88,6 +88,10 @@
     "themeToggle": {
       "switchToLight": "Cambiar a modo claro",
       "switchToDark": "Cambiar a modo oscuro"
+    },
+    "languageToggle": {
+      "switchLanguage": "Cambiar idioma",
+      "selectLanguage": "Seleccionar idioma"
     }
   }
 }

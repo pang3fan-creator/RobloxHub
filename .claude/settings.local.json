@@ -3,7 +3,10 @@
     "allow": [
       "Bash(npm test)",
       "Bash(npx prettier:*)",
-      "Bash(npm run lint)"
+      "Bash(npm run lint)",
+      "mcp__web-search-prime__webSearchPrime",
+      "Bash(rg:*)",
+      "Bash(npm test:*)"
     ]
   },
   "outputStyle": "Learning"

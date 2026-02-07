@@ -10,11 +10,11 @@ import { AnomalySlider } from './AnomalySlider';
 export function AnomalySliderExample() {
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-8">
-      <h2 className="text-2xl font-bold text-slate-200">
+      <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-200">
         Anomaly #12 - Moving Statue
       </h2>
 
-      <p className="text-slate-400">
+      <p className="text-slate-700 dark:text-slate-400">
         In the hallway, check if the statue has moved from its original
         position.
       </p>
@@ -31,9 +31,11 @@ export function AnomalySliderExample() {
         }}
       />
 
-      <div className="bg-slate-900 border border-slate-800 rounded-lg p-4">
-        <h3 className="font-semibold text-slate-200 mb-2">How to Trigger</h3>
-        <ol className="list-decimal list-inside space-y-2 text-sm text-slate-400">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg p-4">
+        <h3 className="font-semibold text-slate-900 dark:text-slate-200 mb-2">
+          How to Trigger
+        </h3>
+        <ol className="list-decimal list-inside space-y-2 text-sm text-slate-700 dark:text-slate-400">
           <li>Enter the hallway from the main lobby</li>
           <li>Look at the statue on the left side</li>
           <li>If it faces the wall, this is the anomaly</li>

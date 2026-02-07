@@ -64,7 +64,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     availableLocales.forEach((l) => {
       alternatesMap[l] = getLocalizedUrl(`/games/${slug}`, l);
     });
-    alternatesMap['x-default'] = getLocalizedUrl(`/games/${slug}`, defaultLocale);
+    alternatesMap['x-default'] = getLocalizedUrl(
+      `/games/${slug}`,
+      defaultLocale
+    );
 
     // 为每个存在的语言版本生成一个 Sitemap 条目
     return availableLocales.map((locale) => ({
